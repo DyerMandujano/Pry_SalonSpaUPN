@@ -1,0 +1,33 @@
+C:\Users\Jeremy\source\repos\Rumis Salon Spa\Rumis Salon Spa\bin\Debug\net8.0\appsettings.Development.json
+C:\Users\Jeremy\source\repos\Rumis Salon Spa\Rumis Salon Spa\bin\Debug\net8.0\appsettings.json
+C:\Users\Jeremy\source\repos\Rumis Salon Spa\Rumis Salon Spa\bin\Debug\net8.0\Rumis Salon Spa.staticwebassets.runtime.json
+C:\Users\Jeremy\source\repos\Rumis Salon Spa\Rumis Salon Spa\bin\Debug\net8.0\Rumis Salon Spa.staticwebassets.endpoints.json
+C:\Users\Jeremy\source\repos\Rumis Salon Spa\Rumis Salon Spa\bin\Debug\net8.0\Rumis Salon Spa.exe
+C:\Users\Jeremy\source\repos\Rumis Salon Spa\Rumis Salon Spa\bin\Debug\net8.0\Rumis Salon Spa.deps.json
+C:\Users\Jeremy\source\repos\Rumis Salon Spa\Rumis Salon Spa\bin\Debug\net8.0\Rumis Salon Spa.runtimeconfig.json
+C:\Users\Jeremy\source\repos\Rumis Salon Spa\Rumis Salon Spa\bin\Debug\net8.0\Rumis Salon Spa.dll
+C:\Users\Jeremy\source\repos\Rumis Salon Spa\Rumis Salon Spa\bin\Debug\net8.0\Rumis Salon Spa.pdb
+C:\Users\Jeremy\source\repos\Rumis Salon Spa\Rumis Salon Spa\obj\Debug\net8.0\rpswa.dswa.cache.json
+C:\Users\Jeremy\source\repos\Rumis Salon Spa\Rumis Salon Spa\obj\Debug\net8.0\Rumis Salon Spa.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Jeremy\source\repos\Rumis Salon Spa\Rumis Salon Spa\obj\Debug\net8.0\Rumis Salon Spa.AssemblyInfoInputs.cache
+C:\Users\Jeremy\source\repos\Rumis Salon Spa\Rumis Salon Spa\obj\Debug\net8.0\Rumis Salon Spa.AssemblyInfo.cs
+C:\Users\Jeremy\source\repos\Rumis Salon Spa\Rumis Salon Spa\obj\Debug\net8.0\Rumis Salon Spa.csproj.CoreCompileInputs.cache
+C:\Users\Jeremy\source\repos\Rumis Salon Spa\Rumis Salon Spa\obj\Debug\net8.0\Rumis Salon Spa.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Jeremy\source\repos\Rumis Salon Spa\Rumis Salon Spa\obj\Debug\net8.0\Rumis Salon Spa.RazorAssemblyInfo.cache
+C:\Users\Jeremy\source\repos\Rumis Salon Spa\Rumis Salon Spa\obj\Debug\net8.0\Rumis Salon Spa.RazorAssemblyInfo.cs
+C:\Users\Jeremy\source\repos\Rumis Salon Spa\Rumis Salon Spa\obj\Debug\net8.0\rjimswa.dswa.cache.json
+C:\Users\Jeremy\source\repos\Rumis Salon Spa\Rumis Salon Spa\obj\Debug\net8.0\rjsmrazor.dswa.cache.json
+C:\Users\Jeremy\source\repos\Rumis Salon Spa\Rumis Salon Spa\obj\Debug\net8.0\rjsmcshtml.dswa.cache.json
+C:\Users\Jeremy\source\repos\Rumis Salon Spa\Rumis Salon Spa\obj\Debug\net8.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
+C:\Users\Jeremy\source\repos\Rumis Salon Spa\Rumis Salon Spa\obj\Debug\net8.0\scopedcss\bundle\Rumis Salon Spa.styles.css
+C:\Users\Jeremy\source\repos\Rumis Salon Spa\Rumis Salon Spa\obj\Debug\net8.0\scopedcss\projectbundle\Rumis Salon Spa.bundle.scp.css
+C:\Users\Jeremy\source\repos\Rumis Salon Spa\Rumis Salon Spa\obj\Debug\net8.0\staticwebassets.build.json
+C:\Users\Jeremy\source\repos\Rumis Salon Spa\Rumis Salon Spa\obj\Debug\net8.0\staticwebassets.build.json.cache
+C:\Users\Jeremy\source\repos\Rumis Salon Spa\Rumis Salon Spa\obj\Debug\net8.0\staticwebassets.development.json
+C:\Users\Jeremy\source\repos\Rumis Salon Spa\Rumis Salon Spa\obj\Debug\net8.0\staticwebassets.build.endpoints.json
+C:\Users\Jeremy\source\repos\Rumis Salon Spa\Rumis Salon Spa\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
+C:\Users\Jeremy\source\repos\Rumis Salon Spa\Rumis Salon Spa\obj\Debug\net8.0\Rumis Salon Spa.dll
+C:\Users\Jeremy\source\repos\Rumis Salon Spa\Rumis Salon Spa\obj\Debug\net8.0\refint\Rumis Salon Spa.dll
+C:\Users\Jeremy\source\repos\Rumis Salon Spa\Rumis Salon Spa\obj\Debug\net8.0\Rumis Salon Spa.pdb
+C:\Users\Jeremy\source\repos\Rumis Salon Spa\Rumis Salon Spa\obj\Debug\net8.0\Rumis Salon Spa.genruntimeconfig.cache
+C:\Users\Jeremy\source\repos\Rumis Salon Spa\Rumis Salon Spa\obj\Debug\net8.0\ref\Rumis Salon Spa.dll
