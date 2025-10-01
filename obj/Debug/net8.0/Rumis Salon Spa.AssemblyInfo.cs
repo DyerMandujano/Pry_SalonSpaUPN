@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Rumis Salon Spa")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+58953e5c3c8bd90072530a9ab92ac62b61666582")]
 [assembly: System.Reflection.AssemblyProductAttribute("Rumis Salon Spa")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Rumis Salon Spa")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

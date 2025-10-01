@@ -1,0 +1,25 @@
+﻿@inherits LayoutComponentBase
+
+<div class="sidenav">
+    <NavMenu />
+</div>
+
+<div class="main-content">
+    @Body
+</div>
+
+<style>
+    .sidenav {
+        width: 220px;
+        height: 100vh;
+        background: #3b2c50;
+        color: white;
+        float: left;
+        padding: 20px;
+    }
+
+    .main-content {
+        margin-left: 240px;
+        padding: 20px;
+    }
+</style>
