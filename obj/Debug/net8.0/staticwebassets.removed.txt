@@ -1,2 +1,0 @@
-C:\Users\Jeremy\source\repos\Rumis Salon Spa\Rumis Salon Spa\wwwroot\css\site.css
-C:\Users\Jeremy\source\repos\Rumis Salon Spa\Rumis Salon Spa\wwwroot\js\script.js

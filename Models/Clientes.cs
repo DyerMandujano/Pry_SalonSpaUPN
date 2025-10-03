@@ -1,12 +1,21 @@
-﻿namespace Rumis_Salon_Spa.Models
+﻿using System;
+using System.Collections.Generic;
+
+namespace Rumis_Salon_Spa.Models;
+
+public partial class Clientes
 {
-    public class Clientes
-    {
-        public int Id { get; set; }
-        public string Dni { get; set; }
-        public string Nombres { get; set; }
-        public string Apellidos { get; set; }
-        public string Correo { get; set; }
-        public string Telefono { get; set; }
-    }
+    public int IdCliente { get; set; }
+
+    public int IdPersona { get; set; }
+
+    public DateTime FechaRegistro { get; set; }
+
+    public int Estado { get; set; }
+
+    public virtual ICollection<Cita> Cita { get; set; } = new List<Cita>();
+
+    public virtual Persona IdPersonaNavigation { get; set; } = null!;
+
+    public virtual ICollection<Venta> Venta { get; set; } = new List<Venta>();
 }

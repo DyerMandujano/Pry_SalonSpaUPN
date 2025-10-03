@@ -1,13 +1,27 @@
-﻿var builder = WebApplication.CreateBuilder(args);
+﻿using Microsoft.EntityFrameworkCore;
+using Rumis_Salon_Spa.DB;
+
+var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddDbContext<Conexion>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("RumisDB")));
 
 builder.Services.AddControllersWithViews();
-
+    
 var app = builder.Build();
 
+if (!app.Environment.IsDevelopment())
+{
+    app.UseExceptionHandler("/Home/Error");
+    app.UseHsts();
+}
+
+app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
