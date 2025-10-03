@@ -8,16 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Remove="_Imports.razor" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Include="_Imports.razor" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Folder Include="Data\" />
-    <Folder Include="Routes\" />
   </ItemGroup>
 
 </Project>
