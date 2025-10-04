@@ -1,0 +1,143 @@
+﻿@model List<Rumis_Salon_Spa.Models.Clientes>
+
+<link rel="stylesheet" href="~/css/Vclientes/ListClientes.css" />
+
+<div class="clientes-lista">
+    <div class="clientes-header">
+        <div>ID</div>
+        <div>Nombre y Apellidos</div>
+        <div>Teléfono</div>
+        <div>Fecha Registro</div>
+        <div>Estado</div>
+        <div>Acciones</div>
+    </div>
+
+    @foreach (var c in Model)
+    {
+        var nombreSlug = $"{c.IdPersonaNavigation?.Nombres}-{c.IdPersonaNavigation?.Apellidos}"
+        .Replace(" ", "-");
+
+        <div class="clientes-row">
+            <div>@c.IdCliente</div>
+            <div>@($"{c.IdPersonaNavigation?.Nombres} {c.IdPersonaNavigation?.Apellidos}")</div>
+            <div>@c.IdPersonaNavigation?.Telefono</div>
+            <div>@c.FechaRegistro.ToString("yyyy-MM-dd")</div>
+
+            <div class="estado @(c.IdPersonaNavigation?.Estado == 1 ? "activo" : "inactivo")">
+                @(c.IdPersonaNavigation?.Estado == 1 ? "Activo" : "Inactivo")
+            </div>
+
+            <div class="acciones">
+                <a asp-controller="Clientes"
+                   asp-action="Detalles"
+                   asp-route-id="@c.IdCliente"
+                   asp-route-nombre="@nombreSlug"
+                   class="btn-detalles"
+                   title="Ver Detalles">🔍</a>
+
+                <a asp-controller="Clientes"
+                   asp-action="Editar"
+                   asp-route-id="@c.IdCliente"
+                   asp-route-nombre="@nombreSlug"
+                   class="btn-editar"
+                   title="Editar">✏️</a>
+
+                <form asp-controller="Clientes"
+                      asp-action="Eliminar"
+                      asp-route-id="@c.IdCliente"
+                      asp-route-nombre="@nombreSlug"
+                      method="post"
+                      style="display:inline;">
+                    <button class="btn-eliminar" type="submit" title="Eliminar">🗑️</button>
+                </form>
+            </div>
+        </div>
+    }
+</div>
+
+                   @model List<Rumis_Salon_Spa.Models.Clientes>
+
+<link rel="stylesheet" href="~/css/Vclientes/ListClientes.css" />
+
+<div class="clientes-lista">
+    <div class="clientes-header">
+        <div>ID</div>
+        <div>Nombre y Apellidos</div>
+        <div>Teléfono</div>
+        <div>Fecha Registro</div>
+        <div>Estado</div>
+        <div>Acciones</div>
+    </div>
+
+    @foreach (var c in Model)
+    {
+        var nombreSlug = $"{c.IdPersonaNavigation?.Nombres}-{c.IdPersonaNavigation?.Apellidos}"
+        .Replace(" ", "-");
+
+        <div class="clientes-row">
+            <div>@c.IdCliente</div>
+            <div>@($"{c.IdPersonaNavigation?.Nombres} {c.IdPersonaNavigation?.Apellidos}")</div>
+            <div>@c.IdPersonaNavigation?.Telefono</div>
+            <div>@c.FechaRegistro.ToString("yyyy-MM-dd")</div>
+
+            <div class="estado @(c.IdPersonaNavigation?.Estado == 1 ? "activo" : "inactivo")">
+                @(c.IdPersonaNavigation?.Estado == 1 ? "Activo" : "Inactivo")
+            </div>
+
+            <div class="acciones">
+                <a asp-controller="Clientes"
+                   asp-action="Detalles"
+                   asp-route-id="@c.IdCliente"
+                   asp-route-nombre="@nombreSlug"
+                   class="btn-detalles"
+                   title="Ver Detalles">🔍</a>
+
+                <a asp-controller="Clientes"
+                   asp-action="Editar"
+                   asp-route-id="@c.IdCliente"
+                   asp-route-nombre="@nombreSlug"
+                   class="btn-editar"
+                   title="Editar">✏️</a>
+
+                <form asp-controller="Clientes"
+                      asp-action="Eliminar"
+                      asp-route-id="@c.IdCliente"
+                      asp-route-nombre="@nombreSlug"
+                      method="post"
+                      style="display:inline;">
+                    <button class="btn-eliminar" type="submit" title="Eliminar">🗑️</button>
+                </form>
+            </div>
+        </div>
+    }
+</div>
+
+<!-- No se si quitar o no -->
+<div id="modal-container"></div>
+
+@section Scripts {
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            document.querySelectorAll(".btn-detalles").forEach(btn => {
+                btn.addEventListener("click", function (e) {
+                    e.preventDefault();
+
+                    fetch(this.href)
+                        .then(r => r.text())
+                        .then(html => {
+                            document.getElementById("modal-container").innerHTML = html;
+
+                            const overlay = document.querySelector(".modal-overlay");
+                            if (overlay) {
+                                overlay.addEventListener("click", function (e) {
+                                    if (e.target === overlay) {
+                                        overlay.remove();
+                                    }
+                                });
+                            }
+                        });
+                });
+            });
+        });
+    </script>
+}

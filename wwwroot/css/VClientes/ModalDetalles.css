@@ -1,0 +1,94 @@
+﻿.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.35);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.modal-detalles {
+    background-color: #fff7fc;
+    padding: 2rem;
+    border-radius: 16px;
+    box-shadow: 0 6px 20px rgba(173, 0, 98, 0.25);
+    width: 95%;
+    max-width: 550px;
+    color: #4a125e;
+    font-family: 'Segoe UI', sans-serif;
+    animation: fadeInModal 0.3s ease-out;
+}
+
+@keyframes fadeInModal {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.modal-detalles h3 {
+    margin: 0 0 1.2rem 0;
+    color: #a12c82;
+    font-size: 1.4rem;
+    text-align: start;
+    border-bottom: 2px solid #f3c7e7;
+    padding-bottom: 0.5rem;
+}
+
+.modal-contenido {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.8rem 1.5rem;
+    margin-top: 1rem;
+}
+
+.modal-item {
+    display: flex;
+    flex-direction: column;
+    color: #4a125e;
+    font-size: 0.95rem;
+}
+
+    .modal-item strong {
+        color: #9c0c3b;
+        margin-bottom: 0.2rem;
+        font-weight: 600;
+    }
+
+    .modal-item span {
+        color: #4a125e;
+    }
+
+.modal-detalles .btn-detalles {
+    display: block;
+    margin: 2rem auto 0;
+    background: #b81d91;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 0.6rem 1.4rem;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1rem;
+    transition: background 0.2s ease;
+}
+
+    .modal-detalles .btn-detalles:hover {
+        background: #9c176f;
+    }
+
+@media (max-width: 550px) {
+    .modal-contenido {
+        grid-template-columns: 1fr;
+        gap: 0.7rem;
+    }
+}

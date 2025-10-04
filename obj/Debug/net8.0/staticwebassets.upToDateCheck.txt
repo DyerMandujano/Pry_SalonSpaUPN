@@ -1,6 +1,10 @@
 wwwroot\css\Header.css
 wwwroot\css\Layout.css
 wwwroot\css\SideBar.css
+wwwroot\css\VClientes\HeaderClientes.css
+wwwroot\css\VClientes\ListClientes.css
+wwwroot\css\VClientes\ModalDetalles.css
+wwwroot\css\VClientes\VClientes.css
 wwwroot\favicon.ico
 wwwroot\js\dashboard.js
 wwwroot\js\ToggleSideBar.js
@@ -61,4 +65,3 @@ wwwroot\lib\jquery\dist\jquery.js
 wwwroot\lib\jquery\dist\jquery.min.js
 wwwroot\lib\jquery\dist\jquery.min.map
 wwwroot\lib\jquery\LICENSE.txt
-wwwroot\css\VClientes.css

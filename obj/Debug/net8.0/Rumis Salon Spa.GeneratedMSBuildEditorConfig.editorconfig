@@ -32,6 +32,18 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50ZXNcQ2xpZW50ZXMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/Jeremy/source/repos/Rumis Salon Spa/Rumis Salon Spa/Views/Clientes/_HeaderClientes.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50ZXNcX0hlYWRlckNsaWVudGVzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Jeremy/source/repos/Rumis Salon Spa/Rumis Salon Spa/Views/Clientes/_ListClientes.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50ZXNcX0xpc3RDbGllbnRlcy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Jeremy/source/repos/Rumis Salon Spa/Rumis Salon Spa/Views/Clientes/_ModalDetalles.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50ZXNcX01vZGFsRGV0YWxsZXMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Jeremy/source/repos/Rumis Salon Spa/Rumis Salon Spa/Views/Compras/Compras.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tcHJhc1xDb21wcmFzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 

@@ -1,0 +1,97 @@
+﻿.clientes-lista {
+    max-width: 1600px;
+    width: 100%;
+    margin: 1rem auto;
+    padding: 0.4rem;
+    background: #fff;
+    border: 1px solid #f3c7e7;
+    border-radius: 12px;
+    box-shadow: 0 3px 8px rgba(173, 0, 98, 0.08);
+    font-family: 'Segoe UI', sans-serif;
+    overflow-x: auto;
+}
+
+.clientes-header,
+.clientes-row {
+    display: grid;
+    grid-template-columns: 0.5fr 2.5fr 2fr 1fr 1fr 1fr;
+    gap: 6px;
+    padding: 0.3rem 0.5rem;
+    font-size: 0.85rem;
+    align-items: center;
+    text-align: center;
+}
+
+.clientes-header {
+    background: #fbe4f8;
+    color: #a12c82;
+    font-weight: bold;
+    border-radius: 8px;
+    border-bottom: 1.5px solid #f3c7e7;
+}
+
+.clientes-row {
+    color: #4a125e;
+    border-bottom: 1px solid #f3c7e7;
+    transition: background 0.2s ease, transform 0.1s ease;
+}
+
+    .clientes-row:hover {
+        background: #fff3f8;
+        transform: translateY(-1px);
+    }
+
+    .clientes-row > div,
+    .clientes-header > div {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+.estado {
+    font-weight: bold;
+    padding: 0.15rem 0.3rem;
+    border-radius: 6px;
+    display: inline-block;
+    font-size: 0.75rem;
+    white-space: nowrap;
+}
+
+    .estado.activo {
+        background: #f06292;
+        color: #fff;
+    }
+
+    .estado.inactivo {
+        background: #fce4ec;
+        color: #9c0c3b;
+    }
+
+.btn-detalles {
+    background: #b81d91;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 0.15rem 0.4rem;
+    cursor: pointer;
+    transition: background 0.2s ease;
+    font-size: 0.75rem;
+}
+
+    .btn-detalles:hover {
+        background: #9c176f;
+    }
+
+.acciones button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 0.9rem;
+    margin: 0 2px;
+    padding: 2px 4px;
+    transition: transform 0.1s ease;
+}
+
+    .acciones button:hover {
+        transform: scale(1.1);
+    }

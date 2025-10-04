@@ -1,0 +1,58 @@
+﻿@model Rumis_Salon_Spa.Models.Clientes
+<link rel="stylesheet" href="~/css/Vclientes/ModalDetalles.css" />
+
+
+@{
+    ViewData["Title"] = "Detalles del Cliente";
+}
+
+<div class="modal-overlay">
+    <div class="modal-detalles">
+        <h3>Detalles de @($"{Model.IdPersonaNavigation?.Nombres} {Model.IdPersonaNavigation?.Apellidos}")</h3>
+        <div class="modal-contenido">
+            <div class="modal-item">
+                <strong>ID:</strong>
+                <span>@Model.IdCliente</span>
+            </div>
+
+            <div class="modal-item">
+                <strong>DNI:</strong>
+                <span>@Model.IdPersonaNavigation?.Dni</span>
+            </div>
+
+            <div class="modal-item">
+                <strong>Correo:</strong>
+                <span>@Model.IdPersonaNavigation?.Correo</span>
+            </div>
+
+            <div class="modal-item">
+                <strong>Teléfono:</strong>
+                <span>@Model.IdPersonaNavigation?.Telefono</span>
+            </div>
+
+            <div class="modal-item">
+                <strong>Género:</strong>
+                <span>@Model.IdPersonaNavigation?.Genero</span>
+            </div>
+
+            <div class="modal-item">
+                <strong>Estado:</strong>
+                <span>@(Model.IdPersonaNavigation?.Estado == 1 ? "Activo" : "Inactivo")</span>
+            </div>
+
+            <div class="modal-item">
+                <strong>Fecha Nacimiento:</strong>
+                <span>@Model.IdPersonaNavigation?.FechaNacimiento.ToString("yyyy-MM-dd")</span>
+            </div>
+
+            <div class="modal-item">
+                <strong>Fecha Registro:</strong>
+                <span>@Model.FechaRegistro.ToString("yyyy-MM-dd")</span>
+            </div>
+        </div>
+
+        <form method="get" asp-action="Index">
+            <button class="btn-detalles" type="submit">Cerrar</button>
+        </form>
+    </div>
+</div>

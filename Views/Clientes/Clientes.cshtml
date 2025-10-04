@@ -1,48 +1,19 @@
-﻿<link rel="stylesheet" href="~/css/VClientes.css" />
-
-@model IEnumerable<Rumis_Salon_Spa.Models.Clientes>
+﻿@model Rumis_Salon_Spa.Models.ViewModels.ClientesViewModel
 
 @{
     Layout = "~/Views/Main.cshtml";
     ViewData["Title"] = "Clientes";
 }
 
+<link rel="stylesheet" href="~/css/Vclientes/VClientes.css" />
+
+@await Html.PartialAsync("~/Views/Clientes/_HeaderClientes.cshtml")
+
 <div class="clientes-container">
-
-    <h2 class="clientes-titulo">📋 Clientes</h2>
-
-    <div class="clientes-buscador">
-        <input type="text" id="buscarCliente" placeholder="🔍 Buscar cliente..." />
-    </div>
-
-    <!-- Encabezados -->
-    <div class="clientes-header">
-        <div>ID Cliente</div>
-        <div>DNI</div>
-        <div>Nombre Completo</div>
-        <div>Correo</div>
-        <div>Teléfono</div>
-        <div>Género</div>
-        <div>Nacimiento</div>
-        <div>Estado</div>
-        <div>Fecha Registro</div>
-    </div>
-
-    <!-- Filas -->
-    @foreach (var c in Model)
-    {
-        <div class="clientes-row">
-            <div>@c.IdCliente</div>
-            <div>@c.IdPersonaNavigation?.Dni</div>
-            <div>@($"{c.IdPersonaNavigation?.Nombres} {c.IdPersonaNavigation?.Apellidos}")</div>
-            <div>@c.IdPersonaNavigation?.Correo</div>
-            <div>@c.IdPersonaNavigation?.Telefono</div>
-            <div>@c.IdPersonaNavigation?.Genero</div>
-            <div>@c.IdPersonaNavigation?.FechaNacimiento.ToString("yyyy-MM-dd")</div>
-            <div class="estado @(c.IdPersonaNavigation?.Estado == 1 ? "activo" : "inactivo")">
-                @(c.IdPersonaNavigation?.Estado == 1 ? "Activo" : "Inactivo")
-            </div>
-            <div>@c.FechaRegistro.ToString("yyyy-MM-dd")</div>
-        </div>
-    }
+    @await Html.PartialAsync("~/Views/Clientes/_ListClientes.cshtml", Model.Clientes)
 </div>
+
+@if (Model.ClienteSeleccionado != null)
+{
+    @await Html.PartialAsync("~/Views/Clientes/_ModalDetalles.cshtml", Model.ClienteSeleccionado)
+}

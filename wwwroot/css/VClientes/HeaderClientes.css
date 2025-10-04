@@ -1,0 +1,77 @@
+﻿.clientes-header-container {
+    border: 1px solid #f3c7e7;
+    border-radius: 14px;
+    padding: 1.2rem 2rem;
+    margin: 1.5rem 2rem 1rem 2rem;
+    box-shadow: 0 4px 10px rgba(173, 0, 98, 0.08);
+    font-family: 'Segoe UI', sans-serif;
+    height: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    animation: aparecer 0.6s ease-in-out;
+}
+
+.clientes-header-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+    .clientes-header-left .clientes-titulo:first-child {
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: #a12c82;
+        margin-bottom: 0.2rem;
+    }
+
+    .clientes-header-left .clientes-titulo:last-child {
+        font-size: 1rem;
+        color: #7a3d6a;
+        font-weight: 400;
+        opacity: 0.85;
+    }
+
+.btn-agregar {
+    background: #b81d91;
+    color: #fff;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    padding: 0.6rem 1.3rem;
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: background 0.25s ease, transform 0.1s ease;
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(184, 29, 145, 0.25);
+}
+
+    .btn-agregar:hover {
+        background: #9c176f;
+        transform: translateY(-2px);
+    }
+
+@media (max-width: 600px) {
+    .clientes-header-container {
+        flex-direction: column;
+        align-items: flex-start;
+        height: auto;
+        gap: 0.8rem;
+    }
+
+    .btn-agregar {
+        align-self: flex-end;
+    }
+}
+
+@keyframes aparecer {
+    from {
+        opacity: 0;
+        transform: translateY(-8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
