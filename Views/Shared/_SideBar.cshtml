@@ -1,0 +1,87 @@
+﻿<link rel="stylesheet" href="~/css/Sidebar.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" />
+
+<div class="sidenav beauty-gradient" id="sidebar">
+    <h4>Administración del Salón</h4>
+    <ul>
+        <li>
+            <a class="@(ViewContext.RouteData.Values["controller"]?.ToString() == "Dashboard" ? "active" : "")"
+               asp-controller="Dashboard" asp-action="Index">
+                <i class="bi bi-house"></i> Dashboard
+            </a>
+        </li>
+
+        <li>
+            <a class="@(ViewContext.RouteData.Values["controller"]?.ToString() == "Clientes" ? "active" : "")"
+               asp-controller="Clientes" asp-action="Index">
+                <i class="bi bi-people"></i> Clientes
+            </a>
+        </li>
+        <li>
+            <a class="@(ViewContext.RouteData.Values["controller"]?.ToString() == "Empleados" ? "active" : "")"
+               asp-controller="Empleados" asp-action="Index">
+                <i class="bi bi-briefcase"></i> Empleados
+            </a>
+        </li>
+        <li>
+            <a class="@(ViewContext.RouteData.Values["controller"]?.ToString() == "Citas" ? "active" : "")"
+               asp-controller="Citas" asp-action="Index">
+                <i class="bi bi-calendar"></i> Citas
+            </a>
+        </li>
+        <li>
+            <a class="@(ViewContext.RouteData.Values["controller"]?.ToString() == "Inventario" ? "active" : "")"
+               asp-controller="Inventario" asp-action="Index">
+                <i class="bi bi-box-seam"></i> Inventario
+            </a>
+        </li>
+        <li>
+            <a class="@(ViewContext.RouteData.Values["controller"]?.ToString() == "Productos" ? "active" : "")"
+               asp-controller="Productos" asp-action="Index">
+                <i class="bi bi-bag"></i> Productos
+            </a>
+        </li>
+        <li>
+            <a class="@(ViewContext.RouteData.Values["controller"]?.ToString() == "Servicios" ? "active" : "")"
+               asp-controller="Servicios" asp-action="Index">
+                <i class="bi bi-scissors"></i> Servicios
+            </a>
+        </li>
+        <li>
+            <a class="@(ViewContext.RouteData.Values["controller"]?.ToString() == "Proveedores" ? "active" : "")"
+               asp-controller="Proveedores" asp-action="Index">
+                <i class="bi bi-truck"></i> Proveedores
+            </a>
+        </li>
+        <li>
+            <a class="@(ViewContext.RouteData.Values["controller"]?.ToString() == "Marcas" ? "active" : "")"
+               asp-controller="Marcas" asp-action="Index">
+                <i class="bi bi-tags"></i> Marcas
+            </a>
+        </li>
+        <li>
+            <a class="@(ViewContext.RouteData.Values["controller"]?.ToString() == "Categorias" ? "active" : "")"
+               asp-controller="Categorias" asp-action="Index">
+                <i class="bi bi-folder"></i> Categorías
+            </a>
+        </li>
+        <li>
+            <a class="@(ViewContext.RouteData.Values["controller"]?.ToString() == "Turnos" ? "active" : "")"
+               asp-controller="Turnos" asp-action="Index">
+                <i class="bi bi-clock"></i> Turnos
+            </a>
+        </li>
+        <li>
+            <a class="@(ViewContext.RouteData.Values["controller"]?.ToString() == "Ventas" ? "active" : "")"
+               asp-controller="Ventas" asp-action="Index">
+                <i class="bi bi-cash-stack"></i> Ventas
+            </a>
+        </li>
+        <li>
+            <a class="@(ViewContext.RouteData.Values["controller"]?.ToString() == "Compras" ? "active" : "")"
+               asp-controller="Compras" asp-action="Index">
+                <i class="bi bi-cart"></i> Compras
+            </a>
+        </li>
+    </ul>
+</div>

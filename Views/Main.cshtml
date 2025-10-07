@@ -1,0 +1,28 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Rumis Salon Spa</title>
+
+    <link rel="stylesheet" href="~/css/Layout.css" />
+</head>
+<body>
+    <div class="main-container">
+
+        <div class="body-container">
+
+            @await Html.PartialAsync("_Sidebar")
+
+            <div class="right-container">
+
+                @await Html.PartialAsync("_Header")
+
+                <div class="content" id="mainContent">
+                    @RenderBody()
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
