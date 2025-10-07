@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "Pry_Solu_SalonSPA/1.0.0": {
+        "runtime": {
+          "Pry_Solu_SalonSPA.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Pry_Solu_SalonSPA/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
