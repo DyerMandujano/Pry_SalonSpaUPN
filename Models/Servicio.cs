@@ -15,7 +15,7 @@ public partial class Servicio
 
     public decimal Precio { get; set; }
 
-    public string Duracion { get; set; } = null!;
+    public int Duracion { get; set; }
 
     public virtual ICollection<CitaServicio> CitaServicios { get; set; } = new List<CitaServicio>();
 

@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using Pry_Solu_SalonSPA.Data;
+using Pry_Solu_SalonSPA.Db;
 
 var builder = WebApplication.CreateBuilder(args);
 

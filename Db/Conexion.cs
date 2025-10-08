@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Pry_Solu_SalonSPA.Models;
 
-namespace Pry_Solu_SalonSPA.Data;
+namespace Pry_Solu_SalonSPA.Db;
 
 public partial class Conexion : DbContext
 {
@@ -28,9 +28,11 @@ public partial class Conexion : DbContext
 
     public virtual DbSet<DetalleCompra> DetalleCompras { get; set; }
 
-    public virtual DbSet<DetalleVentas> DetalleVenta { get; set; }
+    public virtual DbSet<DetalleVenta> DetalleVenta { get; set; }
 
     public virtual DbSet<Empleado> Empleados { get; set; }
+
+    public virtual DbSet<EmpleadoHorario> EmpleadoHorarios { get; set; }
 
     public virtual DbSet<Horario> Horarios { get; set; }
 
@@ -60,7 +62,7 @@ public partial class Conexion : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Server=localhost;Database=Salon_Spa;Trusted_Connection=True;TrustServerCertificate=True;");
+        => optionsBuilder.UseSqlServer("Server=localhost;Database=ROMIS_SALON_SPA;Trusted_Connection=True;TrustServerCertificate=True;");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -104,14 +106,11 @@ public partial class Conexion : DbContext
             entity.HasKey(e => e.IdCita).HasName("Cita_pk");
 
             entity.Property(e => e.IdCita).HasColumnName("Id_Cita");
-            entity.Property(e => e.FechaCita).HasColumnName("Fecha_cita");
-            entity.Property(e => e.HoraCita)
-                .HasMaxLength(10)
-                .IsUnicode(false)
-                .HasColumnName("Hora_cita");
+            entity.Property(e => e.FechaCita)
+                .HasColumnType("datetime")
+                .HasColumnName("Fecha_cita");
             entity.Property(e => e.IdCliente).HasColumnName("Id_Cliente");
-            entity.Property(e => e.IdEmpleado).HasColumnName("Id_Empleado");
-            entity.Property(e => e.IdHorario).HasColumnName("Id_Horario");
+            entity.Property(e => e.IdEmpleadoHorario).HasColumnName("Id_Empleado_Horario");
             entity.Property(e => e.Observacion)
                 .HasMaxLength(200)
                 .IsUnicode(false);
@@ -121,15 +120,10 @@ public partial class Conexion : DbContext
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("Cita_Cliente");
 
-            entity.HasOne(d => d.IdEmpleadoNavigation).WithMany(p => p.Cita)
-                .HasForeignKey(d => d.IdEmpleado)
+            entity.HasOne(d => d.IdEmpleadoHorarioNavigation).WithMany(p => p.Cita)
+                .HasForeignKey(d => d.IdEmpleadoHorario)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("Cita_Empleado");
-
-            entity.HasOne(d => d.IdHorarioNavigation).WithMany(p => p.Cita)
-                .HasForeignKey(d => d.IdHorario)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("Cita_Horario");
+                .HasConstraintName("Cita_Empleado_Horario");
         });
 
         modelBuilder.Entity<Cliente>(entity =>
@@ -139,10 +133,6 @@ public partial class Conexion : DbContext
             entity.ToTable("Cliente");
 
             entity.Property(e => e.IdCliente).HasColumnName("Id_Cliente");
-            entity.Property(e => e.Estado).HasColumnName("estado");
-            entity.Property(e => e.FechaRegistro)
-                .HasColumnType("datetime")
-                .HasColumnName("Fecha_Registro");
             entity.Property(e => e.IdPersona).HasColumnName("Id_Persona");
 
             entity.HasOne(d => d.IdPersonaNavigation).WithMany(p => p.Clientes)
@@ -197,7 +187,7 @@ public partial class Conexion : DbContext
                 .HasConstraintName("Detalle_Compra_Producto");
         });
 
-        modelBuilder.Entity<DetalleVentas>(entity =>
+        modelBuilder.Entity<DetalleVenta>(entity =>
         {
             entity.HasKey(e => e.IdDetalleVenta).HasName("Detalle_Venta_pk");
 
@@ -205,7 +195,7 @@ public partial class Conexion : DbContext
 
             entity.Property(e => e.IdDetalleVenta).HasColumnName("Id_Detalle_Venta");
             entity.Property(e => e.IdItem).HasColumnName("Id_Item");
-            entity.Property(e => e.IdTipoComprobante).HasColumnName("Id_TipoComprobante");
+            entity.Property(e => e.IdTipoCompro).HasColumnName("Id_TipoCompro");
             entity.Property(e => e.IdVenta).HasColumnName("Id_Venta");
             entity.Property(e => e.PrecioUnitario)
                 .HasColumnType("decimal(10, 2)")
@@ -217,7 +207,7 @@ public partial class Conexion : DbContext
                 .HasConstraintName("Detalle_Venta_Item");
 
             entity.HasOne(d => d.Ventum).WithMany(p => p.DetalleVenta)
-                .HasForeignKey(d => new { d.IdVenta, d.IdTipoComprobante })
+                .HasForeignKey(d => new { d.IdVenta, d.IdTipoCompro })
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("Detalle_Venta_Venta");
         });
@@ -229,7 +219,6 @@ public partial class Conexion : DbContext
             entity.ToTable("Empleado");
 
             entity.Property(e => e.IdEmpleado).HasColumnName("Id_Empleado");
-            entity.Property(e => e.FechaIngreso).HasColumnName("Fecha_ingreso");
             entity.Property(e => e.FechaRetiro).HasColumnName("Fecha_retiro");
             entity.Property(e => e.IdPerfil).HasColumnName("Id_Perfil");
             entity.Property(e => e.IdPersona).HasColumnName("Id_Persona");
@@ -246,23 +235,40 @@ public partial class Conexion : DbContext
                 .HasConstraintName("Empleado_Persona");
         });
 
+        modelBuilder.Entity<EmpleadoHorario>(entity =>
+        {
+            entity.HasKey(e => e.IdEmpleadoHorario).HasName("Empleado_Horario_pk");
+
+            entity.ToTable("Empleado_Horario");
+
+            entity.Property(e => e.IdEmpleadoHorario).HasColumnName("Id_Empleado_Horario");
+            entity.Property(e => e.IdEmpleado).HasColumnName("Id_Empleado");
+            entity.Property(e => e.IdHorario).HasColumnName("Id_Horario");
+
+            entity.HasOne(d => d.IdEmpleadoNavigation).WithMany(p => p.EmpleadoHorarios)
+                .HasForeignKey(d => d.IdEmpleado)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("Empleado_Horario_Empleado");
+
+            entity.HasOne(d => d.IdHorarioNavigation).WithMany(p => p.EmpleadoHorarios)
+                .HasForeignKey(d => d.IdHorario)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("Empleado_Horario_Horario");
+        });
+
         modelBuilder.Entity<Horario>(entity =>
         {
             entity.HasKey(e => e.IdHorario).HasName("Horario_pk");
 
             entity.ToTable("Horario");
 
-            entity.Property(e => e.IdHorario).HasColumnName("Id_horario");
-            entity.Property(e => e.FechaFin).HasColumnName("Fecha_Fin");
-            entity.Property(e => e.FechaInicio).HasColumnName("Fecha_Inicio");
-            entity.Property(e => e.HoraFin)
-                .HasMaxLength(10)
-                .IsUnicode(false)
-                .HasColumnName("Hora_fin");
-            entity.Property(e => e.HoraInicio)
-                .HasMaxLength(10)
-                .IsUnicode(false)
-                .HasColumnName("Hora_inicio");
+            entity.Property(e => e.IdHorario).HasColumnName("Id_Horario");
+            entity.Property(e => e.FechaFin)
+                .HasColumnType("datetime")
+                .HasColumnName("Fecha_Fin");
+            entity.Property(e => e.FechaInicio)
+                .HasColumnType("datetime")
+                .HasColumnName("Fecha_Inicio");
         });
 
         modelBuilder.Entity<Inventario>(entity =>
@@ -348,14 +354,14 @@ public partial class Conexion : DbContext
             entity.Property(e => e.Apellidos)
                 .HasMaxLength(50)
                 .IsUnicode(false);
-            entity.Property(e => e.Correo)
-                .HasMaxLength(100)
-                .IsUnicode(false);
             entity.Property(e => e.Dni)
                 .HasMaxLength(8)
                 .IsUnicode(false)
                 .IsFixedLength();
             entity.Property(e => e.FechaNacimiento).HasColumnName("Fecha_nacimiento");
+            entity.Property(e => e.FechaRegistro)
+                .HasColumnType("datetime")
+                .HasColumnName("Fecha_Registro");
             entity.Property(e => e.Genero)
                 .HasMaxLength(40)
                 .IsUnicode(false);
@@ -408,10 +414,6 @@ public partial class Conexion : DbContext
             entity.Property(e => e.Correo)
                 .HasMaxLength(100)
                 .IsUnicode(false);
-            entity.Property(e => e.Estado)
-                .HasMaxLength(9)
-                .IsUnicode(false)
-                .IsFixedLength();
             entity.Property(e => e.NomProve)
                 .HasMaxLength(50)
                 .IsUnicode(false)
@@ -419,6 +421,10 @@ public partial class Conexion : DbContext
             entity.Property(e => e.Ruc)
                 .HasMaxLength(11)
                 .IsUnicode(false);
+            entity.Property(e => e.Telefono)
+                .HasMaxLength(9)
+                .IsUnicode(false)
+                .IsFixedLength();
         });
 
         modelBuilder.Entity<Servicio>(entity =>
@@ -430,9 +436,6 @@ public partial class Conexion : DbContext
             entity.Property(e => e.IdServicio).HasColumnName("Id_Servicio");
             entity.Property(e => e.Descripcion)
                 .HasMaxLength(100)
-                .IsUnicode(false);
-            entity.Property(e => e.Duracion)
-                .HasMaxLength(20)
                 .IsUnicode(false);
             entity.Property(e => e.IdTipoServicio).HasColumnName("Id_TipoServicio");
             entity.Property(e => e.Nombre)

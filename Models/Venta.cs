@@ -17,7 +17,7 @@ public partial class Venta
 
     public DateTime FechaRegistro { get; set; }
 
-    public virtual ICollection<DetalleVentas> DetalleVenta { get; set; } = new List<DetalleVentas>();
+    public virtual ICollection<DetalleVenta> DetalleVenta { get; set; } = new List<DetalleVenta>();
 
     public virtual Cliente IdClienteNavigation { get; set; } = null!;
 

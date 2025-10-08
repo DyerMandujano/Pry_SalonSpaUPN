@@ -13,13 +13,9 @@ public partial class Empleado
 
     public decimal Sueldo { get; set; }
 
-    public DateOnly FechaIngreso { get; set; }
-
     public DateOnly? FechaRetiro { get; set; }
 
-    public int Estado { get; set; }
-
-    public virtual ICollection<Cita> Cita { get; set; } = new List<Cita>();
+    public virtual ICollection<EmpleadoHorario> EmpleadoHorarios { get; set; } = new List<EmpleadoHorario>();
 
     public virtual Perfil IdPerfilNavigation { get; set; } = null!;
 

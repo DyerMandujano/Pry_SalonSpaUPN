@@ -13,9 +13,9 @@ public partial class Proveedor
 
     public string Correo { get; set; } = null!;
 
-    public int Telefono { get; set; }
+    public string Telefono { get; set; } = null!;
 
-    public string Estado { get; set; } = null!;
+    public int Estado { get; set; }
 
     public virtual ICollection<Compra> Compras { get; set; } = new List<Compra>();
 }

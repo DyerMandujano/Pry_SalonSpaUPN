@@ -1,3 +1,6 @@
+wwwroot\css\Header.css
+wwwroot\css\Layout.css
+wwwroot\css\Sidebar.css
 wwwroot\favicon.ico
 wwwroot\js\site.js
 wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css
@@ -57,6 +60,3 @@ wwwroot\lib\jquery\dist\jquery.js
 wwwroot\lib\jquery\dist\jquery.min.js
 wwwroot\lib\jquery\dist\jquery.min.map
 wwwroot\lib\jquery\LICENSE.txt
-wwwroot\css\Header.css
-wwwroot\css\Sidebar.css
-wwwroot\css\Layout.css

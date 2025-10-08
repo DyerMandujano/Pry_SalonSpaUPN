@@ -11,8 +11,6 @@ public partial class Persona
 
     public string Apellidos { get; set; } = null!;
 
-    public string Correo { get; set; } = null!;
-
     public string Telefono { get; set; } = null!;
 
     public string Dni { get; set; } = null!;
@@ -20,6 +18,10 @@ public partial class Persona
     public DateOnly FechaNacimiento { get; set; }
 
     public string Genero { get; set; } = null!;
+
+    public DateTime FechaRegistro { get; set; }
+
+    public int Estado { get; set; }
 
     public virtual ICollection<Cliente> Clientes { get; set; } = new List<Cliente>();
 

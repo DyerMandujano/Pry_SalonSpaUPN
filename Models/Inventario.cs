@@ -19,5 +19,5 @@ public partial class Inventario
 
     public virtual DetalleCompra? IdDetalleCompraNavigation { get; set; }
 
-    public virtual DetalleVentas? IdDetalleVentaNavigation { get; set; }
+    public virtual DetalleVenta? IdDetalleVentaNavigation { get; set; }
 }

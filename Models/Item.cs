@@ -13,7 +13,7 @@ public partial class Item
 
     public int? IdServicio { get; set; }
 
-    public virtual ICollection<DetalleVentas> DetalleVenta { get; set; } = new List<DetalleVentas>();
+    public virtual ICollection<DetalleVenta> DetalleVenta { get; set; } = new List<DetalleVenta>();
 
     public virtual Producto? IdProductoNavigation { get; set; }
 

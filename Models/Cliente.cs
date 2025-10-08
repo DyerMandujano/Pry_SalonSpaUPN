@@ -9,10 +9,6 @@ public partial class Cliente
 
     public int IdPersona { get; set; }
 
-    public DateTime FechaRegistro { get; set; }
-
-    public int? Estado { get; set; }
-
     public virtual ICollection<Cita> Cita { get; set; } = new List<Cita>();
 
     public virtual Persona IdPersonaNavigation { get; set; } = null!;

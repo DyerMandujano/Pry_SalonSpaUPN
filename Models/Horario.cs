@@ -7,15 +7,11 @@ public partial class Horario
 {
     public int IdHorario { get; set; }
 
-    public DateOnly FechaInicio { get; set; }
+    public DateTime FechaInicio { get; set; }
 
-    public DateOnly FechaFin { get; set; }
-
-    public string HoraInicio { get; set; } = null!;
-
-    public string HoraFin { get; set; } = null!;
+    public DateTime FechaFin { get; set; }
 
     public int Estado { get; set; }
 
-    public virtual ICollection<Cita> Cita { get; set; } = new List<Cita>();
+    public virtual ICollection<EmpleadoHorario> EmpleadoHorarios { get; set; } = new List<EmpleadoHorario>();
 }
