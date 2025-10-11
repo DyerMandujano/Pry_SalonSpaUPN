@@ -1,0 +1,79 @@
+﻿@model Pry_Solu_SalonSPA.Models.Persona
+
+@{
+    Layout = "~/Views/Main.cshtml";
+    ViewData["Title"] = "Crear Cliente";
+}
+
+<link href="~/css/VClientes/_CrearClientes.css" rel="stylesheet" />
+
+<div class="crear-cliente-wrapper">
+    <div class="crear-cliente-box">
+        <div class="header-crear">
+            <a asp-action="Index" class="btn-back">← Volver</a>
+            <h2>Crear Cliente</h2>
+        </div>
+
+        <form asp-action="Crear" method="post" class="form-crear">
+            <!-- Primera fila: Nombres y Apellidos -->
+            <div class="form-row">
+                <div class="form-group">
+                    <label asp-for="Nombres">Nombres</label>
+                    <input asp-for="Nombres" class="editable-field" />
+                </div>
+                <div class="form-group">
+                    <label asp-for="Apellidos">Apellidos</label>
+                    <input asp-for="Apellidos" class="editable-field" />
+                </div>
+            </div>
+
+            <!-- Segunda fila: Teléfono y DNI -->
+            <div class="form-row">
+                <div class="form-group">
+                    <label asp-for="Telefono">Teléfono</label>
+                    <input asp-for="Telefono" class="editable-field" maxlength="9" style="width: 100px;" />
+                </div>
+                <div class="form-group">
+                    <label asp-for="Dni">DNI</label>
+                    <input asp-for="Dni" class="editable-field" maxlength="8" style="width: 90px;" />
+                </div>
+            </div>
+
+            <!-- Tercera fila: Fecha de Nacimiento y Género -->
+            <div class="form-row">
+                <div class="form-group">
+                    <label asp-for="FechaNacimiento">Fecha de Nacimiento</label>
+                    <input asp-for="FechaNacimiento" type="date" class="editable-field" />
+                </div>
+                <div class="form-group">
+                    <label>Género</label>
+                    <select asp-for="Genero" class="editable-field">
+                        <option value="">Seleccione</option>
+                        <option value="Masculino">Masculino</option>
+                        <option value="Femenino">Femenino</option>
+                        <option value="Otro">Otro</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Cuarta fila: Estado y Fecha de Registro (solo lectura) -->
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Estado</label>
+                    <input type="text" value="Activo" readonly class="readonly-field" />
+                    <input type="hidden" asp-for="Estado" value="1" />
+                </div>
+                <div class="form-group">
+                    <label>Fecha de Registro</label>
+                    <input type="text" value="@DateTime.Now.ToString("yyyy-MM-dd")" readonly class="readonly-field" />
+                </div>
+            </div>
+
+            <!-- Botones -->
+            <div class="form-buttons">
+                <button type="submit" class="btn-crear">Crear Cliente</button>
+                <a asp-action="Index" class="btn-cancelar">Cancelar</a>
+            </div>
+        </form>
+    </div>
+</div>

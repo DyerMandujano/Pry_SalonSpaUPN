@@ -1,0 +1,13 @@
+﻿@model List<Pry_Solu_SalonSPA.Models.Cliente>
+
+<link href="~/css/Vclientes/_BuscarClientes.css" rel="stylesheet" />
+
+<form asp-action="Index" method="get" class="mb-3">
+    <input type="text" name="filtro" placeholder="Buscar por nombre o DNI" class="form-control" />
+    <button type="submit" class="btn btn-secondary mt-2">Buscar</button>
+</form>
+
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-warning">@TempData["Error"]</div>
+}

@@ -1,0 +1,84 @@
+﻿@model Pry_Solu_SalonSPA.Models.Persona
+
+@{
+    Layout = "~/Views/Main.cshtml";
+    ViewData["Title"] = "Editar Cliente";
+}
+
+<link href="~/css/VClientes/_EditarClientes.css" rel="stylesheet" />
+
+<div class="editar-cliente-wrapper">
+    <div class="editar-cliente-box">
+        <div class="header-editar">
+            <a asp-action="Index" class="btn-back">← Volver</a>
+            <h2>Editar Cliente</h2>
+        </div>
+
+        <form asp-action="Editar" method="post" class="form-editar">
+            <input type="hidden" asp-for="IdPersona" />
+
+            <!-- Primera fila: Nombres y Apellidos -->
+            <div class="form-row">
+                <div class="form-group">
+                    <label asp-for="Nombres">Nombres</label>
+                    <input asp-for="Nombres" class="editable-field" />
+                </div>
+                <div class="form-group">
+                    <label asp-for="Apellidos">Apellidos</label>
+                    <input asp-for="Apellidos" class="editable-field" />
+                </div>
+            </div>
+
+            <!-- Segunda fila: Teléfono y DNI -->
+            <div class="form-row">
+                <div class="form-group">
+                    <label asp-for="Telefono">Teléfono</label>
+                    <input asp-for="Telefono" class="editable-field" maxlength="9" style="width: 100px;" />
+                </div>
+                <div class="form-group">
+                    <label asp-for="Dni">DNI</label>
+                    <input asp-for="Dni" class="editable-field" maxlength="8" style="width: 90px;" />
+                </div>
+            </div>
+
+            <!-- Tercera fila: Fecha de Nacimiento y Género -->
+            <div class="form-row">
+                <div class="form-group">
+                    <label asp-for="FechaNacimiento">Fecha de Nacimiento</label>
+                    <input asp-for="FechaNacimiento" type="date" class="editable-field" />
+                </div>
+                <div class="form-group">
+                    <label>Género</label>
+                    @Html.DropDownListFor(model => model.Genero, (IEnumerable<SelectListItem>)ViewBag.Generos, "Seleccione", new { @class = "editable-field" })
+                </div>
+
+            </div>
+
+            <!-- Cuarta fila: Estado editable -->
+            <div class="form-group">
+                <label>Estado</label>
+                <div class="select-wrapper">
+                    @Html.DropDownListFor(model => model.Estado,
+                    new List<SelectListItem>
+                                        {
+                                        new SelectListItem { Text = "Activo", Value = "1", Selected = Model.Estado == 1 },
+                                        new SelectListItem { Text = "Inactivo", Value = "0", Selected = Model.Estado == 0 }
+                                        },
+                                        new { @class = "editable-field" })
+                </div>
+            </div>
+
+            <!-- Quinta fila: Fecha de registro editable -->
+            <div class="form-group">
+                <label>Fecha de Registro</label>
+                <input asp-for="FechaRegistro" type="date" class="editable-field" />
+            </div>
+
+            <!-- Botones -->
+            <div class="form-buttons">
+                <button type="submit" class="btn-guardar">Guardar Cambios</button>
+                <a asp-action="Index" class="btn-cancelar">Cancelar</a>
+            </div>
+        </form>
+    </div>
+</div>

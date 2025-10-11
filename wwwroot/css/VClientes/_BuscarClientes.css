@@ -1,0 +1,26 @@
+﻿.busqueda-clientes {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+    .busqueda-clientes input[type="text"] {
+        flex: 1;
+        padding: 0.5rem 0.8rem;
+        border-radius: 8px;
+        border: 1px solid #ccc;
+    }
+
+    .busqueda-clientes button {
+        padding: 0.5rem 1rem;
+        background-color: #b95aa1;
+        color: #fff;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+        .busqueda-clientes button:hover {
+            background-color: #9e498a;
+        }

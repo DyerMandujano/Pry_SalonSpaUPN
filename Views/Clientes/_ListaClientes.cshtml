@@ -1,0 +1,49 @@
+﻿@model List<Pry_Solu_SalonSPA.Models.Cliente>
+<link href="~/css/VClientes/_ListaClientes.css" rel="stylesheet" />
+
+<div class="tabla-clientes-container">
+    <table class="tabla-clientes">
+        <thead>
+            <tr>
+                <th>ID Cliente</th>
+                <th>Nombres</th>
+                <th>Apellidos</th>
+                <th>Teléfono</th>
+                <th>DNI</th>
+                <th>Género</th>
+                <th>Estado</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var cliente in Model)
+            {
+                <tr>
+                    <td>@cliente.IdCliente</td>
+                    <td>@cliente.IdPersonaNavigation.Nombres</td>
+                    <td>@cliente.IdPersonaNavigation.Apellidos</td>
+                    <td>@cliente.IdPersonaNavigation.Telefono</td>
+                    <td>@cliente.IdPersonaNavigation.Dni</td>
+                    <td>@cliente.IdPersonaNavigation.Genero</td>
+                    <td>@(cliente.IdPersonaNavigation.Estado == 1 ? "Activo" : "Inactivo")</td>
+                    
+                    <td data-label="Acciones" class="acciones-clientes">
+                        <a asp-action="Editar" asp-route-id="@cliente.IdCliente" class="btn btn-editar">
+                            ✏️ Editar
+                        </a>
+
+                        <form asp-action="Eliminar" method="post" style="display:inline">
+                            <input type="hidden" name="id" value="@cliente.IdCliente" />
+                            <button type="submit" class="btn @(cliente.IdPersonaNavigation.Estado == 1 ? "btn-inactivar" : "btn-activar")">
+                                @(cliente.IdPersonaNavigation.Estado == 1 ? "Inactivar" : "Activar")
+                            </button>
+                        </form>
+                    </td>
+
+
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+

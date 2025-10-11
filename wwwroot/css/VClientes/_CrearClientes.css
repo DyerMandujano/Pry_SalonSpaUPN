@@ -1,0 +1,90 @@
+﻿.crear-cliente-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+}
+
+.crear-cliente-box {
+    background-color: #FFF0FF; /* rosa clarito */
+    padding: 30px 40px;
+    border-radius: 12px;
+    width: 600px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.header-crear {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+    .header-crear .btn-back {
+        text-decoration: none;
+        color: #d63384;
+        font-weight: bold;
+    }
+
+.form-row {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 15px;
+}
+
+.form-group {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin-bottom: 5px;
+    font-weight: 500;
+}
+
+.editable-field {
+    padding: 8px 10px;
+    border-radius: 6px;
+    border: 1px solid #d99ac1;
+    background-color: #fff;
+}
+
+.readonly-field {
+    padding: 8px 10px;
+    border-radius: 6px;
+    border: 1px solid #d99ac1;
+    background-color: #f4c8e0; /* un rosa más oscuro para diferenciar */
+    color: #5c1a3f;
+}
+
+
+.form-buttons {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.btn-crear {
+    background-color: #d63384;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+    .btn-crear:hover {
+        background-color: #b5286e;
+    }
+
+.btn-cancelar {
+    text-decoration: none;
+    padding: 10px 20px;
+    background-color: #aaa;
+    color: white;
+    border-radius: 6px;
+}
+
+    .btn-cancelar:hover {
+        background-color: #888;
+    }

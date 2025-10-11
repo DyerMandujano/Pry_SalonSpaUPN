@@ -1,0 +1,93 @@
+﻿.tabla-clientes-container {
+    background-color: #fff;
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.tabla-clientes {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+    .tabla-clientes th, .tabla-clientes td {
+        padding: 0.8rem 1rem;
+        text-align: left;
+    }
+
+    .tabla-clientes thead {
+        background-color: #f9f1f7;
+        color: #b95aa1;
+    }
+
+    .tabla-clientes tbody tr:hover {
+        background-color: #faf5fa;
+    }
+
+.acciones-clientes {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+}
+
+.btn {
+    padding: 0.45rem 0.9rem;
+    border-radius: 10px;
+    font-weight: 600;
+    text-decoration: none;
+    color: #fff;
+    cursor: pointer;
+}
+
+.btn-editar {
+    background-color: #5a8fb9;
+}
+
+    .btn-editar:hover {
+        background-color: #4a7ca3;
+    }
+
+.btn-activar {
+    background-color: #4ca968;
+}
+
+    .btn-activar:hover {
+        background-color: #41945a;
+    }
+
+.btn-inactivar {
+    background-color: #b95a5a;
+}
+
+    .btn-inactivar:hover {
+        background-color: #a44a4a;
+    }
+
+/* Responsive */
+@media (max-width: 768px) {
+    .tabla-clientes thead {
+        display: none;
+    }
+
+    .tabla-clientes tr {
+        display: block;
+        margin-bottom: 1rem;
+    }
+
+    .tabla-clientes td {
+        display: flex;
+        justify-content: space-between;
+        padding: 0.6rem 0;
+        border-bottom: 1px solid #eee;
+    }
+
+        .tabla-clientes td::before {
+            content: attr(data-label);
+            font-weight: 600;
+            color: #b95aa1;
+        }
+
+    .acciones-clientes {
+        flex-direction: column;
+    }
+}

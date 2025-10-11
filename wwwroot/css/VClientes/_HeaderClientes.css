@@ -1,0 +1,38 @@
+﻿.clientes-header-container {
+    background-color: #FFEFF5; /* rosa pálido */
+    padding: 20px 30px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.clientes-header-titulo {
+    color: #d63384;
+    font-size: 1.8rem;
+    margin: 0;
+}
+
+.clientes-header-subtitulo {
+    color: #5a2d82;
+    font-size: 1rem;
+    margin: 0;
+}
+
+.clientes-header-btn {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #d99ac1; /* otro tono rosa */
+    color: #fff;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: bold;
+    width: fit-content;
+    transition: background-color 0.3s;
+}
+
+    .clientes-header-btn:hover {
+        background-color: #b5286e;
+    }

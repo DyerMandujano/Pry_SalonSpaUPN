@@ -1,8 +1,19 @@
-﻿@model Pry_Solu_SalonSPA.Models.Cliente
+﻿@model List<Pry_Solu_SalonSPA.Models.Cliente>
+
 @{
     Layout = "~/Views/Main.cshtml";
     ViewData["Title"] = "Clientes";
 }
+<link rel="stylesheet" href="~/css/VClientes/index.css" />
 
-<h1>Clientes</h1>
-<p>Bienvenido al panel principal.</p>
+
+@await Html.PartialAsync("_HeaderClientes")
+
+<div class="clientes-container">
+    @await Html.PartialAsync("_BuscarClientes")
+
+    <div id="contenedor-lista">
+
+        @await Html.PartialAsync("_ListaClientes", Model)
+    </div>
+</div>

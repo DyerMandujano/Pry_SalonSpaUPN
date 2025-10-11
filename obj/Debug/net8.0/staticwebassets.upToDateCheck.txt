@@ -1,6 +1,12 @@
 wwwroot\css\Header.css
 wwwroot\css\Layout.css
 wwwroot\css\Sidebar.css
+wwwroot\css\VClientes\index.css
+wwwroot\css\VClientes\_BuscarClientes.css
+wwwroot\css\VClientes\_CrearClientes.css
+wwwroot\css\VClientes\_EditarClientes.css
+wwwroot\css\VClientes\_ListaClientes.css
+wwwroot\css\VClientes\_ModalDetalles.css
 wwwroot\favicon.ico
 wwwroot\js\site.js
 wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css
@@ -60,3 +66,4 @@ wwwroot\lib\jquery\dist\jquery.js
 wwwroot\lib\jquery\dist\jquery.min.js
 wwwroot\lib\jquery\dist\jquery.min.map
 wwwroot\lib\jquery\LICENSE.txt
+wwwroot\css\VClientes\_HeaderClientes.css
