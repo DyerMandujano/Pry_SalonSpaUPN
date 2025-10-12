@@ -19,9 +19,6 @@ namespace Pry_Solu_SalonSPA.Controllers
             _context = context;
         }
 
-        // ===========================
-        // INDEX: Lista de clientes + modal activo
-        // ===========================
         public IActionResult Index(string filtro, int? editarId, int? detalleId)
         {
             var clientes = _context.Clientes
@@ -35,9 +32,6 @@ namespace Pry_Solu_SalonSPA.Controllers
             return View(clientes);
         }
 
-        // ===========================
-        // CREAR: GET y POST
-        // ===========================
         public IActionResult Crear()
         {
             var persona = new Persona();
@@ -74,10 +68,6 @@ namespace Pry_Solu_SalonSPA.Controllers
 
             return View(persona);
         }
-
-        // ===========================
-        // EDITAR: GET y POST
-        // ===========================
         public async Task<IActionResult> Editar(int id)
         {
             var cliente = await _context.Clientes
@@ -126,9 +116,6 @@ namespace Pry_Solu_SalonSPA.Controllers
             return View("Editar", persona);
         }
 
-        // ===========================
-        // ELIMINAR: cambiar estado
-        // ===========================
         [HttpPost]
         public async Task<IActionResult> Eliminar(int id)
         {
@@ -157,9 +144,6 @@ namespace Pry_Solu_SalonSPA.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        // ===========================
-        // BUSCAR: por DNI
-        // ===========================
         [HttpGet]
         public IActionResult Buscar(string dni)
         {

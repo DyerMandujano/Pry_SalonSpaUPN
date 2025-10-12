@@ -66,39 +66,15 @@ namespace Pry_Solu_SalonSPA.Controllers
         [HttpGet]
         public IActionResult Crear()
         {
-            ViewData["Clientes"] = new SelectList(
-                _context.Clientes.Include(c => c.IdPersonaNavigation),
-                "IdCliente",
-                "IdPersonaNavigation.Nombres"
-            );
-
-            ViewData["Empleados"] = new SelectList(
-                _context.EmpleadoHorarios
-                    .Include(eh => eh.IdEmpleadoNavigation)
-                    .ThenInclude(e => e.IdPersonaNavigation),
-                "IdEmpleadoHorario",
-                "IdEmpleadoNavigation.IdPersonaNavigation.Nombres"
-            );
-
-            ViewData["Servicios"] = new SelectList(
-                _context.Servicios,
-                "IdServicio",
-                "Nombre"
-            );
+            CargarListasDesplegables();
 
             return View("_CrearCitas");
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Crear(
-            int IdCliente,
-            int IdEmpleadoHorario,
-            DateTime FechaCita,
-            int IdServicio,
-            string ObsServicio,
-            int Estado_Servicio
-        )
+        public async Task<IActionResult> Crear(int IdCliente, int IdEmpleadoHorario, DateTime FechaCita, int IdServicio,
+                                                string ObsServicio, int Estado_Servicio)
         {
             try
             {
@@ -124,29 +100,13 @@ namespace Pry_Solu_SalonSPA.Controllers
             catch (Exception ex)
             {
                 ViewBag.Error = $"Error al crear la cita: {ex.Message}";
+
             }
 
-            ViewData["Clientes"] = new SelectList(
-                _context.Clientes.Include(c => c.IdPersonaNavigation),
-                "IdCliente",
-                "IdPersonaNavigation.Nombres"
-            );
-
-            ViewData["Empleados"] = new SelectList(
-                _context.EmpleadoHorarios
-                    .Include(eh => eh.IdEmpleadoNavigation)
-                    .ThenInclude(e => e.IdPersonaNavigation),
-                "IdEmpleadoHorario",
-                "IdEmpleadoNavigation.IdPersonaNavigation.Nombres"
-            );
-
-            ViewData["Servicios"] = new SelectList(
-                _context.Servicios,
-                "IdServicio",
-                "Nombre"
-            );
+            CargarListasDesplegables(IdCliente, IdEmpleadoHorario, IdServicio);
 
             return View("_CrearCitas");
+            
         }
 
         [HttpGet]
@@ -159,47 +119,19 @@ namespace Pry_Solu_SalonSPA.Controllers
             if (cita == null)
                 return NotFound();
 
-            ViewData["Clientes"] = new SelectList(
-                _context.Clientes.Include(c => c.IdPersonaNavigation),
-                "IdCliente",
-                "IdPersonaNavigation.Nombres",
-                cita.IdCliente
-            );
+            var servicio = cita.CitaServicios.FirstOrDefault()?.IdServicio;
 
-            ViewData["Empleados"] = new SelectList(
-                _context.EmpleadoHorarios
-                    .Include(eh => eh.IdEmpleadoNavigation)
-                    .ThenInclude(e => e.IdPersonaNavigation),
-                "IdEmpleadoHorario",
-                "IdEmpleadoNavigation.IdPersonaNavigation.Nombres",
-                cita.IdEmpleadoHorario
-            );
+            CargarListasDesplegables(cita.IdCliente, cita.IdEmpleadoHorario, servicio);
 
-            ViewData["Servicios"] = new SelectList(
-                _context.Servicios,
-                "IdServicio",
-                "Nombre",
-                cita.CitaServicios.FirstOrDefault()?.IdServicio
-            );
-
-            // 👇 Esto mantiene el filtro actual (hoy, semana o general)
             ViewBag.FiltroActual = filtro;
-
             return View("_EditarCitas", cita);
         }
 
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Editar(
-            int IdCita,
-            int IdCliente,
-            int IdEmpleadoHorario,
-            DateTime FechaCita,
-            int IdServicio,
-            string ObsServicio,
-            int Estado_Servicio
-        )
+        public async Task<IActionResult> Editar(int IdCita, int IdCliente, int IdEmpleadoHorario, DateTime FechaCita,
+                                                    int IdServicio, string ObsServicio, int Estado_Servicio)
         {
             try
             {
@@ -211,7 +143,6 @@ namespace Pry_Solu_SalonSPA.Controllers
                     CommandType = System.Data.CommandType.StoredProcedure
                 };
 
-                // Asignar parámetros
                 command.Parameters.AddWithValue("@Id_Cita", IdCita);
                 command.Parameters.AddWithValue("@Id_Cliente", IdCliente);
                 command.Parameters.AddWithValue("@Id_Empleado_Horario", IdEmpleadoHorario);
@@ -229,11 +160,18 @@ namespace Pry_Solu_SalonSPA.Controllers
                 ViewBag.Error = $"Error al modificar la cita: {ex.Message}";
             }
 
+            CargarListasDesplegables(IdCliente, IdEmpleadoHorario, IdServicio);
+
+            return View("_EditarCitas");
+        }
+
+        private void CargarListasDesplegables(int? idCliente = null, int? idEmpleadoHorario = null, int? idServicio = null)
+        {
             ViewData["Clientes"] = new SelectList(
                 _context.Clientes.Include(c => c.IdPersonaNavigation),
                 "IdCliente",
                 "IdPersonaNavigation.Nombres",
-                IdCliente
+                idCliente
             );
 
             ViewData["Empleados"] = new SelectList(
@@ -242,17 +180,16 @@ namespace Pry_Solu_SalonSPA.Controllers
                     .ThenInclude(e => e.IdPersonaNavigation),
                 "IdEmpleadoHorario",
                 "IdEmpleadoNavigation.IdPersonaNavigation.Nombres",
-                IdEmpleadoHorario
+                idEmpleadoHorario
             );
 
             ViewData["Servicios"] = new SelectList(
                 _context.Servicios,
                 "IdServicio",
                 "Nombre",
-                IdServicio
+                idServicio
             );
-
-            return View("_EditarCitas");
         }
+
     }
 }
