@@ -1,0 +1,71 @@
+﻿@{
+    Layout = "~/Views/Main.cshtml";
+    ViewData["Title"] = "Crear Cita";
+}
+
+<link href="~/css/VCitas/_CrearCitas.css" rel="stylesheet" />
+
+<div class="contenedor-formulario">
+    <h2 class="titulo-formulario">Registrar Nueva Cita</h2>
+
+    @if (ViewBag.Error != null)
+    {
+        <div class="alert-error">@ViewBag.Error</div>
+    }
+
+    <form asp-action="Crear" method="post" class="form-cita">
+        <div class="form-group">
+            <label>Cliente</label>
+            <select name="IdCliente" asp-items="ViewBag.Clientes"></select>
+        </div>
+
+        <div class="form-group">
+            <label>Empleado</label>
+            <select name="IdEmpleadoHorario" asp-items="ViewBag.Empleados"></select>
+        </div>
+
+        <div class="form-group">
+            <label>Servicio</label>
+            <select name="IdServicio" asp-items="ViewBag.Servicios"></select>
+        </div>
+
+        <div class="form-group">
+            <label>Fecha de Cita</label>
+            <input type="datetime-local" name="FechaCita" />
+        </div>
+
+        <div class="form-group">
+            <label>Observación de la cita</label>
+            <input type="text" name="Observacion" />
+        </div>
+
+        <div class="form-group">
+            <label>Estado de la cita</label>
+            <select name="Estado">
+                <option value="1">Completado</option>
+                <option value="2">Pendiente</option>
+                <option value="3">Reprogramado</option>
+                <option value="4">Cancelado</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>Observación del servicio</label>
+            <input type="text" name="ObsServicio" />
+        </div>
+
+        <div class="form-group">
+            <label>Estado del servicio</label>
+            <select name="Estado_Servicio">
+                <option value="1">Pendiente</option>
+                <option value="2">En proceso</option>
+                <option value="3">Completado</option>
+            </select>
+        </div>
+
+        <div class="form-buttons">
+            <button type="submit" class="btn-guardar">Guardar Cita</button>
+            <button type="button" class="btn-cancelar" onclick="location.href='@Url.Action("Index", "Citas")'">Cancelar</button>
+        </div>
+    </form>
+</div>

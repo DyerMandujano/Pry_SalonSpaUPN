@@ -1,0 +1,77 @@
+﻿@model Pry_Solu_SalonSPA.Models.Cita
+
+
+@{
+    Layout = "~/Views/Main.cshtml";
+    ViewData["Title"] = "Editar Cita";
+}
+
+<link href="~/css/VCitas/_CrearCitas.css" rel="stylesheet" />
+
+<div class="contenedor-formulario">
+    <h2 class="titulo-formulario">Editar Cita</h2>
+
+    @if (ViewBag.Error != null)
+    {
+        <div class="alert-error">@ViewBag.Error</div>
+    }
+
+    <form asp-action="Editar" method="post" class="form-cita">
+
+        <input type="hidden" name="IdCita" value="@Model?.IdCita" />
+
+        <input type="hidden" name="filtro" value="@ViewBag.FiltroActual" />
+
+        <div class="form-group">
+            <label>Cliente</label>
+            <select name="IdCliente" asp-items="ViewBag.Clientes">
+                <option value="">-- Seleccione Cliente --</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>Empleado</label>
+            <select name="IdEmpleadoHorario" asp-items="ViewBag.Empleados">
+                <option value="">-- Seleccione Empleado --</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>Servicio</label>
+            <select name="IdServicio" asp-items="ViewBag.Servicios">
+                <option value="">-- Seleccione Servicio --</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>Fecha de Cita</label>
+            <input type="datetime-local" name="FechaCita" value="@Model?.FechaCita.ToString("yyyy-MM-ddTHH:mm")" />
+        </div>
+
+        <div class="form-group">
+            <label>Observación del servicio</label>
+            <input type="text" name="ObsServicio" value="@Model?.CitaServicios.FirstOrDefault()?.Observacion" />
+        </div>
+
+        <div class="form-group">
+            <label>Estado del servicio</label>
+            <select name="Estado_Servicio">
+                <option value="1" selected="@(Model?.CitaServicios.FirstOrDefault()?.Estado == 1)">Pendiente</option>
+                <option value="2" selected="@(Model?.CitaServicios.FirstOrDefault()?.Estado == 2)">En proceso</option>
+                <option value="3" selected="@(Model?.CitaServicios.FirstOrDefault()?.Estado == 3)">Completado</option>
+            </select>
+        </div>
+
+
+        <div class="form-buttons">
+            <button type="submit" class="btn-guardar">Actualizar Cita</button>
+
+            <a asp-action="Index"
+               asp-controller="Citas"
+               asp-route-filtro="@ViewBag.FiltroActual"
+               class="btn-cancelar">
+                Cancelar
+            </a>
+        </div>
+    </form>
+</div>

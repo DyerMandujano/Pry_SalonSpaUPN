@@ -1,0 +1,106 @@
+﻿@model IEnumerable<Pry_Solu_SalonSPA.Models.Cita>
+
+@{
+    ViewData["Title"] = "Lista de Citas";
+}
+
+<link href="~/css/VCitas/_ListaCitas.css" rel="stylesheet" />
+
+<div class="contenedor-citas">
+    <h2 class="titulo-citas">@ViewBag.TituloFiltro</h2>
+
+    <div class="tabla-citas">
+        <!-- Encabezado -->
+        <div class="fila-cita encabezado">
+            <div>Cliente</div>
+            <div>Servicio</div>
+            <div>Empleado</div>
+            <div>Fecha</div>
+            <div>Hora</div>
+            <div>Precio</div>
+            <div>Estado</div>
+            <div>Acciones</div>
+        </div>
+
+        <!-- Filas de datos -->
+        @foreach (var cita in Model)
+        {
+            var cliente = cita.IdClienteNavigation?.IdPersonaNavigation;
+            var empleadoPersona = cita.IdEmpleadoHorarioNavigation?.IdEmpleadoNavigation?.IdPersonaNavigation;
+
+            foreach (var cs in cita.CitaServicios)
+            {
+                <div class="fila-cita">
+                    <div class="celda" data-label="Cliente">
+                        @(cliente != null ? $"{cliente.Nombres} {cliente.Apellidos}" : "Sin cliente")
+                    </div>
+
+                    <div class="celda" data-label="Servicio">
+                        @cs.IdServicioNavigation?.Nombre
+                    </div>
+
+                    <div class="celda" data-label="Empleado">
+                        @(empleadoPersona != null ? $"{empleadoPersona.Nombres} {empleadoPersona.Apellidos}" : "Sin empleado")
+                    </div>
+
+                    <div class="celda" data-label="Fecha">
+                        @cita.FechaCita.ToString("dd/MM/yyyy")
+                    </div>
+
+                    <div class="celda" data-label="Hora">
+                        @cita.FechaCita.ToString("HH:mm")
+                    </div>
+
+                    <div class="celda" data-label="Precio">
+                        @cs.IdServicioNavigation?.Precio.ToString("C")
+                    </div>
+
+                    <div class="celda" data-label="Estado">
+                        @{
+                            string estadoTexto = cs.Estado == 1 ? "Completado" :
+                            cs.Estado == 2 ? "Pendiente" :
+                            cs.Estado == 3 ? "Reprogramado" :
+                            cs.Estado == 4 ? "Cancelada" : "Desconocido";
+
+                            string color = cs.Estado == 1 ? "success" :
+                            cs.Estado == 2 ? "warning" :
+                            cs.Estado == 3 ? "info" :
+                            cs.Estado == 4 ? "danger" : "secondary";
+                        }
+                        <span class="badge @color">@estadoTexto</span>
+                    </div>
+
+                    <div class="celda acciones" data-label="Acciones">
+                        <a asp-action="Index"
+                           asp-route-idDetalle="@cita.IdCita"
+                           asp-route-filtro="@ViewBag.FiltroActual"
+                           class="btn-ver-detalles">
+                            Ver detalles
+                        </a>
+                        <button class="btn-editar"
+                                onclick="location.href='@Url.Action("Editar", "Citas", new { id = cita.IdCita })'">
+                            Editar
+                        </button>
+                        <button class="btn-eliminar"
+                                onclick="location.href='@Url.Action("Eliminar", "Citas", new { id = cita.IdCita })'">
+                            Eliminar
+                        </button>
+                    </div>
+                </div>
+            }
+
+            @if (ViewBag.IdDetalle != null && (int)ViewBag.IdDetalle == cita.IdCita)
+            {
+                <div class="detalle-observacion">
+                    <strong>Observaciones del servicio:</strong>
+                    <ul>
+                        @foreach (var cs in cita.CitaServicios)
+                        {
+                            <li>@(string.IsNullOrWhiteSpace(cs.Observacion) ? "Sin observaciones" : cs.Observacion)</li>
+                        }
+                    </ul>
+                </div>
+            }
+        }
+    </div>
+</div>

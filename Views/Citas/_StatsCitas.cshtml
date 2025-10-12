@@ -1,0 +1,21 @@
+﻿<link href="~/css/VCitas/_StatsCitas.css" rel="stylesheet" />
+
+<div class="stats-container">
+    <h2>Citas del Día</h2>
+    <div class="stats-card">
+        <span>Total de hoy</span>
+        <span class="stats-number">@ViewBag.TotalCitas</span>
+    </div>
+    <div class="stats-card pendiente">
+        <span>Pendientes</span>
+        <span class="stats-number">@ViewBag.Pendientes</span>
+    </div>
+    <div class="stats-card completada">
+        <span>Completadas</span>
+        <span class="stats-number">@ViewBag.Completadas</span>
+    </div>
+    <div class="stats-card cancelada">
+        <span>Canceladas</span>
+        <span class="stats-number">@ViewBag.Canceladas</span>
+    </div>
+</div>

@@ -1,0 +1,112 @@
+﻿.contenedor-formulario {
+    max-width: 600px;
+    margin: 2rem auto;
+    background-color: #fff0f5; /* rosa pálido */
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    font-family: 'Arial', sans-serif;
+    color: #4a2a4a;
+}
+
+.titulo-formulario {
+    text-align: center;
+    color: #b95aa1;
+    margin-bottom: 1.5rem;
+    font-weight: bold;
+}
+
+/* Formularios */
+.form-cita {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+}
+
+    .form-group label {
+        margin-bottom: 0.3rem;
+        font-weight: bold;
+        color: #6c4a6f;
+    }
+
+    /* Inputs y Selects */
+    .form-group input,
+    .form-group select {
+        padding: 0.6rem 0.8rem;
+        border: 2px solid #b95aa1; /* borde rosa */
+        border-radius: 8px;
+        background-color: #ffe6f0; /* rosa más visible */
+        font-size: 0.95rem;
+        color: #4a2a4a;
+        transition: 0.2s;
+        appearance: none; /* quita estilo por defecto en algunos navegadores */
+        -webkit-appearance: none;
+        -moz-appearance: none;
+    }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #a0448f;
+            box-shadow: 0 0 5px rgba(185,90,161,0.3);
+        }
+
+    /* Flecha personalizada para select */
+    .form-group select {
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 10 6' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%236c4a6f'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right 0.7rem center;
+        background-size: 0.6rem auto;
+        padding-right: 2rem;
+    }
+
+/* Botones */
+.form-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1.5rem;
+    gap: 1rem;
+}
+
+    .form-buttons button {
+        padding: 0.6rem 1.2rem;
+        border: none;
+        border-radius: 8px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: 0.2s;
+        color: #fff;
+        flex: 1;
+    }
+
+.btn-guardar {
+    background-color: #b95aa1;
+}
+
+    .btn-guardar:hover {
+        background-color: #a0448f;
+    }
+
+.btn-cancelar {
+    background-color: #6c4a6f;
+}
+
+    .btn-cancelar:hover {
+        background-color: #563656;
+    }
+
+/* Alertas de error */
+.alert-error {
+    background-color: #f8d7da;
+    color: #721c24;
+    padding: 0.7rem 1rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    font-weight: bold;
+    text-align: center;
+}

@@ -12,11 +12,6 @@ public partial class Cita
     public int IdEmpleadoHorario { get; set; }
 
     public DateTime FechaCita { get; set; }
-
-    public string Observacion { get; set; } = null!;
-
-    public int Estado { get; set; }
-
     public virtual ICollection<CitaServicio> CitaServicios { get; set; } = new List<CitaServicio>();
 
     public virtual Cliente IdClienteNavigation { get; set; } = null!;

@@ -1,0 +1,87 @@
+﻿.stats-container {
+    max-width: 1000px;
+    margin: 2rem auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: space-between;
+    font-family: 'Arial', sans-serif;
+}
+
+    .stats-container h2 {
+        width: 100%;
+        text-align: center;
+        color: #b95aa1; /* rosa pálido */
+        margin-bottom: 1.5rem;
+        font-weight: bold;
+    }
+
+.stats-card {
+    flex: 1 1 180px;
+    background-color: #fff0f5; /* rosa muy pálido */
+    border: 2px solid #b95aa1; /* borde rosa pálido */
+    border-radius: 12px;
+    padding: 1rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    transition: 0.2s;
+    min-width: 180px;
+}
+
+    .stats-card:hover {
+        background-color: #ffe6f0; /* ligero cambio al pasar el mouse */
+        transform: translateY(-3px);
+    }
+
+    .stats-card span:first-child {
+        font-size: 0.9rem;
+        color: #6c4a6f; /* texto secundario */
+        margin-bottom: 0.5rem;
+    }
+
+.stats-number {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #b95aa1; /* color principal */
+}
+
+/* Colores por estado */
+.stats-card.pendiente {
+    border-color: #ffc107;
+}
+
+    .stats-card.pendiente .stats-number {
+        color: #856404;
+    }
+
+.stats-card.completada {
+    border-color: #28a745;
+}
+
+    .stats-card.completada .stats-number {
+        color: #155724;
+    }
+
+.stats-card.cancelada {
+    border-color: #dc3545;
+}
+
+    .stats-card.cancelada .stats-number {
+        color: #721c24;
+    }
+
+/* Responsive */
+@media (max-width: 768px) {
+    .stats-container {
+        flex-direction: column;
+        gap: 1rem;
+        align-items: center;
+    }
+
+    .stats-card {
+        width: 80%;
+    }
+}

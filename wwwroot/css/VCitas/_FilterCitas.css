@@ -1,0 +1,26 @@
+﻿.filtro-citas {
+    margin: 1.2rem 0 1.5rem 0;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    justify-content: flex-start;
+}
+
+.etiqueta-filtro {
+    font-weight: bold;
+    color: #555;
+}
+
+.select-filtro {
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    padding: 0.4rem 0.8rem;
+    font-size: 0.9rem;
+    background-color: #fff;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+    .select-filtro:hover {
+        border-color: #b95aa1;
+    }

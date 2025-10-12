@@ -111,9 +111,6 @@ public partial class Conexion : DbContext
                 .HasColumnName("Fecha_cita");
             entity.Property(e => e.IdCliente).HasColumnName("Id_Cliente");
             entity.Property(e => e.IdEmpleadoHorario).HasColumnName("Id_Empleado_Horario");
-            entity.Property(e => e.Observacion)
-                .HasMaxLength(200)
-                .IsUnicode(false);
 
             entity.HasOne(d => d.IdClienteNavigation).WithMany(p => p.Cita)
                 .HasForeignKey(d => d.IdCliente)

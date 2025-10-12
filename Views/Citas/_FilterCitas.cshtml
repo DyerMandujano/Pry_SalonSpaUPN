@@ -1,0 +1,12 @@
+﻿@{
+    string filtroActual = ViewBag.FiltroActual ?? "general";
+}
+
+<link href="~/css/VCitas/_FilterCitas.css" rel="stylesheet" />
+
+
+<div class="filtros">
+    <a asp-action="Index" asp-route-filtro="hoy" class="btn @(ViewBag.FiltroActual == "hoy" ? "activo" : "")">Hoy</a>
+    <a asp-action="Index" asp-route-filtro="semana" class="btn @(ViewBag.FiltroActual == "semana" ? "activo" : "")">Semana</a>
+    <a asp-action="Index" asp-route-filtro="general" class="btn @(ViewBag.FiltroActual == "general" ? "activo" : "")">General</a>
+</div>

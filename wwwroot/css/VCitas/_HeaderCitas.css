@@ -1,0 +1,41 @@
+﻿.citas-header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #f9f9fc;
+    border: 1px solid #e2e2e8;
+    border-radius: 14px;
+    padding: 1.8rem 2rem;
+    margin: 1.5rem 2rem;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.06);
+    font-family: 'Segoe UI', sans-serif;
+}
+
+    .citas-header-container h2 {
+        margin: 0;
+        color: #333;
+        font-weight: 600;
+    }
+
+.texto-secundario {
+    color: #666;
+    font-size: 0.95rem;
+}
+
+.btn-nueva-cita {
+    background-color: #6f42c1;
+    color: white;
+    padding: 0.7rem 1.4rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: background 0.3s ease;
+}
+
+    .btn-nueva-cita:hover {
+        background-color: #5a32a3;
+    }
+
+    .btn-nueva-cita i {
+        margin-right: 6px;
+    }

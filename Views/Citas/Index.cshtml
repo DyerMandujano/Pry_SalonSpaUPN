@@ -1,8 +1,18 @@
-﻿@model Pry_Solu_SalonSPA.Models.Cita
+﻿@model IEnumerable<Pry_Solu_SalonSPA.Models.Cita>
 @{
     Layout = "~/Views/Main.cshtml";
     ViewData["Title"] = "Citas";
 }
 
-<h1>Citas</h1>
-<p>Bienvenido al panel principal.</p>
+<link href="~/css/VCitas/index.css" rel="stylesheet" />
+
+@await Html.PartialAsync("_HeaderCitas")
+
+@await Html.PartialAsync("_StatsCitas")
+
+
+<div class="container-list">
+    @await Html.PartialAsync("_FilterCitas")
+
+    @await Html.PartialAsync("_ListaCitas")
+</div>
