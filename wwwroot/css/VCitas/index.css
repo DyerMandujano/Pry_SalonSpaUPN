@@ -1,7 +1,6 @@
 ﻿.container-list {
-    width: 95%;
-    max-width: 1100px;
-    margin: 0 auto; /* centra todo horizontalmente */
+    max-width: 1220px;
+    margin: 0 auto;
     display: flex;
     flex-direction: column; /* apila filtro y lista verticalmente */
     align-items: center; /* centra los elementos hijos */

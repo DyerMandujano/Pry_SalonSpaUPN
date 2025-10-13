@@ -15,8 +15,6 @@
         <div>Teléfono</div>
         <div>DNI</div>
         <div>Género</div>
-        <div>Fecha Registro</div>
-        <div>Hora</div>
         <div>Estado</div>
         <div>Acciones</div>
     </div>
@@ -30,29 +28,20 @@
             <div class="celda" data-label="Teléfono:">@cliente.IdPersonaNavigation.Telefono</div>
             <div class="celda" data-label="DNI:">@cliente.IdPersonaNavigation.Dni</div>
             <div class="celda" data-label="Género:">@cliente.IdPersonaNavigation.Genero</div>
-            <div class="celda" data-label="Fecha-Registro:">@cliente.IdPersonaNavigation.FechaRegistro.ToString("dd/MM/yyyy") </div>
-            <div class="celda" data-label="Hora:">@cliente.IdPersonaNavigation.FechaRegistro.ToString("HH:mm") </div>
-
             <div class="celda" data-label="Estado:">
                 <span class="@(cliente.IdPersonaNavigation.Estado == 1 ? "estado-activo" : "estado-inactivo")">
                     @(cliente.IdPersonaNavigation.Estado == 1 ? "Activo" : "Inactivo")
                 </span>
             </div>
-
             <div class="celda acciones-clientes" data-label="Acciones:">
-
-                <a asp-action="Editar" asp-route-id="@cliente.IdCliente" class="btn-icon">
-                    <i class="fas fa-pen-to-square"></i>
-                </a>
-
+                <a asp-action="Editar" asp-route-id="@cliente.IdCliente" class="btn btn-editar">✏️ Editar</a>
                 <form asp-action="Eliminar" method="post" style="display:inline">
                     <input type="hidden" name="id" value="@cliente.IdCliente" />
-                    <button type="submit" class="btn-icon">
-                        <i class="fas fa-trash"></i>
+                    <button type="submit" class="btn @(cliente.IdPersonaNavigation.Estado == 1 ? "btn-inactivar" : "btn-activar")">
+                        @(cliente.IdPersonaNavigation.Estado == 1 ? "Inactivar" : "Activar")
                     </button>
                 </form>
             </div>
-
         </div>
     }
 </div>

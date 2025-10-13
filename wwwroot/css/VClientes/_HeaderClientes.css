@@ -1,38 +1,38 @@
 ﻿.clientes-header-container {
-    background-color: #FFEFF5; /* rosa pálido */
-    padding: 20px 30px;
-    border-radius: 10px;
+    weight: 1100px;
     display: flex;
-    flex-direction: column;
-    gap: 8px;
-    margin-bottom: 20px;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.0rem 0.4rem;
+    margin: 1.0rem 0.4rem;
+    font-family: 'Segoe UI', sans-serif;
 }
 
-.clientes-header-titulo {
-    color: #d63384;
-    font-size: 1.8rem;
-    margin: 0;
-}
+    .clientes-header-container .clientes-header-titulo {
+        margin: 0;
+        color: #2B2766;
+        font-weight: 600;
+    }
 
 .clientes-header-subtitulo {
-    color: #5a2d82;
-    font-size: 1rem;
-    margin: 0;
+    color: #A138C2;
+    font-size: 0.95rem;
 }
 
-.clientes-header-btn {
-    display: inline-block;
-    margin-top: 10px;
-    padding: 10px 20px;
-    background-color: #d99ac1; /* otro tono rosa */
-    color: #fff;
-    border-radius: 6px;
+.btn-nuevo-cliente {
+    background-color: #EB2885;
+    color: white;
+    padding: 0.7rem 1.4rem;
+    border-radius: 8px;
     text-decoration: none;
-    font-weight: bold;
-    width: fit-content;
-    transition: background-color 0.3s;
+    font-weight: 500;
+    transition: background 0.3s ease;
 }
 
-    .clientes-header-btn:hover {
-        background-color: #b5286e;
+    .btn-nuevo-cliente:hover {
+        background-color: #EB3B8F;
+    }
+
+    .btn-nuevo-cliente i {
+        margin-right: 6px;
     }

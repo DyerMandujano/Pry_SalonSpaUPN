@@ -1,11 +1,6 @@
-﻿body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f5f2f7;
-    color: #333;
-    margin: 0;
-    padding: 0;
-}
-.modal-overlay {
+﻿
+.modal-overlay 
+{
     display: none;
     position: fixed;
     inset: 0;
@@ -16,26 +11,22 @@
 }
 
 .clientes-container {
-    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    max-width: 1200px;
 }
 
-h2, h3 {
-    color: #b95aa1;
+.clientes-lista-container {
+    border: 2px solid #EBC5E5;
+    border-radius: 25px;
+    max-width: var(--max-width-lista,100%);
+    display: flex;
+    flex-direction: column;
+    transform: translate(15px,0px);
+    padding: 0.3rem;
 }
 
-/* Mensajes */
-.alert {
-    padding: 0.8rem 1rem;
-    margin-bottom: 1rem;
-    border-radius: 8px;
-}
 
-.alert-success {
-    background-color: #d4edda;
-    color: #155724;
-}
 
-.alert-error {
-    background-color: #f8d7da;
-    color: #721c24;
-}
+
+

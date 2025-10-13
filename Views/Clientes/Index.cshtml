@@ -4,17 +4,19 @@
     Layout = "~/Views/Main.cshtml";
     ViewData["Title"] = "Clientes";
 }
+
 <link rel="stylesheet" href="~/css/VClientes/index.css" />
-
-
-@await Html.PartialAsync("_HeaderClientes")
 
 <div class="clientes-container">
 
-    @await Html.PartialAsync("_BuscarClientes")
+    @await Html.PartialAsync("_HeaderClientes")
 
-    <div id="contenedor-lista">
+    <div class="clientes-lista-container">
+
+        @await Html.PartialAsync("_BuscarClientes")
 
         @await Html.PartialAsync("_ListaClientes", Model)
+
     </div>
+
 </div>

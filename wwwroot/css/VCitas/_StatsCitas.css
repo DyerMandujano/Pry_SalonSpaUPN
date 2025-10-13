@@ -1,79 +1,58 @@
 ﻿.stats-container {
-    max-width: 1000px;
+    max-width: 1200px;
     margin: 2rem auto;
     display: flex;
     flex-wrap: wrap;
     gap: 1rem;
-    justify-content: space-between;
+    justify-content: center;
     font-family: 'Arial', sans-serif;
 }
 
-    .stats-container h2 {
-        width: 100%;
-        text-align: center;
-        color: #b95aa1; /* rosa pálido */
-        margin-bottom: 1.5rem;
-        font-weight: bold;
-    }
-
 .stats-card {
+    position: relative;
     flex: 1 1 180px;
-    background-color: #fff0f5; /* rosa muy pálido */
-    border: 2px solid #b95aa1; /* borde rosa pálido */
+    background-color: #fff;
+    border: 2px solid #EBC5E5;
     border-radius: 12px;
     padding: 1rem 1.5rem;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    align-items: flex-start;
     box-shadow: 0 4px 10px rgba(0,0,0,0.05);
     transition: 0.2s;
     min-width: 180px;
+    text-align: left;
 }
 
-    .stats-card:hover {
-        background-color: #ffe6f0; /* ligero cambio al pasar el mouse */
-        transform: translateY(-3px);
+    .stats-card span {
+        display: block;
+        color: #2B2766;
+        margin-bottom: 1rem;
     }
 
-    .stats-card span:first-child {
-        font-size: 0.9rem;
-        color: #6c4a6f; /* texto secundario */
-        margin-bottom: 0.5rem;
-    }
+        .stats-card span:first-child {
+            font-size: 0.9rem;
+        }
 
 .stats-number {
     font-size: 1.8rem;
     font-weight: bold;
-    color: #b95aa1; /* color principal */
+    margin-top: 0.5rem;
 }
 
-/* Colores por estado */
-.stats-card.pendiente {
-    border-color: #ffc107;
+.stats-card .icono {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 1.5rem;
+    color: #A138C2;
 }
 
-    .stats-card.pendiente .stats-number {
-        color: #856404;
-    }
-
-.stats-card.completada {
-    border-color: #28a745;
+.stats-card:hover {
+    box-shadow: 0 6px 15px rgba(0,0,0,0.1);
 }
 
-    .stats-card.completada .stats-number {
-        color: #155724;
-    }
 
-.stats-card.cancelada {
-    border-color: #dc3545;
-}
-
-    .stats-card.cancelada .stats-number {
-        color: #721c24;
-    }
-
-/* Responsive */
 @media (max-width: 768px) {
     .stats-container {
         flex-direction: column;

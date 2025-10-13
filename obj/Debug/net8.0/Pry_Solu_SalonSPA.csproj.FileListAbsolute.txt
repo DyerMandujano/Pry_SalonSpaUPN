@@ -166,3 +166,7 @@ C:\Users\Jeremy\Source\Repos\Pry_SalonSpaUPN\bin\Debug\net8.0\runtimes\win\lib\n
 C:\Users\Jeremy\Source\Repos\Pry_SalonSpaUPN\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\Jeremy\Source\Repos\Pry_SalonSpaUPN\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
 C:\Users\Jeremy\Source\Repos\Pry_SalonSpaUPN\obj\Debug\net8.0\Pry_Solu.601F369E.Up2Date
+C:\Users\Jeremy\Source\Repos\Pry_SalonSpaUPN\bin\Debug\net8.0\Views\Citas\_HeaderCitas.cshtml
+C:\Users\Jeremy\Source\Repos\Pry_SalonSpaUPN\bin\Debug\net8.0\Views\Clientes\_HeaderClientes.cshtml
+C:\Users\Jeremy\Source\Repos\Pry_SalonSpaUPN\bin\Debug\net8.0\Views\Clientes\_ListaClientes.cshtml
+C:\Users\Jeremy\Source\Repos\Pry_SalonSpaUPN\bin\Debug\net8.0\Views\Clientes\_BuscarClientes.cshtml

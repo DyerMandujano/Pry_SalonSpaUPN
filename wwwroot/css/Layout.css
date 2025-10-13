@@ -1,13 +1,23 @@
-﻿.body-container {
+﻿body {
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    height: 100%;
+}
+.body-container {
     display: flex;
     height: 100vh;
 }
 
 .right-container {
+    margin-left: 260px;
     display: flex;
     flex-direction: column;
     flex: 1;
 }
+
 
 .header {
     height: 60px;

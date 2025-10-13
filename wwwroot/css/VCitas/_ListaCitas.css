@@ -1,119 +1,85 @@
-﻿/* Contenedor principal */
-.contenedor-citas {
-    max-width: 1100px;
+﻿.contenedor-citas {
+    width: 95%;
     margin: 2rem auto;
     font-family: 'Arial', sans-serif;
-    padding: 0 1rem;
 }
 
-/* Título */
-.titulo-citas {
-    text-align: center;
-    margin-bottom: 1rem;
-    color: #b95aa1; /* rosa pálido */
-    font-size: 1.1rem;
-}
-
-/* Tabla */
-.tabla-citas {
-    display: flex;
-    flex-direction: column;
-    font-size: 0.8rem; /* compacto */
-}
-
-/* Filas */
 .fila-cita {
     display: grid;
-    grid-template-columns: 1.5fr 2fr 2fr 1fr 0.8fr 1fr 1fr 1.5fr;
-    border: 2px solid #000; /* borde negro */
-    border-radius: 0; /* continuidad */
-    padding: 0.35rem 0.5rem; /* menos padding */
+    grid-template-columns: 0.5fr 2.3fr 2.9fr 2.3fr 1.2fr 0.8fr 1fr 1.4fr 1.6fr;
+    border-bottom: 2px solid #EBC5E5; /* borde rosado */
+    padding: 0.5rem;
     align-items: center;
+    gap: 0.2rem;
     transition: 0.2s;
 }
 
-    /* Hover fila */
-    .fila-cita:hover {
-        background-color: #ffe6f0; /* ligero cambio al pasar el mouse */
-    }
-
-    /* Encabezado */
     .fila-cita.encabezado {
         font-weight: bold;
-        background-color: #f9f1f7; /* rosa suave encabezado */
-        color: #b95aa1;
-        font-size: 0.85rem;
+        background-color: #f9f1f7;
+        color: #2B2766;
     }
 
-/* Celdas */
 .celda {
-    padding: 0.15rem 0.3rem; /* más compacto */
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    font-size: 0.8rem;
-}
-.badge {
-    padding: 0.15rem 0.3rem;
-    border-radius: 0.25rem;
-    font-size: 0.7rem; /* más pequeño */
-    font-weight: bold;
-    text-align: center;
+    font-size: 0.85rem;
 }
 
-    /* Colores de badge según estado */
-    .badge.success {
-        background-color: #d4edda;
-        color: #155724;
-    }
+.acciones {
+    display: flex;
+    gap: 0.3rem;
+}
 
-    .badge.warning {
-        background-color: #fff3cd;
-        color: #856404;
-    }
-
-    .badge.info {
-        background-color: #cce5ff;
-        color: #004085;
-    }
-
-    .badge.danger {
-        background-color: #f8d7da;
-        color: #721c24;
-    }
-
-    .badge.secondary {
-        background-color: #e2e3e5;
-        color: #383d41;
-    }
-
-/* Botones acciones */
-.acciones button {
-    padding: 0.2rem 0.4rem; /* más pequeño */
-    border-radius: 8px;
-    font-weight: 600;
-    border: none;
+.btn-accion {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    border: 2px solid #EBC5E5;
+    border-radius: 6px;
+    background-color: white;
+    color: #2B2766;
     cursor: pointer;
     transition: 0.2s;
-    color: #fff;
-    font-size: 0.7rem; /* más compacto */
+    font-size: 1rem;
 }
 
-/* Colores de botones */
-.btn-editar {
-    background-color: #5a8fb9;
-}
-
-    .btn-editar:hover {
-        background-color: #4a7ca3;
+    .btn-accion i {
+        color: #A138C2; /* todos los iconos en morado */
     }
 
-.btn-eliminar {
-    background-color: #b95a5a;
+    .btn-accion:hover {
+        background-color: #fce6f5;
+    }
+
+    .btn-accion.editar i {
+        color: #5a8fb9;
+    }
+
+    .btn-accion.eliminar i {
+        color: #b95a5a;
+    }
+
+    .btn-accion.detalles i {
+        color: #A138C2;
+    }
+
+
+.detalle-observacion {
+    display: none;
+    margin-left: 2rem;
+    margin-bottom: 1rem;
+    background-color: #f9f1f7;
+    padding: 0.5rem 1rem;
+    border-left: 3px solid #b95aa1;
+    border-radius: 4px;
 }
 
-    .btn-eliminar:hover {
-        background-color: #a44a4a;
+    .detalle-observacion.mostrar {
+        display: block;
     }
 
 /* Responsive */
@@ -125,14 +91,16 @@
     .fila-cita {
         display: flex;
         flex-direction: column;
-        padding: 0.3rem;
-        gap: 0.15rem;
+        padding: 0.5rem;
+        border: 1px solid #EBC5E5;
+        border-radius: 8px;
+        margin-bottom: 0.5rem;
     }
 
     .celda {
         display: flex;
         justify-content: space-between;
-        font-size: 0.75rem;
+        font-size: 0.8rem;
     }
 
         .celda::before {
@@ -141,21 +109,12 @@
             color: #b95aa1;
         }
 
-    .acciones button {
+    .acciones {
         width: 100%;
-        margin-bottom: 0.15rem;
-        font-size: 0.7rem;
     }
-}
-.detalle-observacion {
-    background-color: #f9f9f9;
-    border-left: 4px solid #b95aa1;
-    padding: 10px 15px;
-    margin: 8px 0 15px 0;
-    border-radius: 10px;
-    font-size: 14px;
-}
 
-    .detalle-observacion strong {
-        color: #b95aa1;
+    .btn-accion {
+        width: 100%;
+        margin-bottom: 0.2rem;
     }
+}

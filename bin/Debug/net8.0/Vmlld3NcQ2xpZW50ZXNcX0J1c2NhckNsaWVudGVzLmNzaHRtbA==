@@ -1,0 +1,12 @@
+﻿@model List<Pry_Solu_SalonSPA.Models.Cliente>
+
+<link href="~/css/VClientes/_BuscarClientes.css" rel="stylesheet" />
+
+<div class="contenedor-buscador">
+    <form asp-action="Index" method="get">
+        <input type="text" name="filtro" placeholder="Buscar por nombre o DNI" />
+
+        <button type="submit">Buscar</button>
+
+    </form>
+</div>

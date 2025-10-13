@@ -4,9 +4,16 @@
 
 <link href="~/css/VCitas/_FilterCitas.css" rel="stylesheet" />
 
-
 <div class="filtros">
-    <a asp-action="Index" asp-route-filtro="hoy" class="btn @(ViewBag.FiltroActual == "hoy" ? "activo" : "")">Hoy</a>
-    <a asp-action="Index" asp-route-filtro="semana" class="btn @(ViewBag.FiltroActual == "semana" ? "activo" : "")">Semana</a>
-    <a asp-action="Index" asp-route-filtro="general" class="btn @(ViewBag.FiltroActual == "general" ? "activo" : "")">General</a>
+    <a asp-action="Index" asp-route-filtro="hoy" class="btn @(filtroActual == "hoy" ? "activo" : "")">
+        Hoy <i class="bi bi-calendar3 icono"></i>
+    </a>
+
+    <a asp-action="Index" asp-route-filtro="semana" class="btn @(filtroActual == "semana" ? "activo" : "")">
+        Semana <i class="bi bi-clock icono"></i>
+    </a>
+
+    <a asp-action="Index" asp-route-filtro="general" class="btn @(filtroActual == "general" ? "activo" : "")">
+        General <i class="bi bi-list icono"></i>
+    </a>
 </div>
