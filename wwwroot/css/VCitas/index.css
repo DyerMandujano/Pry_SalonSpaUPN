@@ -1,22 +1,10 @@
-﻿.container-list {
-    max-width: 1220px;
+﻿
+
+.container-list {
+    max-width: 1200px;
     margin: 0 auto;
-    display: flex;
-    flex-direction: column; /* apila filtro y lista verticalmente */
-    align-items: center; /* centra los elementos hijos */
-    gap: 0.5rem; /* espacio entre filtro y tabla */
-}
-
-/* Ajuste del filtro */
-.filtro-citas {
-    width: 100%; /* que use todo el ancho */
-    display: flex;
-    justify-content: flex-end; /* lo puedes cambiar a 'flex-start' o 'center' */
-    margin-bottom: 0.5rem;
-}
-
-/* Ajuste de la tabla */
-.tabla-citas {
-    width: 100%;
-    border-collapse: collapse;
+    align-items: center;
+    gap: 0.5rem;
+    border: 2px solid #EBC5E5;
+    border-radius: 25px;
 }

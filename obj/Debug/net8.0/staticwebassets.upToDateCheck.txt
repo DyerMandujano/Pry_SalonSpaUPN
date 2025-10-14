@@ -1,15 +1,17 @@
 wwwroot\css\Header.css
 wwwroot\css\Layout.css
 wwwroot\css\Sidebar.css
+wwwroot\css\VCitas\index.css
 wwwroot\css\VCitas\_CrearCitas.css
 wwwroot\css\VCitas\_EditarCitas.css
 wwwroot\css\VCitas\_FilterCitas.css
 wwwroot\css\VCitas\_HeaderCitas.css
+wwwroot\css\VCitas\_ListaCitas.css
+wwwroot\css\VCitas\_ObservacionCitas.css
 wwwroot\css\VCitas\_StatsCitas.css
 wwwroot\css\VClientes\index.css
 wwwroot\css\VClientes\_BuscarClientes.css
 wwwroot\css\VClientes\_ClienteForm.css
-wwwroot\css\VClientes\_EditarClientes.css
 wwwroot\css\VClientes\_HeaderClientes.css
 wwwroot\css\VClientes\_ListaClientes.css
 wwwroot\css\VClientes\_ModalDetalles.css
@@ -72,5 +74,3 @@ wwwroot\lib\jquery\dist\jquery.min.js
 wwwroot\lib\jquery\dist\jquery.min.map
 wwwroot\lib\jquery\LICENSE.txt
 wwwroot\logo_spa.jpg
-wwwroot\css\VCitas\index.css
-wwwroot\css\VCitas\_ListaCitas.css

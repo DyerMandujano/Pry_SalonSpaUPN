@@ -1,1 +1,1 @@
-C:\Users\Jeremy\Source\Repos\Pry_SalonSpaUPN\wwwroot\css\VClientes\_CrearClientes.css
+C:\Users\Jeremy\Source\Repos\Pry_SalonSpaUPN\wwwroot\css\VClientes\_EditarClientes.css

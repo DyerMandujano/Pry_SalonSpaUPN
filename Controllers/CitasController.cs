@@ -18,7 +18,7 @@ namespace Pry_Solu_SalonSPA.Controllers
             _context = context;
         }
 
-        public async Task<IActionResult> Index(string filtro, int? idDetalle)
+        public async Task<IActionResult> Index(string filtro, string busqueda, int? idDetalle)
         {
             var hoy = DateTime.Today;
 
@@ -32,8 +32,12 @@ namespace Pry_Solu_SalonSPA.Controllers
                     .ThenInclude(cs => cs.IdServicioNavigation)
                 .ToListAsync();
 
-            ViewBag.IdDetalle = idDetalle;
-            ViewBag.FiltroActual = filtro;
+            if (!string.IsNullOrEmpty(busqueda))
+            {
+                citas = citas.Where(c =>
+                    c.IdClienteNavigation.IdPersonaNavigation.Dni.Contains(busqueda)
+                ).ToList();
+            }
 
             switch (filtro)
             {
@@ -55,6 +59,8 @@ namespace Pry_Solu_SalonSPA.Controllers
                     break;
             }
 
+            ViewBag.IdDetalle = idDetalle;
+            ViewBag.FiltroActual = filtro;
             ViewBag.TotalCitas = citas.Count();
             ViewBag.Completadas = citas.Count(c => c.CitaServicios.Any(cs => cs.Estado == 1));
             ViewBag.Pendientes = citas.Count(c => c.CitaServicios.Any(cs => cs.Estado == 2));
@@ -108,6 +114,51 @@ namespace Pry_Solu_SalonSPA.Controllers
             return View("_CrearCitas");
             
         }
+
+        [HttpPost]
+        public async Task<IActionResult> BuscarClientePorDNI(string dni)
+        {
+            if (string.IsNullOrWhiteSpace(dni))
+            {
+                ViewBag.Error = "Debe ingresar un DNI.";
+                CargarListasDesplegables();
+                return View("_CrearCitas");
+            }
+
+            try
+            {
+                using var connection = new SqlConnection(_context.Database.GetConnectionString());
+                await connection.OpenAsync();
+
+                using var command = new SqlCommand("sp_BuscarClientePorDNI", connection)
+                {
+                    CommandType = System.Data.CommandType.StoredProcedure
+                };
+                command.Parameters.AddWithValue("@DNI", dni);
+
+                using var reader = await command.ExecuteReaderAsync();
+                if (await reader.ReadAsync())
+                {
+                    ViewBag.ClienteEncontrado = new
+                    {
+                        IdCliente = reader.GetInt32(reader.GetOrdinal("Id_Cliente")),
+                        Nombre = reader["Nombres"].ToString() + " " + reader["Apellidos"].ToString()
+                    };
+                }
+                else
+                {
+                    ViewBag.Error = "No se encontró un cliente con ese DNI.";
+                }
+            }
+            catch (Exception ex)
+            {
+                ViewBag.Error = "Error en la búsqueda: " + ex.Message;
+            }
+
+            CargarListasDesplegables();
+            return View("_CrearCitas");
+        }
+
 
         [HttpGet]
         public async Task<IActionResult> Editar(int id, string filtro)
@@ -165,6 +216,88 @@ namespace Pry_Solu_SalonSPA.Controllers
             return View("_EditarCitas");
         }
 
+        [HttpGet]
+        [HttpGet]
+        public async Task<IActionResult> Buscar(string busqueda)
+        {
+            if (string.IsNullOrEmpty(busqueda))
+            {
+                TempData["Mensaje"] = "Ingrese un DNI válido.";
+                return RedirectToAction("Index");
+            }
+
+            var listaCitas = new List<Cita>();
+
+            try
+            {
+                using var connection = new SqlConnection(_context.Database.GetConnectionString());
+                await connection.OpenAsync();
+
+                using var command = new SqlCommand("sp_BuscarCitaPorDNI", connection)
+                {
+                    CommandType = System.Data.CommandType.StoredProcedure
+                };
+
+                command.Parameters.AddWithValue("@DNI", busqueda);
+
+                using var reader = await command.ExecuteReaderAsync();
+
+                while (await reader.ReadAsync())
+                {
+                    var cita = new Cita
+                    {
+                        IdCita = reader.GetInt32(reader.GetOrdinal("Id_Cita")),
+                        FechaCita = reader.GetDateTime(reader.GetOrdinal("Fecha_Cita")),
+                        IdClienteNavigation = new Cliente
+                        {
+                            IdPersonaNavigation = new Persona
+                            {
+                                Nombres = reader["Cliente"].ToString()
+                            }
+                        },
+                        IdEmpleadoHorarioNavigation = new EmpleadoHorario
+                        {
+                            IdEmpleadoNavigation = new Empleado
+                            {
+                                IdPersonaNavigation = new Persona
+                                {
+                                    Nombres = reader["Empleado"].ToString()
+                                }
+                            }
+                        }
+                    };
+
+                    var citaServicio = new CitaServicio
+                    {
+                        IdServicioNavigation = new Servicio
+                        {
+                            Nombre = reader["Servicio"].ToString(),
+                            Precio = reader.GetDecimal(reader.GetOrdinal("Precio"))
+                        },
+                        Observacion = reader["Observacion_Servicio"].ToString(),
+                        Estado = Convert.ToInt32(reader["Estado_Servicio"])
+                    };
+
+                    cita.CitaServicios.Add(citaServicio);
+                    listaCitas.Add(cita);
+                }
+            }
+            catch (Exception ex)
+            {
+                TempData["Mensaje"] = $"Error al buscar la cita: {ex.Message}";
+                return RedirectToAction("Index");
+            }
+
+            if (!listaCitas.Any())
+            {
+                TempData["Mensaje"] = "No se encontraron citas para el DNI ingresado.";
+            }
+
+            return View("Index", listaCitas);
+        }
+
+
+
         private void CargarListasDesplegables(int? idCliente = null, int? idEmpleadoHorario = null, int? idServicio = null)
         {
             ViewData["Clientes"] = new SelectList(
@@ -174,14 +307,16 @@ namespace Pry_Solu_SalonSPA.Controllers
                 idCliente
             );
 
-            ViewData["Empleados"] = new SelectList(
-                _context.EmpleadoHorarios
-                    .Include(eh => eh.IdEmpleadoNavigation)
-                    .ThenInclude(e => e.IdPersonaNavigation),
-                "IdEmpleadoHorario",
-                "IdEmpleadoNavigation.IdPersonaNavigation.Nombres",
-                idEmpleadoHorario
-            );
+            ViewData["Empleados"] = _context.EmpleadoHorarios
+                .Include(eh => eh.IdEmpleadoNavigation)
+                .ThenInclude(e => e.IdPersonaNavigation)
+                .Select(eh => new Microsoft.AspNetCore.Mvc.Rendering.SelectListItem
+                {
+                    Value = eh.IdEmpleadoHorario.ToString(),
+                    Text = eh.IdEmpleadoNavigation.IdPersonaNavigation.Nombres + " " +
+                           eh.IdEmpleadoNavigation.IdPersonaNavigation.Apellidos
+                })
+                .ToList();
 
             ViewData["Servicios"] = new SelectList(
                 _context.Servicios,

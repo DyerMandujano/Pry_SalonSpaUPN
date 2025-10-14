@@ -1,23 +1,28 @@
 ﻿.contenedor-citas {
     width: 95%;
-    margin: 2rem auto;
+    margin: 0.2rem auto;
     font-family: 'Arial', sans-serif;
 }
 
 .fila-cita {
     display: grid;
     grid-template-columns: 0.5fr 2.3fr 2.9fr 2.3fr 1.2fr 0.8fr 1fr 1.4fr 1.6fr;
-    border-bottom: 2px solid #EBC5E5; /* borde rosado */
+    border-bottom: 2px solid #EBC5E5;
     padding: 0.5rem;
     align-items: center;
     gap: 0.2rem;
     transition: 0.2s;
 }
 
+    .fila-cita:hover {
+        background-color: #ffe6f0;
+    }
+
     .fila-cita.encabezado {
         font-weight: bold;
         background-color: #f9f1f7;
         color: #2B2766;
+        font-size: 0.85rem;
     }
 
 .celda {
@@ -68,21 +73,85 @@
     }
 
 
+/* ================================
+   DETALLE DE OBSERVACIONES
+=================================== */
+
 .detalle-observacion {
     display: none;
-    margin-left: 2rem;
-    margin-bottom: 1rem;
-    background-color: #f9f1f7;
-    padding: 0.5rem 1rem;
-    border-left: 3px solid #b95aa1;
-    border-radius: 4px;
+    background-color: #fff9fc;
+    border: 2px solid #EBC5E5;
+    border-radius: 10px;
+    margin: 0.6rem 0 1rem 0;
+    padding: 1rem 1.3rem 1.3rem 1.3rem;
+    font-size: 0.85rem;
+    color: #2B2766;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
+    position: relative;
+    transition: all 0.3s ease-in-out;
 }
 
+    /* Cuando se muestra */
     .detalle-observacion.mostrar {
         display: block;
+        animation: aparecerDetalle 0.3s ease;
     }
 
-/* Responsive */
+/* Animación de aparición */
+@keyframes aparecerDetalle {
+    from {
+        opacity: 0;
+        transform: translateY(-6px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Título */
+.detalle-observacion strong {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #A138C2;
+    font-size: 0.9rem;
+}
+
+/* Lista */
+.detalle-observacion ul {
+    margin: 0;
+    padding-left: 1.4rem;
+    list-style-type: disc;
+}
+
+.detalle-observacion li {
+    margin-bottom: 0.3rem;
+    line-height: 1.4;
+}
+
+
+
+.btn-cerrar-detalle {
+    position: absolute;
+    top: 8px;
+    right: 12px;
+    background-color: transparent;
+    border: none;
+    color: #A138C2;
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+    .btn-cerrar-detalle:hover {
+        color: #2B2766;
+        transform: scale(1.1);
+    }
+
+
+
 @media (max-width: 768px) {
     .fila-cita.encabezado {
         display: none;

@@ -1,0 +1,14 @@
+﻿.observacion-item {
+    padding: 0.6rem 1rem;
+    border-left: 4px solid #EBC5E5;
+    background-color: #fff7fc;
+    margin-bottom: 0.5rem;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    color: #333;
+}
+
+    .observacion-item em {
+        color: #a17ba7;
+        font-style: italic;
+    }

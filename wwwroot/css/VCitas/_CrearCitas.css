@@ -1,112 +1,103 @@
-﻿.contenedor-formulario {
-    max-width: 600px;
-    margin: 2rem auto;
-    background-color: #fff0f5; /* rosa pálido */
-    padding: 2rem;
+﻿.crear-cita-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+.crear-cita-box {
+    background-color: #fff;
+    padding: 30px 40px;
     border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-    font-family: 'Arial', sans-serif;
-    color: #4a2a4a;
+    width: 600px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
-.titulo-formulario {
-    text-align: center;
-    color: #b95aa1;
-    margin-bottom: 1.5rem;
-    font-weight: bold;
-}
-
-/* Formularios */
-.form-cita {
+.header-crear {
     display: flex;
     flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    margin-bottom: 20px;
+    color: #2B2766;
 }
 
-.form-group {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 1rem;
-}
-
-    .form-group label {
-        margin-bottom: 0.3rem;
+    .header-crear .btn-back,
+    .volver-cita,
+    .btn-back {
+        color: #EBC5E5;
         font-weight: bold;
-        color: #6c4a6f;
+        font-size: 1.1rem;
+        text-decoration: none;
+        display: inline-block;
+        margin-bottom: 15px;
     }
 
-    /* Inputs y Selects */
-    .form-group input,
-    .form-group select {
-        padding: 0.6rem 0.8rem;
-        border: 2px solid #b95aa1; /* borde rosa */
-        border-radius: 8px;
-        background-color: #ffe6f0; /* rosa más visible */
-        font-size: 0.95rem;
-        color: #4a2a4a;
-        transition: 0.2s;
-        appearance: none; /* quita estilo por defecto en algunos navegadores */
-        -webkit-appearance: none;
-        -moz-appearance: none;
+
+.form-row {
+    display: flex;
+    gap: 20px;
+    color: #2B2766;
+}
+
+    .form-group {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 1rem;
     }
+    
+ 
 
-        .form-group input:focus,
-        .form-group select:focus {
-            outline: none;
-            border-color: #a0448f;
-            box-shadow: 0 0 5px rgba(185,90,161,0.3);
-        }
+label {
+    margin-bottom: 5px;
+    font-weight: 500;
+    color: #2B2766;
+}
 
-    /* Flecha personalizada para select */
-    .form-group select {
-        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 10 6' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%236c4a6f'/%3E%3C/svg%3E");
-        background-repeat: no-repeat;
-        background-position: right 0.7rem center;
-        background-size: 0.6rem auto;
-        padding-right: 2rem;
-    }
+.editable-field {
+    padding: 8px 10px;
+    border-radius: 6px;
+    border: 1px solid #d99ac1;
+    background-color: #fff;
+}
 
-/* Botones */
+.readonly-field {
+    padding: 8px 10px;
+    border-radius: 6px;
+    border: 1px solid #d99ac1;
+    background-color: #FCE1F9; /* rosa más oscuro para diferenciar */
+    color: #5c1a3f;
+}
+
 .form-buttons {
     display: flex;
-    justify-content: space-between;
-    margin-top: 1.5rem;
-    gap: 1rem;
+    gap: 15px;
+    padding: 10px;
+    margin-top: 20px;
+    justify-content: center;
 }
 
-    .form-buttons button {
-        padding: 0.6rem 1.2rem;
-        border: none;
-        border-radius: 8px;
-        font-weight: bold;
-        cursor: pointer;
-        transition: 0.2s;
-        color: #fff;
-        flex: 1;
-    }
-
-.btn-guardar {
-    background-color: #b95aa1;
+.btn-crear {
+    background-color: #d63384;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
 }
 
-    .btn-guardar:hover {
-        background-color: #a0448f;
+    .btn-crear:hover {
+        background-color: #b5286e;
     }
 
 .btn-cancelar {
-    background-color: #6c4a6f;
+    padding: 10px 20px;
+    background-color: #fff;
+    color: #2B2766;
+    border-radius: 6px;
+    border: 2px solid #FFE5FF;
 }
 
     .btn-cancelar:hover {
-        background-color: #563656;
+        background-color: #FFF2FC;
     }
-
-/* Alertas de error */
-.alert-error {
-    background-color: #f8d7da;
-    color: #721c24;
-    padding: 0.7rem 1rem;
-    border-radius: 8px;
-    margin-bottom: 1rem;
-    font-weight: bold;
-    text-align: center;
-}

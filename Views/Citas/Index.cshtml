@@ -6,13 +6,17 @@
 
 <link href="~/css/VCitas/index.css" rel="stylesheet" />
 
-@await Html.PartialAsync("_HeaderCitas")
+<div class="container-citas">
 
-@await Html.PartialAsync("_StatsCitas")
+    @await Html.PartialAsync("_HeaderCitas")
+
+    @await Html.PartialAsync("_StatsCitas")
 
 
-<div class="container-list">
-    @await Html.PartialAsync("_FilterCitas")
+    <div class="container-list">
+        @await Html.PartialAsync("_FilterCitas")
 
-    @await Html.PartialAsync("_ListaCitas")
+        @await Html.PartialAsync("_ListaCitas")
+    </div>
+
 </div>

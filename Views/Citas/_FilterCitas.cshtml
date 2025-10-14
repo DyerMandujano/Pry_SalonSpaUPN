@@ -1,19 +1,49 @@
 ﻿@{
     string filtroActual = ViewBag.FiltroActual ?? "general";
+    string dniActual = Context.Request.Query["busqueda"];
 }
 
 <link href="~/css/VCitas/_FilterCitas.css" rel="stylesheet" />
 
-<div class="filtros">
-    <a asp-action="Index" asp-route-filtro="hoy" class="btn @(filtroActual == "hoy" ? "activo" : "")">
-        Hoy <i class="bi bi-calendar3 icono"></i>
-    </a>
+<div class="busqueda-filtros-container">
 
-    <a asp-action="Index" asp-route-filtro="semana" class="btn @(filtroActual == "semana" ? "activo" : "")">
-        Semana <i class="bi bi-clock icono"></i>
-    </a>
+    <div class="contenedor-buscador">
+        <p>Buscar citas:</p>
+        <form method="get" asp-action="Index" class="form-buscador-derecha">
+            <button type="submit">
+                <i class="bi bi-search"></i>
+            </button>
 
-    <a asp-action="Index" asp-route-filtro="general" class="btn @(filtroActual == "general" ? "activo" : "")">
-        General <i class="bi bi-list icono"></i>
-    </a>
+            <input type="hidden" name="filtro" value="@filtroActual" />
+
+            <div class="form-busqueda-grupo">
+                <input type="text" name="busqueda" value="@dniActual"
+                       class="input-buscador" placeholder="Ingrese DNI del cliente" />
+            </div>
+        </form>
+    </div>
+
+    <div class="filtros-derecha">
+        <a asp-action="Index"
+           asp-route-filtro="hoy"
+           asp-route-busqueda="@dniActual"
+           class="btn @(filtroActual == "hoy" ? "activo" : "")">
+            Hoy <i class="bi bi-calendar3 icono"></i>
+        </a>
+
+        <a asp-action="Index"
+           asp-route-filtro="semana"
+           asp-route-busqueda="@dniActual"
+           class="btn @(filtroActual == "semana" ? "activo" : "")">
+            Semana <i class="bi bi-clock icono"></i>
+        </a>
+
+        <a asp-action="Index"
+           asp-route-filtro="general"
+           asp-route-busqueda="@dniActual"
+           class="btn @(filtroActual == "general" ? "activo" : "")">
+            General <i class="bi bi-list icono"></i>
+        </a>
+    </div>
+
 </div>

@@ -1,71 +1,89 @@
-﻿@{
+﻿@model Pry_Solu_SalonSPA.Models.Cita
+
+@{
     Layout = "~/Views/Main.cshtml";
-    ViewData["Title"] = "Crear Cita";
+    ViewData["Title"] = "Registrar Cita";
 }
 
 <link href="~/css/VCitas/_CrearCitas.css" rel="stylesheet" />
 
-<div class="contenedor-formulario">
-    <h2 class="titulo-formulario">Registrar Nueva Cita</h2>
+<div class="crear-cita-wrapper">
 
-    @if (ViewBag.Error != null)
-    {
-        <div class="alert-error">@ViewBag.Error</div>
-    }
+    <div class="crear-cita-box">
 
-    <form asp-action="Crear" method="post" class="form-cita">
-        <div class="form-group">
-            <label>Cliente</label>
-            <select name="IdCliente" asp-items="ViewBag.Clientes"></select>
+        <a asp-action="Index" class="btn-back">← Volver</a>
+
+        <div class="header-crear">
+            <h2>Registrar Cita</h2>
         </div>
 
-        <div class="form-group">
-            <label>Empleado</label>
-            <select name="IdEmpleadoHorario" asp-items="ViewBag.Empleados"></select>
-        </div>
+        @if (ViewBag.Error != null)
+        {
+            <div class="alert-error">@ViewBag.Error</div>
+        }
 
-        <div class="form-group">
-            <label>Servicio</label>
-            <select name="IdServicio" asp-items="ViewBag.Servicios"></select>
-        </div>
+        <form asp-action="BuscarClientePorDNI" method="post" class="form-cita">
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Buscar por DNI</label>
+                    <input type="text" name="dni" placeholder="Ingrese DNI" class="editable-field" />
+                </div>
 
-        <div class="form-group">
-            <label>Fecha de Cita</label>
-            <input type="datetime-local" name="FechaCita" />
-        </div>
-
-        <div class="form-group">
-            <label>Observación de la cita</label>
-            <input type="text" name="Observacion" />
-        </div>
+                <div class="form-group">
+                    <label>&nbsp;</label>
+                    <button type="submit" class="btn-crear">Buscar</button>
+                </div>
+            </div>
+        </form>
 
         <div class="form-group">
-            <label>Estado de la cita</label>
-            <select name="Estado">
-                <option value="1">Completado</option>
-                <option value="2">Pendiente</option>
-                <option value="3">Reprogramado</option>
-                <option value="4">Cancelado</option>
-            </select>
+            <label>Cliente encontrado</label>
+            <input type="text" readonly value="@ViewBag.ClienteEncontrado?.Nombre" class="readonly-field" />
         </div>
 
-        <div class="form-group">
-            <label>Observación del servicio</label>
-            <input type="text" name="ObsServicio" />
-        </div>
+        <form asp-action="Crear" method="post" class="form-cita">
+            <input type="hidden" name="IdCliente" value="@ViewBag.ClienteEncontrado?.IdCliente" />
 
-        <div class="form-group">
-            <label>Estado del servicio</label>
-            <select name="Estado_Servicio">
-                <option value="1">Pendiente</option>
-                <option value="2">En proceso</option>
-                <option value="3">Completado</option>
-            </select>
-        </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Empleado</label>
+                    <select name="IdEmpleadoHorario" asp-items="ViewBag.Empleados" class="editable-field"></select>
+                </div>
 
-        <div class="form-buttons">
-            <button type="submit" class="btn-guardar">Guardar Cita</button>
-            <button type="button" class="btn-cancelar" onclick="location.href='@Url.Action("Index", "Citas")'">Cancelar</button>
-        </div>
-    </form>
+                <div class="form-group">
+                    <label>Servicio</label>
+                    <select name="IdServicio" asp-items="ViewBag.Servicios" class="editable-field"></select>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Fecha de Cita</label>
+                    <input type="datetime-local" name="FechaCita" class="editable-field" />
+                </div>
+
+                <div class="form-group">
+                    <label>Estado del Servicio</label>
+                    <select name="Estado_Servicio" class="editable-field">
+                        <option value="1">Completado</option>
+                        <option value="2">Pendiente</option>
+                        <option value="3">Reprogramado</option>
+                        <option value="4">Cancelado</option>
+                    </select>
+                </div>
+            </div>
+
+                <div class="form-group">
+                    <label>Observación del Servicio</label>
+                    <input type="text" name="ObsServicio" class="editable-field" placeholder="Escriba una observación (opcional)" />
+                </div>
+
+            <div class="form-buttons">
+                <a asp-action="Index" class="btn-cancelar">Cancelar</a>
+
+                <button type="submit" class="btn-crear">Guardar Cita</button>
+            </div>
+        </form>
+
+    </div>
 </div>

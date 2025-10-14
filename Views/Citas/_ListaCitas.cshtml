@@ -89,8 +89,11 @@
                 </div>
             </div>
 
-            <!-- Detalle de la cita -->
             <div id="detalle-@cita.IdCita" class="detalle-observacion">
+                <button type="button" class="btn-cerrar-detalle"
+                        onclick="document.getElementById('detalle-@cita.IdCita').classList.remove('mostrar');">
+                    &times;
+                </button>
                 <strong>Observaciones del servicio:</strong>
                 <ul>
                     @foreach (var csd in cita.CitaServicios)
