@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Jeremy\\Source\\Repos\\Pry_SalonSpaUPN\\Pry_Solu_SalonSPA.csproj": {}
+    "C:\\Users\\Joaquin\\Source\\Repos\\Pry_Salon\\Pry_Solu_SalonSPA.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Jeremy\\Source\\Repos\\Pry_SalonSpaUPN\\Pry_Solu_SalonSPA.csproj": {
+    "C:\\Users\\Joaquin\\Source\\Repos\\Pry_Salon\\Pry_Solu_SalonSPA.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Jeremy\\Source\\Repos\\Pry_SalonSpaUPN\\Pry_Solu_SalonSPA.csproj",
+        "projectUniqueName": "C:\\Users\\Joaquin\\Source\\Repos\\Pry_Salon\\Pry_Solu_SalonSPA.csproj",
         "projectName": "Pry_Solu_SalonSPA",
-        "projectPath": "C:\\Users\\Jeremy\\Source\\Repos\\Pry_SalonSpaUPN\\Pry_Solu_SalonSPA.csproj",
-        "packagesPath": "C:\\Users\\Jeremy\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Jeremy\\Source\\Repos\\Pry_SalonSpaUPN\\obj\\",
+        "projectPath": "C:\\Users\\Joaquin\\Source\\Repos\\Pry_Salon\\Pry_Solu_SalonSPA.csproj",
+        "packagesPath": "C:\\Users\\Joaquin\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Joaquin\\Source\\Repos\\Pry_Salon\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Jeremy\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Joaquin\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
