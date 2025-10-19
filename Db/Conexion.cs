@@ -48,7 +48,7 @@ public partial class Conexion : DbContext
 
     public virtual DbSet<Producto> Productos { get; set; }
 
-    public virtual DbSet<Proveedor> Proveedors { get; set; }
+    public virtual DbSet<Proveedor> Proveedor { get; set; }
 
     public virtual DbSet<Servicio> Servicios { get; set; }
 
@@ -411,6 +411,7 @@ public partial class Conexion : DbContext
             entity.Property(e => e.Correo)
                 .HasMaxLength(100)
                 .IsUnicode(false);
+            entity.Property(e => e.IdCategoria).HasColumnName("Id_Categoria");
             entity.Property(e => e.NomProve)
                 .HasMaxLength(50)
                 .IsUnicode(false)
@@ -422,6 +423,10 @@ public partial class Conexion : DbContext
                 .HasMaxLength(9)
                 .IsUnicode(false)
                 .IsFixedLength();
+
+            entity.HasOne(d => d.IdCategoriaNavigation).WithMany(p => p.Proveedors)
+                .HasForeignKey(d => d.IdCategoria)
+                .HasConstraintName("FK_Proveedor_Categoria");
         });
 
         modelBuilder.Entity<Servicio>(entity =>

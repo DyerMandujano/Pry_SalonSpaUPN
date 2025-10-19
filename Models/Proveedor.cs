@@ -17,5 +17,9 @@ public partial class Proveedor
 
     public int Estado { get; set; }
 
+    public int? IdCategoria { get; set; }
+
     public virtual ICollection<Compra> Compras { get; set; } = new List<Compra>();
+
+    public virtual Categoria? IdCategoriaNavigation { get; set; }
 }

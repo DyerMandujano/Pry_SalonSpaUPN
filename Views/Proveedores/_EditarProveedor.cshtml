@@ -1,0 +1,51 @@
+﻿@model Pry_Solu_SalonSPA.Models.Proveedor
+
+@{
+    ViewData["Title"] = "Editar Proveedor";
+}
+
+<h2>Editar Proveedor</h2>
+
+<form asp-action="Editar" method="post">
+    <!-- Campo oculto para IdProveedor -->
+    <input type="hidden" asp-for="IdProveedor" />
+
+    <div class="form-group mb-2">
+        <label asp-for="NomProve"></label>
+        <input asp-for="NomProve" class="form-control" />
+        <span asp-validation-for="NomProve" class="text-danger"></span>
+    </div>
+
+    <div class="form-group mb-2">
+        <label asp-for="Ruc"></label>
+        <input asp-for="Ruc" class="form-control" />
+        <span asp-validation-for="Ruc" class="text-danger"></span>
+    </div>
+
+    <div class="form-group mb-2">
+        <label asp-for="Correo"></label>
+        <input asp-for="Correo" class="form-control" />
+        <span asp-validation-for="Correo" class="text-danger"></span>
+    </div>
+
+    <div class="form-group mb-2">
+        <label asp-for="Telefono"></label>
+        <input asp-for="Telefono" class="form-control" />
+        <span asp-validation-for="Telefono" class="text-danger"></span>
+    </div>
+
+    <div class="form-group mb-2">
+        <label asp-for="IdCategoria">Categoría</label>
+        <select asp-for="IdCategoria" class="form-control" asp-items="ViewBag.Categorias"></select>
+        <span asp-validation-for="IdCategoria" class="text-danger"></span>
+    </div>
+
+    <div class="form-group mb-2">
+        <label asp-for="Estado">Estado</label>
+        <select asp-for="Estado" class="form-control" asp-items="ViewBag.Estados"></select>
+        <span asp-validation-for="Estado" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-success">Guardar Cambios</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+</form>

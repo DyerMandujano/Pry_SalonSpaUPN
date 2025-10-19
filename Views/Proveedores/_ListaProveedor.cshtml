@@ -1,0 +1,43 @@
+﻿@model IEnumerable<Pry_Solu_SalonSPA.Models.Proveedor>
+
+@{
+    ViewData["Title"] = "Proveedores";
+}
+
+<h2>Proveedores</h2>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>RUC</th>
+            <th>Correo</th>
+            <th>Teléfono</th>
+            <th>Categoría</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.NomProve</td>
+                <td>@item.Ruc</td>
+                <td>@item.Correo</td>
+                <td>@item.Telefono</td>
+                <td>@item.IdCategoriaNavigation?.NomCate</td>
+                <td>@(item.Estado == 1 ? "Activo" : "Inactivo")</td>
+                <td>
+                    <a asp-action="Editar" asp-route-id="@item.IdProveedor" class="btn btn-sm btn-warning">Editar</a>
+                    <form asp-action="CambiarEstado" method="post" style="display:inline;">
+                        <input type="hidden" name="id" value="@item.IdProveedor" />
+                        <button type="submit" class="btn btn-sm @(item.Estado == 1 ? "btn-success" : "btn-danger")">
+                            @(item.Estado == 1 ? "Activo" : "Inactivo")
+                        </button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
