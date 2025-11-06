@@ -1,11 +1,13 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Pry_Solu_SalonSPA.Db;
 using Pry_Solu_SalonSPA.Models;
+using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Collections.Generic;
 
 namespace Pry_Solu_SalonSPA.Controllers
 {
@@ -19,21 +21,16 @@ namespace Pry_Solu_SalonSPA.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Index(string? busqueda, int categoriaSeleccionada = 0)
+        public async Task<IActionResult> Index(string? busqueda, int? estado)
         {
-            var categorias = await _context.Categoria
-                .Where(c => c.Estado == 1)
-                .ToListAsync();
-
-            categorias.Insert(0, new Categoria { IdCategoria = 0, NomCate = "-- Todas --" });
-
-            ViewBag.Categorias = new SelectList(categorias, "IdCategoria", "NomCate", categoriaSeleccionada);
-            ViewBag.CategoriaSeleccionada = categoriaSeleccionada;
-            ViewBag.Busqueda = busqueda;
-
-            var proveedores = await _context.Proveedor
-                .FromSqlRaw("EXEC sp_Buscar_Proveedor @p0, @p1", busqueda ?? "", categoriaSeleccionada)
-                .ToListAsync();
+            string? busquedaParam = string.IsNullOrWhiteSpace(busqueda) ? null : busqueda.Trim();
+            ViewBag.Busqueda = busquedaParam;
+            CargarCombos(estado);
+            var proveedores = busquedaParam == null && estado == null
+                ? await _context.Proveedor.FromSqlRaw("EXEC dbo.sp_Listar_Proveedores").ToListAsync()
+                : await _context.Proveedor
+                    .FromSqlInterpolated($"EXEC dbo.sp_Buscar_Proveedor @Busqueda = {busquedaParam}, @Estado = {estado}")
+                    .ToListAsync();
 
             return View(proveedores);
         }
@@ -49,25 +46,35 @@ namespace Pry_Solu_SalonSPA.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Crear(Proveedor model)
         {
-            if (!model.IdCategoria.HasValue || model.IdCategoria <= 0)
-                ModelState.AddModelError("IdCategoria", "Debe seleccionar una categoría válida");
-
             if (!ModelState.IsValid)
             {
-                CargarCombos(model.IdCategoria ?? 0, model.Estado);
+                CargarCombos(model.Estado);
                 return View("_CrearProveedor", model);
             }
 
             try
             {
-                _context.Proveedor.Add(model);
-                await _context.SaveChangesAsync();
+                var parametros = new[]
+                {
+                    new SqlParameter("@Nom_Prove", model.NomProve),
+                    new SqlParameter("@Ruc", model.Ruc),
+                    new SqlParameter("@Telefono", model.Telefono),
+                    new SqlParameter("@Correo", model.Correo),
+                    new SqlParameter("@Tipo_Proveedor", model.TipoProveedor),
+                    new SqlParameter("@Estado", model.Estado)
+                };
+
+                await _context.Database.ExecuteSqlRawAsync(
+                    "EXEC dbo.sp_Crear_Proveedor @Nom_Prove, @Ruc, @Telefono, @Correo, @Tipo_Proveedor, @Estado",
+                    parametros
+                );
+
                 return RedirectToAction(nameof(Index));
             }
-            catch (System.Exception ex)
+            catch (Exception ex)
             {
                 ViewBag.Error = ex.Message;
-                CargarCombos(model.IdCategoria ?? 0, model.Estado);
+                CargarCombos(model.Estado);
                 return View("_CrearProveedor", model);
             }
         }
@@ -78,7 +85,7 @@ namespace Pry_Solu_SalonSPA.Controllers
             var proveedor = await _context.Proveedor.FindAsync(id);
             if (proveedor == null) return NotFound();
 
-            CargarCombos(proveedor.IdCategoria ?? 0, proveedor.Estado);
+            CargarCombos(proveedor.Estado);
             return View("_EditarProveedor", proveedor);
         }
 
@@ -86,25 +93,36 @@ namespace Pry_Solu_SalonSPA.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Editar(Proveedor model)
         {
-            if (!model.IdCategoria.HasValue || model.IdCategoria <= 0)
-                ModelState.AddModelError("IdCategoria", "Debe seleccionar una categoría válida");
-
             if (!ModelState.IsValid)
             {
-                CargarCombos(model.IdCategoria ?? 0, model.Estado);
+                CargarCombos(model.Estado);
                 return View("_EditarProveedor", model);
             }
 
             try
             {
-                _context.Proveedor.Update(model);
-                await _context.SaveChangesAsync();
+                var parametros = new[]
+                {
+                    new SqlParameter("@Id_Proveedor", model.IdProveedor),
+                    new SqlParameter("@Nom_Prove", model.NomProve),
+                    new SqlParameter("@Ruc", model.Ruc),
+                    new SqlParameter("@Telefono", model.Telefono),
+                    new SqlParameter("@Correo", model.Correo),
+                    new SqlParameter("@Tipo_Proveedor", model.TipoProveedor),
+                    new SqlParameter("@Estado", model.Estado)
+                };
+
+                await _context.Database.ExecuteSqlRawAsync(
+                    "EXEC dbo.sp_Editar_Proveedor @Id_Proveedor, @Nom_Prove, @Ruc, @Telefono, @Correo, @Tipo_Proveedor, @Estado",
+                    parametros
+                );
+
                 return RedirectToAction(nameof(Index));
             }
-            catch (System.Exception ex)
+            catch (Exception ex)
             {
                 ViewBag.Error = ex.Message;
-                CargarCombos(model.IdCategoria ?? 0, model.Estado);
+                CargarCombos(model.Estado);
                 return View("_EditarProveedor", model);
             }
         }
@@ -116,31 +134,23 @@ namespace Pry_Solu_SalonSPA.Controllers
             {
                 await _context.Database.ExecuteSqlRawAsync("EXEC sp_Estado_Proveedor @IdProveedor = {0}", id);
             }
-            catch (System.Exception ex)
+            catch (Exception ex)
             {
                 ViewBag.Error = ex.Message;
             }
 
             return RedirectToAction(nameof(Index));
         }
-
-        private void CargarCombos(int categoriaSeleccionada = 0, int estadoSeleccionado = 1)
+        private void CargarCombos(int? estadoSeleccionado = null)
         {
-            var categorias = _context.Categoria
-                .Where(c => c.Estado == 1)
-                .Select(c => new { c.IdCategoria, c.NomCate })
-                .ToList();
-
-            categorias.Insert(0, new { IdCategoria = 0, NomCate = "-- Seleccione una categoría --" });
-            ViewBag.Categorias = new SelectList(categorias, "IdCategoria", "NomCate", categoriaSeleccionada);
-
-            var estados = new List<object>
+            var estados = new List<SelectListItem>
             {
-                new { Valor = 1, Texto = "Activo" },
-                new { Valor = 0, Texto = "Inactivo" }
+                new SelectListItem { Value = "", Text = "Todos" },
+                new SelectListItem { Value = "1", Text = "Activo" },
+                new SelectListItem { Value = "0", Text = "Inactivo" }
             };
 
-            ViewBag.Estados = new SelectList(estados, "Valor", "Texto", estadoSeleccionado);
+            ViewBag.Estados = new SelectList(estados, "Value", "Text", estadoSeleccionado?.ToString());
         }
     }
 }

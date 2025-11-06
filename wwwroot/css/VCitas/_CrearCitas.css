@@ -32,6 +32,22 @@
         margin-bottom: 15px;
     }
 
+.btn-buscar {
+    padding: 7px 20px;
+    background-color: #E8D5F2; /* Fondo morado claro */
+    color: #2B2766; /* Morado oscuro principal */
+    border-radius: 6px;
+    border: 2px solid #9B6DB5; /* Borde morado medio */
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+    .btn-buscar:hover {
+        background-color: #D4B5E8; /* Morado claro más intenso */
+        border-color: #7D4A99; /* Borde morado más oscuro */
+        color: #2B2766;
+    }
 
 .form-row {
     display: flex;
@@ -65,7 +81,7 @@ label {
     padding: 8px 10px;
     border-radius: 6px;
     border: 1px solid #d99ac1;
-    background-color: #FCE1F9; /* rosa más oscuro para diferenciar */
+    background-color: #FCE1F9;
     color: #5c1a3f;
 }
 

@@ -1,0 +1,57 @@
+﻿@{
+    var q = ViewContext.HttpContext.Request.Query;
+    string ordenQuery = q["orden"].ToString();
+    string tipoMovimientoQuery = q["tipoMovimiento"].ToString();
+}
+
+<link href="~/css/VInventario/_FilterInventario.css" rel="stylesheet" />
+
+<div class="busqueda-filtros-container">
+    <div class="contenedor-buscador">
+        <p>Buscar en inventario:</p>
+
+        <form id="filterForm" method="get" asp-action="Index" asp-controller="Inventario" class="form-buscador-derecha" role="search" aria-label="Buscar inventario">
+            <button type="submit" class="btn-submit" title="Buscar">
+                <i class="bi bi-search"></i>
+            </button>
+
+            <div class="form-busqueda-grupo">
+                <input type="text" id="nomProd" name="nomProd" value="@(q["nomProd"])" class="input-buscador" placeholder="Buscar producto..." />
+            </div>
+
+            <div class="form-compact-dates">
+                <input type="date" id="fechaInicio" name="fechaInicio" class="input-date" value="@(q["fechaInicio"])" aria-label="Fecha desde" />
+                <input type="date" id="fechaFin" name="fechaFin" class="input-date" value="@(q["fechaFin"])" aria-label="Fecha hasta" />
+            </div>
+        </form>
+    </div>
+
+    <div class="filtros-derecha">
+        <select id="tipoMovimiento" name="tipoMovimiento" class="form-select filtro-select"
+                form="filterForm"
+                onchange="document.getElementById('filterForm').submit();">
+            <option value="">-- Todos --</option>
+            <option value="ENTRADA" selected="@(tipoMovimientoQuery == "ENTRADA" ? "selected" : null)">Entrada</option>
+            <option value="SALIDA" selected="@(tipoMovimientoQuery == "SALIDA" ? "selected" : null)">Salida</option>
+        </select>
+
+        <select id="orden" name="orden" class="form-select filtro-select"
+                form="filterForm"
+                onchange="document.getElementById('filterForm').submit();">
+            <option value="">-- Orden --</option>
+            <option value="ASC" selected="@(ordenQuery == "ASC" ? "selected" : null)">Ascendente</option>
+            <option value="DESC" selected="@(ordenQuery == "DESC" ? "selected" : null)">Descendente</option>
+        </select>
+
+        <a asp-action="Index"
+           asp-route-nomProd="@(q["nomProd"])"
+           asp-route-tipoMovimiento="@(tipoMovimientoQuery)"
+           asp-route-fechaInicio="@(q["fechaInicio"])"
+           asp-route-fechaFin="@(q["fechaFin"])"
+           asp-route-orden="@(ordenQuery)"
+           class="btn limpiar-btn"
+           title="Limpiar filtros">
+            Limpiar
+        </a>
+    </div>
+</div>

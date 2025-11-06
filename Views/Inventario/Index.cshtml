@@ -1,9 +1,20 @@
-﻿@model Pry_Solu_SalonSPA.Models.Inventario
+﻿@model IEnumerable<Pry_Solu_SalonSPA.Models.InventarioViewModel>
 
 @{
     Layout = "~/Views/Main.cshtml";
     ViewData["Title"] = "Inventario";
 }
 
-<h1>Inventario</h1>
-<p>Gestión de Inventario registrados en el sistema.</p>
+<link href="~/css/VInventario/index.css" rel="stylesheet" />
+
+<div class="inventario-container">
+
+    @await Html.PartialAsync("_HeaderInventario")
+
+    <div class="inventario-lista-container">
+        @await Html.PartialAsync("_FilterInventario")
+
+        @await Html.PartialAsync("_ListaInventario", Model)
+    </div>
+
+</div>

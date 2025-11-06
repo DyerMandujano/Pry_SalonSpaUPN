@@ -1,0 +1,20 @@
+﻿.inventario-header-container {
+    weight: 1100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.0rem 0.4rem;
+    margin: 1.0rem 0.4rem;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+    .inventario-header-container .inventario-header-titulo {
+        margin: 0;
+        color: #2B2766;
+        font-weight: 600;
+    }
+
+.inventario-header-subtitulo {
+    color: #A138C2;
+    font-size: 0.95rem;
+}

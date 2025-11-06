@@ -1,7 +1,12 @@
 ﻿@model List<Pry_Solu_SalonSPA.Models.Cliente>
 
 @{
-    ViewData["Title"] = "Lista Clientes";
+    string busqueda = ViewBag.Busqueda;
+    bool? estado = ViewBag.Estado;
+    string fechaInicio = ViewBag.FechaInicio;
+    string fechaFin = ViewBag.FechaFin;
+    int pageNumber = ViewBag.PageNumber ?? 1;
+    int pageSize = ViewBag.PageSize ?? 10;
 }
 
 <link rel="stylesheet" href="~/css/VClientes/_ListaClientes.css" />
@@ -9,7 +14,6 @@
 <div class="contenedor-clientes">
 
     <div class="fila-clientes encabezado">
-        <div>ID</div>
         <div>Nombres</div>
         <div>Apellidos</div>
         <div>Teléfono</div>
@@ -21,38 +25,64 @@
         <div>Acciones</div>
     </div>
 
-    @foreach (var cliente in Model)
+    @if (Model != null && Model.Any())
     {
-        <div class="fila-clientes">
-            <div class="celda" data-label="ID:">@cliente.IdCliente</div>
-            <div class="celda" data-label="Nombres:">@cliente.IdPersonaNavigation.Nombres</div>
-            <div class="celda" data-label="Apellidos:">@cliente.IdPersonaNavigation.Apellidos</div>
-            <div class="celda" data-label="Teléfono:">@cliente.IdPersonaNavigation.Telefono</div>
-            <div class="celda" data-label="DNI:">@cliente.IdPersonaNavigation.Dni</div>
-            <div class="celda" data-label="Género:">@cliente.IdPersonaNavigation.Genero</div>
-            <div class="celda" data-label="Fecha-Registro:">@cliente.IdPersonaNavigation.FechaRegistro.ToString("dd/MM/yyyy") </div>
-            <div class="celda" data-label="Hora:">@cliente.IdPersonaNavigation.FechaRegistro.ToString("HH:mm") </div>
+        @foreach (var cliente in Model)
+        {
+            <div class="fila-clientes">
+                <div class="celda" data-label="Nombres:">@cliente.IdPersonaNavigation.Nombres</div>
+                <div class="celda" data-label="Apellidos:">@cliente.IdPersonaNavigation.Apellidos</div>
+                <div class="celda" data-label="Teléfono:">@cliente.IdPersonaNavigation.Telefono</div>
+                <div class="celda" data-label="DNI:">@cliente.IdPersonaNavigation.Dni</div>
+                <div class="celda" data-label="Género:">@cliente.IdPersonaNavigation.Genero</div>
+                <div class="celda" data-label="Fecha-Registro:">@cliente.IdPersonaNavigation.FechaRegistro.ToString("dd/MM/yyyy")</div>
+                <div class="celda" data-label="Hora:">@cliente.IdPersonaNavigation.FechaRegistro.ToString("HH:mm")</div>
 
-            <div class="celda" data-label="Estado:">
-                <span class="@(cliente.IdPersonaNavigation.Estado == 1 ? "estado-activo" : "estado-inactivo")">
-                    @(cliente.IdPersonaNavigation.Estado == 1 ? "Activo" : "Inactivo")
-                </span>
+                <div class="celda" data-label="Estado:">
+                    <span class="@(cliente.IdPersonaNavigation.Estado == 1 ? "estado-activo" : "estado-inactivo")">
+                        @(cliente.IdPersonaNavigation.Estado == 1 ? "Activo" : "Inactivo")
+                    </span>
+                </div>
+
+                <div class="celda acciones-clientes" data-label="Acciones:">
+                    <!-- Botón Editar -->
+                    <a asp-action="Editar"
+                       asp-route-id="@cliente.IdCliente"
+                       asp-route-busqueda="@busqueda"
+                       asp-route-estado="@estado"
+                       asp-route-fechaInicio="@fechaInicio"
+                       asp-route-fechaFin="@fechaFin"
+                       asp-route-pageNumber="@pageNumber"
+                       asp-route-pageSize="@pageSize"
+                       class="btn-icon"
+                       title="Editar">
+                        <i class="fas fa-pen-to-square"></i>
+                    </a>
+
+                    <!-- Botón Cambiar Estado - SIN onsubmit JavaScript -->
+                    <form asp-action="CambiarEstado" method="post" style="display:inline">
+                        <input type="hidden" name="id" value="@cliente.IdCliente" />
+                        <input type="hidden" name="busqueda" value="@busqueda" />
+                        <input type="hidden" name="estado" value="@estado" />
+                        <input type="hidden" name="fechaInicio" value="@fechaInicio" />
+                        <input type="hidden" name="fechaFin" value="@fechaFin" />
+                        <input type="hidden" name="pageNumber" value="@pageNumber" />
+                        <input type="hidden" name="pageSize" value="@pageSize" />
+
+                        <button type="submit"
+                                class="btn-icon"
+                                title="@(cliente.IdPersonaNavigation.Estado == 1 ? "Inactivar" : "Activar")">
+                            <i class="fas fa-@(cliente.IdPersonaNavigation.Estado == 1 ? "toggle-on" : "toggle-off")"></i>
+                        </button>
+                    </form>
+                </div>
             </div>
-
-            <div class="celda acciones-clientes" data-label="Acciones:">
-
-                <a asp-action="Editar" asp-route-id="@cliente.IdCliente" class="btn-icon">
-                    <i class="fas fa-pen-to-square"></i>
-                </a>
-
-                <form asp-action="Eliminar" method="post" style="display:inline">
-                    <input type="hidden" name="id" value="@cliente.IdCliente" />
-                    <button type="submit" class="btn-icon">
-                        <i class="fas fa-trash"></i>
-                    </button>
-                </form>
-            </div>
-
+        }
+    }
+    else
+    {
+        <div class="sin-resultados">
+            <p>No se encontraron clientes con los filtros aplicados.</p>
         </div>
     }
 </div>

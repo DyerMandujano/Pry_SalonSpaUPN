@@ -14,9 +14,13 @@
 
 
     <div class="container-list">
+
         @await Html.PartialAsync("_FilterCitas")
 
         @await Html.PartialAsync("_ListaCitas")
+
+        @await Html.PartialAsync("_PaginaCitas")
+
     </div>
 
 </div>

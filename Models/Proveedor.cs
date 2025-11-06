@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Pry_Solu_SalonSPA.Models;
 
@@ -16,10 +17,10 @@ public partial class Proveedor
     public string Telefono { get; set; } = null!;
 
     public int Estado { get; set; }
-
-    public int? IdCategoria { get; set; }
+  
+    [Column("Tipo_Proveedor")]
+    public string? TipoProveedor { get; set; }
 
     public virtual ICollection<Compra> Compras { get; set; } = new List<Compra>();
 
-    public virtual Categoria? IdCategoriaNavigation { get; set; }
 }

@@ -3,6 +3,14 @@
 @{
     Layout = "~/Views/Main.cshtml";
     ViewData["Title"] = "Editar Cliente";
+    
+    string busqueda = ViewBag.ReturnBusqueda;
+    bool? estado = ViewBag.ReturnEstado;
+    string fechaInicio = ViewBag.ReturnFechaInicio;
+    string fechaFin = ViewBag.ReturnFechaFin;
+    int pageNumber = ViewBag.ReturnPageNumber ?? 1;
+    int pageSize = ViewBag.ReturnPageSize ?? 10;
+    int idCliente = ViewBag.IdCliente ?? 0;
 }
 
 <link href="~/css/VClientes/_ClienteForm.css" rel="stylesheet" />
@@ -10,14 +18,27 @@
 <div class="crear-cliente-wrapper">
     <div class="crear-cliente-box">
 
-        <a asp-action="Index" class="btn-back">← Volver</a>
+        <a asp-action="Index"
+           asp-route-busqueda="@busqueda"
+           asp-route-estado="@estado"
+           asp-route-fechaInicio="@fechaInicio"
+           asp-route-fechaFin="@fechaFin"
+           asp-route-pageNumber="@pageNumber"
+           asp-route-pageSize="@pageSize"
+           class="btn-back">← Volver</a>
 
         <div class="header-crear">
             <h2>Editar Cliente</h2>
         </div>
 
-        <form asp-action="Editar" method="post" class="form-crear">
+        <form asp-action="Editar" asp-route-id="@idCliente" method="post" class="form-crear">
             <input type="hidden" asp-for="IdPersona" />
+            <input type="hidden" name="busqueda" value="@busqueda" />
+            <input type="hidden" name="estado" value="@estado" />
+            <input type="hidden" name="fechaInicio" value="@fechaInicio" />
+            <input type="hidden" name="fechaFin" value="@fechaFin" />
+            <input type="hidden" name="pageNumber" value="@pageNumber" />
+            <input type="hidden" name="pageSize" value="@pageSize" />
 
             <div class="form-row">
                 <div class="form-group">
@@ -33,11 +54,11 @@
             <div class="form-row">
                 <div class="form-group">
                     <label asp-for="Telefono">Teléfono</label>
-                    <input asp-for="Telefono" class="editable-field" maxlength="9"/>
+                    <input asp-for="Telefono" class="editable-field" maxlength="9" />
                 </div>
                 <div class="form-group">
                     <label asp-for="Dni">DNI</label>
-                    <input asp-for="Dni" class="editable-field" maxlength="8"/>
+                    <input asp-for="Dni" class="editable-field" maxlength="8" />
                 </div>
             </div>
 
@@ -57,20 +78,27 @@
                     <label>Estado</label>
                     @Html.DropDownListFor(model => model.Estado,
                     new List<SelectListItem>
-                                        {
-                                        new SelectListItem { Text = "Activo", Value = "1", Selected = Model.Estado == 1 },
-                                        new SelectListItem { Text = "Inactivo", Value = "0", Selected = Model.Estado == 0 }
-                                        },
-                                        new { @class = "editable-field" })
+                    {
+                        new SelectListItem { Text = "Activo", Value = "1", Selected = Model.Estado == 1 },
+                        new SelectListItem { Text = "Inactivo", Value = "0", Selected = Model.Estado == 0 }
+                    },
+                    new { @class = "editable-field" })
                 </div>
                 <div class="form-group">
                     <label>Fecha de Registro</label>
-                    <input asp-for="FechaRegistro" type="date" class="editable-field" />
+                    <input asp-for="FechaRegistro" type="datetime-local" class="readonly-field" readonly />
                 </div>
             </div>
 
             <div class="form-buttons">
-                <a asp-action="Index" class="btn-cancelar">Cancelar</a>
+                <a asp-action="Index"
+                   asp-route-busqueda="@busqueda"
+                   asp-route-estado="@estado"
+                   asp-route-fechaInicio="@fechaInicio"
+                   asp-route-fechaFin="@fechaFin"
+                   asp-route-pageNumber="@pageNumber"
+                   asp-route-pageSize="@pageSize"
+                   class="btn-cancelar">Cancelar</a>
 
                 <button type="submit" class="btn-crear">Guardar Cambios</button>
             </div>

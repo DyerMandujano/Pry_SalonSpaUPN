@@ -11,8 +11,6 @@ public partial class CitaServicio
 
     public int IdCita { get; set; }
 
-    public string Observacion { get; set; } = null!;
-
     public int Estado { get; set; }
 
     public virtual Cita IdCitaNavigation { get; set; } = null!;

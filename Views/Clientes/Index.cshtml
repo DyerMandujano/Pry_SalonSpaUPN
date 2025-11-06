@@ -13,9 +13,11 @@
 
     <div class="clientes-lista-container">
 
-        @await Html.PartialAsync("_BuscarClientes")
+        @await Html.PartialAsync("_FilterClientes")
 
         @await Html.PartialAsync("_ListaClientes", Model)
+
+        @await Html.PartialAsync("_PaginaClientes")
 
     </div>
 

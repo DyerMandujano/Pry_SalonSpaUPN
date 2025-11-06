@@ -1,19 +1,12 @@
 ﻿@{
-    var listaCategorias = ViewBag.Categorias as SelectList ?? new SelectList(Enumerable.Empty<SelectListItem>());
-    var categoriaSeleccionada = Context.Request.Query["categoriaSeleccionada"].ToString();
+    var busqueda = ViewBag.Busqueda ?? "";
 }
 
-<form method="get" asp-action="Index">
-    <input type="text" name="busqueda" value="@ViewBag.Busqueda" placeholder="Buscar por nombre o RUC" />
+<form method="get" asp-action="Index" class="form-inline mb-3">
+    <input type="text" name="busqueda" value="@busqueda" class="form-control mr-2" placeholder="Buscar por nombre o RUC" />
 
-    <select name="categoriaSeleccionada">
-        <option value="0">-- Todas las categorías --</option>
-        @foreach (var cat in listaCategorias)
-        {
-            var selected = cat.Value == categoriaSeleccionada ? "selected=\"selected\"" : "";
-            @Html.Raw($"<option value=\"{cat.Value}\" {selected}>{cat.Text}</option>")
-        }
-    </select>
+    <select name="estado" class="form-control mr-2" asp-items="(SelectList)ViewBag.Estados"></select>
 
-    <button type="submit">Filtrar</button>
+    <button type="submit" class="btn btn-primary">Buscar / Filtrar</button>
+    <a asp-action="Index" class="btn btn-outline-secondary ml-2">Limpiar</a>
 </form>

@@ -31,7 +31,7 @@
     <Content Update="Views\Citas\_HeaderCitas.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Update="Views\Clientes\_BuscarClientes.cshtml">
+    <Content Update="Views\Clientes\_FilterClientes.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Update="Views\Clientes\_HeaderClientes.cshtml">
@@ -40,7 +40,7 @@
     <Content Update="Views\Clientes\_ListaClientes.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Update="wwwroot\css\VClientes\_BuscarClientes.css">
+    <Content Update="wwwroot\css\VClientes\_FilterClientes.css">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Content>
     <Content Update="wwwroot\css\VClientes\_ListaClientes.css">

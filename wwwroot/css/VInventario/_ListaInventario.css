@@ -1,0 +1,120 @@
+﻿/* CSS mínimo y consistente: encabezado y filas usan la misma grid */
+.contenedor-inventario {
+    width: 95%;
+    margin: 0.2rem auto;
+    font-family: 'Arial', sans-serif;
+}
+
+/* GRID: misma plantilla para encabezado y filas */
+.fila-inventario,
+.fila-inventario.encabezado {
+    display: grid;
+    grid-template-columns: 0.6fr 2.0fr 1.1fr 1.1fr 1.3fr 1fr 1.1fr 0.9fr;
+    align-items: center;
+    gap: 0.2rem;
+    padding: 0.45rem 0.35rem;
+    box-sizing: border-box;
+}
+
+/* Estética */
+.fila-inventario {
+    border-bottom: 2px solid #EBC5E5;
+    transition: background .15s;
+}
+
+    .fila-inventario:hover {
+        background-color: #ffe6f0;
+    }
+
+    .fila-inventario.encabezado {
+        background-color: #f9f1f7;
+        color: #2B2766;
+        font-weight: 700;
+        font-size: 0.90rem;
+        border-bottom: 2px solid #EBC5E5;
+    }
+
+        /* Cada "celda" ocupa su columna del grid */
+        .fila-inventario > div,
+        .fila-inventario.encabezado > div {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            padding: 0 0.35rem;
+            font-size: 0.85rem;
+        }
+
+/* clases pequeñas para badge/movimiento (sin cambios funcionales) */
+.movimiento {
+    display: inline-block;
+    padding: .18rem .6rem;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: .78rem;
+    text-transform: uppercase;
+}
+
+    .movimiento.entrada {
+        background: #dff9e6;
+        color: #18794a;
+        border: 1px solid #99FFBB;
+    }
+
+    .movimiento.salida {
+        background: #f7e6fb;
+        color: #7f2a8f;
+        border: 1px solid #EBC5E5;
+    }
+
+.badge {
+    padding: .25rem .45rem;
+    border-radius: .35rem;
+    font-weight: 600;
+    font-size: .78rem;
+    display: inline-block;
+}
+
+    .badge.success {
+        background: #99FFBB;
+        color: #2B2766;
+    }
+
+    .badge.warning {
+        background: #FFEE99;
+        color: #2B2766;
+    }
+
+    .badge.danger {
+        background: #f6b1b1;
+        color: #2B2766;
+    }
+
+/* Responsive: en móvil apilar filas */
+@media (max-width: 768px) {
+    .fila-inventario.encabezado {
+        display: none;
+    }
+
+    .fila-inventario {
+        display: flex;
+        flex-direction: column;
+        padding: .6rem;
+        border: 1px solid #EBC5E5;
+        border-radius: 8px;
+        margin-bottom: .5rem;
+    }
+
+        .fila-inventario > div {
+            white-space: normal;
+            display: flex;
+            justify-content: space-between;
+            padding: .25rem 0;
+        }
+
+            .fila-inventario > div::before {
+                content: attr(data-label);
+                font-weight: 700;
+                color: #b95aa1;
+                margin-right: .6rem;
+            }
+}

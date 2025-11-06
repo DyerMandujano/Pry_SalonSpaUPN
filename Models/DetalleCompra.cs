@@ -19,5 +19,5 @@ public partial class DetalleCompra
 
     public virtual Producto IdProductoNavigation { get; set; } = null!;
 
-    public virtual ICollection<Inventario> Inventarios { get; set; } = new List<Inventario>();
+    public virtual ICollection<Inventario> Inventarios { get; set; } = new HashSet<Inventario>();
 }

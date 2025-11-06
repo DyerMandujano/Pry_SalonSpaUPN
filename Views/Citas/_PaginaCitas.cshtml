@@ -1,0 +1,124 @@
+﻿@{
+    int paginaActual = ViewBag.PageNumber ?? 1;
+    int totalPaginas = ViewBag.TotalPaginas ?? 1;
+    int pageSize = ViewBag.PageSize ?? 10;
+    int totalCitas = ViewBag.TotalCitas ?? 0;
+
+    string dniActual = ViewBag.DniActual;
+    string fechaInicio = ViewBag.FechaInicio;
+    string fechaFin = ViewBag.FechaFin;
+    int? estadoCita = ViewBag.EstadoCitaSeleccionado;
+    int? estadoServicio = ViewBag.EstadoServicioSeleccionado;
+}
+
+<link href="~/css/VCitas/_PaginaCitas.css" rel="stylesheet" />
+
+<div class="paginacion-wrapper">
+
+    <div class="registros-selector">
+        <form method="get" asp-action="Index" style="display: inline-flex; align-items: center; gap: 8px;">
+            <label>Mostrar:</label>
+
+            <input type="hidden" name="dni" value="@dniActual" />
+            <input type="hidden" name="fechaInicio" value="@fechaInicio" />
+            <input type="hidden" name="fechaFin" value="@fechaFin" />
+            <input type="hidden" name="estadoCita" value="@estadoCita" />
+            <input type="hidden" name="estadoServicio" value="@estadoServicio" />
+            <input type="hidden" name="pageNumber" value="1" />
+
+            <select name="pageSize" onchange="this.form.submit()">
+                <option value="10" selected="@(pageSize == 10)">10</option>
+                <option value="20" selected="@(pageSize == 20)">20</option>
+                <option value="50" selected="@(pageSize == 50)">50</option>
+                <option value="100" selected="@(pageSize == 100)">100</option>
+            </select>
+            <span>registros por página</span>
+            <noscript>
+                <button type="submit" class="btn-pagina">Aplicar</button>
+            </noscript>
+        </form>
+    </div>
+
+    @if (totalPaginas > 1)
+    {
+        <div class="paginacion-controles">
+            @if (paginaActual > 1)
+            {
+                <a asp-action="Index"
+                   asp-route-dni="@dniActual"
+                   asp-route-fechaInicio="@fechaInicio"
+                   asp-route-fechaFin="@fechaFin"
+                   asp-route-estadoCita="@estadoCita"
+                   asp-route-estadoServicio="@estadoServicio"
+                   asp-route-pageNumber="1"
+                   asp-route-pageSize="@pageSize"
+                   class="btn-pagina"
+                   title="Primera página">«
+               </a>
+
+                <a asp-action="Index"
+                   asp-route-dni="@dniActual"
+                   asp-route-fechaInicio="@fechaInicio"
+                   asp-route-fechaFin="@fechaFin"
+                   asp-route-estadoCita="@estadoCita"
+                   asp-route-estadoServicio="@estadoServicio"
+                   asp-route-pageNumber="@(paginaActual - 1)"
+                   asp-route-pageSize="@pageSize"
+                   class="btn-pagina"
+                   title="Anterior">‹
+               </a>
+            }
+
+            @for (int i = Math.Max(1, paginaActual - 2); i <= Math.Min(totalPaginas, paginaActual + 2); i++)
+            {
+                <a asp-action="Index"
+                   asp-route-dni="@dniActual"
+                   asp-route-fechaInicio="@fechaInicio"
+                   asp-route-fechaFin="@fechaFin"
+                   asp-route-estadoCita="@estadoCita"
+                   asp-route-estadoServicio="@estadoServicio"
+                   asp-route-pageNumber="@i"
+                   asp-route-pageSize="@pageSize"
+                   class="btn-pagina @(i == paginaActual ? "activa" : "")">@i</a>
+            }
+
+            @if (paginaActual < totalPaginas)
+            {
+                <a asp-action="Index"
+                   asp-route-dni="@dniActual"
+                   asp-route-fechaInicio="@fechaInicio"
+                   asp-route-fechaFin="@fechaFin"
+                   asp-route-estadoCita="@estadoCita"
+                   asp-route-estadoServicio="@estadoServicio"
+                   asp-route-pageNumber="@(paginaActual + 1)"
+                   asp-route-pageSize="@pageSize"
+                   class="btn-pagina"
+                   title="Siguiente">›
+               </a>
+
+                <a asp-action="Index"
+                   asp-route-dni="@dniActual"
+                   asp-route-fechaInicio="@fechaInicio"
+                   asp-route-fechaFin="@fechaFin"
+                   asp-route-estadoCita="@estadoCita"
+                   asp-route-estadoServicio="@estadoServicio"
+                   asp-route-pageNumber="@totalPaginas"
+                   asp-route-pageSize="@pageSize"
+                   class="btn-pagina"
+                   title="Última página">
+                   »
+               </a>
+            }
+        </div>
+
+        <div class="info-paginacion">
+            Página @paginaActual de @totalPaginas (@totalCitas registros)
+        </div>
+    }
+    else if (totalCitas > 0)
+    {
+        <div class="info-paginacion">
+            @totalCitas registro@(totalCitas != 1 ? "s" : "") encontrado@(totalCitas != 1 ? "s" : "")
+        </div>
+    }
+</div>

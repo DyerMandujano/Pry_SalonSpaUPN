@@ -4,7 +4,7 @@ using Pry_Solu_SalonSPA.Db;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<Conexion>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("RumisDB")));
+    options.UseSqlServer(builder.Configuration.GetConnectionString("ConexionDB")));
 
 builder.Services.AddControllersWithViews();
 

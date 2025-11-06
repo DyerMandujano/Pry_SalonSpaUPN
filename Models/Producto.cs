@@ -24,10 +24,10 @@ public partial class Producto
     public int Estado { get; set; }
 
     public virtual ICollection<DetalleCompra> DetalleCompras { get; set; } = new List<DetalleCompra>();
+    public virtual ICollection<DetalleVenta> DetalleVenta { get; set; } = new HashSet<DetalleVenta>();
 
     public virtual Categoria IdCategoriaNavigation { get; set; } = null!;
 
     public virtual Marca IdMarcaNavigation { get; set; } = null!;
 
-    public virtual ICollection<Item> Items { get; set; } = new List<Item>();
 }

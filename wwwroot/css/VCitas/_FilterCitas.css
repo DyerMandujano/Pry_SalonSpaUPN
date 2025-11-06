@@ -1,135 +1,301 @@
-﻿/* Contenedor principal */
-.busqueda-filtros-container {
-    display: flex;
-    justify-content: space-between; /* buscador izquierda, filtros derecha */
-    align-items: flex-start;
-    gap: 1rem;
-    margin: 1.2rem;
+﻿/* _FilterCitas.css */
+
+:root {
+    --rs-primary: #5A2D82;
+    --rs-accent: #EBC5E5;
+    --rs-bg-input: #EDE3FB;
+    --rs-hover: #7F4AA8;
+    --rs-focus: #FFBBCC;
+    --rs-active: #d63384;
+    --rs-text: #2B2766;
+    --radius: 8px;
 }
 
+.busqueda-filtros-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 2rem;
+    margin: 1.5rem 1.5rem;
+    font-family: 'Arial', sans-serif;
+}
+
+/* Sección izquierda: buscador */
 .contenedor-buscador {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
-    font-family: 'Arial', sans-serif;
+    gap: 0.4rem;
+    min-width: 0;
+    flex: 1;
 }
 
     .contenedor-buscador p {
         margin: 0;
-        font-size: 0.9rem;
-        color: #2B2766;
-        padding-left: 10px;
+        font-size: 0.92rem;
+        color: var(--rs-text);
+        padding-left: 6px;
+        font-weight: 500;
     }
 
+/* Formulario de búsqueda */
 .form-buscador-derecha {
     display: flex;
-    justify-content: flex-end; 
     align-items: center;
-    gap: 0.3rem;
+    gap: 0.5rem;
+    flex-wrap: nowrap;
 }
 
+/* Input de búsqueda DNI (sin botón interno) */
 .input-buscador {
-    flex: 1;
-    padding: 0.5rem 0.75rem;
-    border: 2px solid #5A2D82;
-    border-radius: 8px;
-    font-size: 0.85rem;
+    flex: 1 1 320px;
+    padding: 0.48rem 0.75rem;
+    border: 2px solid var(--rs-primary);
+    border-radius: var(--radius);
+    font-size: 0.9rem;
     outline: none;
-    background-color: #EDE3FB;
-    color: #5A2D82;
-    transition: 0.3s;
-    padding-right: 100px;
+    background-color: var(--rs-bg-input);
+    color: var(--rs-primary);
+    transition: 0.2s;
+    font-weight: 500;
 }
 
     .input-buscador:focus {
-        border-color: #FFBBCC;
+        border-color: var(--rs-focus);
+        box-shadow: 0 0 0 3px rgba(255, 187, 204, 0.12);
     }
 
     .input-buscador::placeholder {
-        color: #5A2D82;
-        opacity: 1;
+        color: var(--rs-primary);
+        opacity: 0.9;
     }
 
-button {
-    background-color: #fff;
-    display: flex;
+    .input-buscador:hover {
+        border-color: var(--rs-hover);
+    }
+
+.btn-search-separated {
+    display: inline-flex;
     align-items: center;
     justify-content: center;
-    border: none;
-    border-radius: 8px;
-    padding: 0.45rem 0.75rem;
+    gap: 0.5rem;
+    padding: 0.48rem 1.1rem;
+    color: #5A2D82;
+    background: #fff;
+    font-weight: 600;
+    font-size: 0.9rem;
     cursor: pointer;
     transition: 0.2s;
+    white-space: nowrap;
+    outline: none;
+    border: none;
 }
 
-    button:hover {
-        background-color: #7F4AA8;
+    .btn-search-separated:hover {
+        background-color: var(--rs-hover);
+        box-shadow: 0 2px 8px rgba(127, 74, 168, 0.25);
     }
 
-    button i.bi-search {
-        color: #5A2D82;
+    .btn-search-separated:active {
+        transform: scale(0.98);
+    }
+
+    .btn-search-separated:focus {
+        outline: none;
+        box-shadow: 0 0 0 3px rgba(255, 187, 204, 0.12);
+    }
+
+    .btn-search-separated i {
+        font-size: 1.05rem;
+    }
+
+/* Fechas compactas */
+.form-compact-dates {
+    display: flex;
+    gap: 0.45rem;
+    align-items: center;
+}
+
+.input-date {
+    padding: 0.38rem 0.5rem;
+    border: 2px solid var(--rs-accent);
+    border-radius: var(--radius);
+    background: #fff;
+    color: var(--rs-text);
+    font-size: 0.88rem;
+    transition: 0.2s;
+    font-weight: 500;
+}
+
+    .input-date:focus {
+        border-color: var(--rs-hover);
+        box-shadow: 0 0 0 3px rgba(127, 74, 168, 0.08);
+    }
+
+/* Sección derecha: filtros */
+.filtros-derecha {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.9rem;
+    padding-right: 1rem;
+}
+
+/* Selects de filtro */
+.filtro-select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    padding: 0.45rem 2.5rem 0.45rem 0.9rem;
+    border: 2px solid var(--rs-accent);
+    border-radius: 12px;
+    background-color: #fff;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%232B2766' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.7rem center;
+    color: var(--rs-text);
+    font-weight: 600;
+    font-size: 0.88rem;
+    cursor: pointer;
+    transition: 0.18s;
+    min-width: 160px;
+}
+
+    .filtro-select:hover {
+        border-color: var(--rs-hover);
+        box-shadow: 0 2px 8px rgba(127, 74, 168, 0.15);
+    }
+
+    .filtro-select:focus {
+        outline: none;
+        border-color: var(--rs-active);
+        box-shadow: 0 0 0 3px rgba(214, 51, 132, 0.1);
+    }
+
+    .filtro-select[data-active="True"] {
+        border-color: var(--rs-active);
+        background-color: #fff5f9;
+        box-shadow: 0 0 0 3px rgba(99, 33, 122, 0.06);
+    }
+
+/* Botón limpiar */
+.limpiar-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.45rem 1rem;
+    border: 2px solid var(--rs-accent);
+    border-radius: 12px;
+    background-color: #fff;
+    color: var(--rs-text);
+    font-weight: 600;
+    font-size: 0.88rem;
+    text-decoration: none;
+    transition: 0.18s;
+    cursor: pointer;
+}
+
+    .limpiar-btn:hover {
+        background-color: #ffe6f0;
+        border-color: var(--rs-active);
+    }
+
+    .limpiar-btn i {
         font-size: 1rem;
     }
 
-.filtros-derecha {
-    display: flex;
-    justify-content: flex-end;
-    gap: 1rem;
-    font-family: 'Arial', sans-serif;
-    padding-right: 75px;
-    margin: 1.5rem 
-}
-
-    .filtros-derecha .btn {
-        display: flex;
-        align-items: center;
-        gap: 0.7rem;
-        padding: 0.5rem 2.5rem;
-        border: 2px solid #EBC5E5;
-        border-radius: 12px;
-        background-color: #fff;
-        color: #2B2766;
-        font-weight: bold;
-        text-decoration: none;
-        transition: 0.2s;
-        cursor: pointer;
+@media (max-width: 1024px) {
+    .busqueda-filtros-container {
+        gap: 1.5rem;
     }
 
-        .filtros-derecha .btn:hover {
-            background-color: #ffe6f0;
-            border-color: #d63384;
-        }
-
-        .filtros-derecha .btn.activo {
-            background-color: #d63384;
-            color: #fff;
-            border-color: #d63384;
-        }
-
-        .filtros-derecha .btn .icono {
-            font-size: 1rem;
-            color: #2B2766;
-        }
+    .filtros-derecha {
+        gap: 0.7rem;
+    }
+}
 
 @media (max-width: 768px) {
     .busqueda-filtros-container {
         flex-direction: column;
-        align-items: flex-start;
+        align-items: stretch;
         gap: 1rem;
+        margin: 1rem;
+    }
+
+    .contenedor-buscador {
+        width: 100%;
     }
 
     .form-buscador-derecha {
-        justify-content: flex-start;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+
+    .input-buscador {
+        flex: 1 1 100%;
+        min-width: 100%;
+    }
+
+    .btn-search-separated {
         width: 100%;
+    }
+
+    .form-compact-dates {
+        width: 100%;
+        gap: 0.5rem;
+    }
+
+    .input-date {
+        flex: 1;
     }
 
     .filtros-derecha {
         width: 100%;
-        justify-content: flex-start;
+        flex-direction: column;
+        gap: 0.6rem;
+        padding-right: 0;
     }
 
-        .filtros-derecha .btn {
-            width: 100%;
-            justify-content: flex-start;
-        }
+    .filtro-select,
+    .limpiar-btn {
+        width: 100%;
+        min-width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .contenedor-buscador p {
+        font-size: 0.85rem;
+    }
+
+    .input-buscador,
+    .input-date,
+    .filtro-select,
+    .limpiar-btn,
+    .btn-search-separated {
+        font-size: 0.85rem;
+    }
+
+    .form-compact-dates {
+        flex-direction: column;
+    }
+
+    .input-date {
+        width: 100%;
+    }
+}
+
+/* Animación de entrada */
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.busqueda-filtros-container {
+    animation: fadeInDown 0.3s ease-out;
 }

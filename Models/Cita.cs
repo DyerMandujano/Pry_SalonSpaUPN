@@ -13,6 +13,10 @@ public partial class Cita
 
     public DateTime FechaCita { get; set; }
 
+    public string Descripcion { get; set; } = null!;
+
+    public int Estado { get; set; }
+
     public virtual ICollection<CitaServicio> CitaServicios { get; set; } = new List<CitaServicio>();
 
     public virtual Cliente IdClienteNavigation { get; set; } = null!;

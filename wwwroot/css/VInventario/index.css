@@ -1,0 +1,9 @@
+﻿
+.inventario-lista-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    align-items: center;
+    gap: 0.5rem;
+    border: 2px solid #EBC5E5;
+    border-radius: 25px;
+}

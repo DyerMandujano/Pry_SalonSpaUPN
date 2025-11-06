@@ -9,107 +9,125 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = Pry_Solu_SalonSPA
 build_property.RootNamespace = Pry_Solu_SalonSPA
-build_property.ProjectDir = C:\Users\Joaquin\Source\Repos\Pry_Salon\
+build_property.ProjectDir = C:\Users\Jeremy\Source\Repos\Pry_SalonSpaUPN\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 8.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\Joaquin\Source\Repos\Pry_Salon
+build_property.MSBuildProjectDirectory = C:\Users\Jeremy\Source\Repos\Pry_SalonSpaUPN
 build_property._RazorSourceGeneratorDebug = 
 build_property.EffectiveAnalysisLevelStyle = 8.0
 build_property.EnableCodeStyleSeverity = 
 
-[C:/Users/Joaquin/Source/Repos/Pry_Salon/Views/Categorias/Index.cshtml]
+[C:/Users/Jeremy/Source/Repos/Pry_SalonSpaUPN/Views/Categorias/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcmlhc1xJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Joaquin/Source/Repos/Pry_Salon/Views/Citas/Index.cshtml]
+[C:/Users/Jeremy/Source/Repos/Pry_SalonSpaUPN/Views/Citas/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2l0YXNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Joaquin/Source/Repos/Pry_Salon/Views/Citas/_CrearCitas.cshtml]
+[C:/Users/Jeremy/Source/Repos/Pry_SalonSpaUPN/Views/Citas/_CrearCitas.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2l0YXNcX0NyZWFyQ2l0YXMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Joaquin/Source/Repos/Pry_Salon/Views/Citas/_EditarCitas.cshtml]
+[C:/Users/Jeremy/Source/Repos/Pry_SalonSpaUPN/Views/Citas/_EditarCitas.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2l0YXNcX0VkaXRhckNpdGFzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Joaquin/Source/Repos/Pry_Salon/Views/Citas/_FilterCitas.cshtml]
+[C:/Users/Jeremy/Source/Repos/Pry_SalonSpaUPN/Views/Citas/_FilterCitas.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2l0YXNcX0ZpbHRlckNpdGFzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Joaquin/Source/Repos/Pry_Salon/Views/Citas/_HeaderCitas.cshtml]
+[C:/Users/Jeremy/Source/Repos/Pry_SalonSpaUPN/Views/Citas/_HeaderCitas.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2l0YXNcX0hlYWRlckNpdGFzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Joaquin/Source/Repos/Pry_Salon/Views/Citas/_ListaCitas.cshtml]
+[C:/Users/Jeremy/Source/Repos/Pry_SalonSpaUPN/Views/Citas/_ListaCitas.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2l0YXNcX0xpc3RhQ2l0YXMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Joaquin/Source/Repos/Pry_Salon/Views/Citas/_StatsCitas.cshtml]
+[C:/Users/Jeremy/Source/Repos/Pry_SalonSpaUPN/Views/Citas/_PaginaCitas.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2l0YXNcX1BhZ2luYUNpdGFzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Jeremy/Source/Repos/Pry_SalonSpaUPN/Views/Citas/_StatsCitas.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2l0YXNcX1N0YXRzQ2l0YXMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Joaquin/Source/Repos/Pry_Salon/Views/Clientes/Index.cshtml]
+[C:/Users/Jeremy/Source/Repos/Pry_SalonSpaUPN/Views/Clientes/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50ZXNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Joaquin/Source/Repos/Pry_Salon/Views/Clientes/_BuscarClientes.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50ZXNcX0J1c2NhckNsaWVudGVzLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/Joaquin/Source/Repos/Pry_Salon/Views/Clientes/_CrearClientes.cshtml]
+[C:/Users/Jeremy/Source/Repos/Pry_SalonSpaUPN/Views/Clientes/_CrearClientes.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50ZXNcX0NyZWFyQ2xpZW50ZXMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Joaquin/Source/Repos/Pry_Salon/Views/Clientes/_EditarClientes.cshtml]
+[C:/Users/Jeremy/Source/Repos/Pry_SalonSpaUPN/Views/Clientes/_EditarClientes.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50ZXNcX0VkaXRhckNsaWVudGVzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Joaquin/Source/Repos/Pry_Salon/Views/Clientes/_HeaderClientes.cshtml]
+[C:/Users/Jeremy/Source/Repos/Pry_SalonSpaUPN/Views/Clientes/_FilterClientes.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50ZXNcX0ZpbHRlckNsaWVudGVzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Jeremy/Source/Repos/Pry_SalonSpaUPN/Views/Clientes/_HeaderClientes.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50ZXNcX0hlYWRlckNsaWVudGVzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Joaquin/Source/Repos/Pry_Salon/Views/Clientes/_ListaClientes.cshtml]
+[C:/Users/Jeremy/Source/Repos/Pry_SalonSpaUPN/Views/Clientes/_ListaClientes.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50ZXNcX0xpc3RhQ2xpZW50ZXMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Joaquin/Source/Repos/Pry_Salon/Views/Compras/Index.cshtml]
+[C:/Users/Jeremy/Source/Repos/Pry_SalonSpaUPN/Views/Clientes/_PaginaClientes.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50ZXNcX1BhZ2luYUNsaWVudGVzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Jeremy/Source/Repos/Pry_SalonSpaUPN/Views/Compras/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tcHJhc1xJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Joaquin/Source/Repos/Pry_Salon/Views/Dashboard/Index.cshtml]
+[C:/Users/Jeremy/Source/Repos/Pry_SalonSpaUPN/Views/Dashboard/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaGJvYXJkXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Joaquin/Source/Repos/Pry_Salon/Views/Empleados/Index.cshtml]
+[C:/Users/Jeremy/Source/Repos/Pry_SalonSpaUPN/Views/Empleados/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW1wbGVhZG9zXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Joaquin/Source/Repos/Pry_Salon/Views/Inventario/Index.cshtml]
+[C:/Users/Jeremy/Source/Repos/Pry_SalonSpaUPN/Views/Inventario/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW52ZW50YXJpb1xJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Joaquin/Source/Repos/Pry_Salon/Views/Main.cshtml]
+[C:/Users/Jeremy/Source/Repos/Pry_SalonSpaUPN/Views/Inventario/_FilterInventario.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW52ZW50YXJpb1xfRmlsdGVySW52ZW50YXJpby5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Jeremy/Source/Repos/Pry_SalonSpaUPN/Views/Inventario/_HeaderInventario.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW52ZW50YXJpb1xfSGVhZGVySW52ZW50YXJpby5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Jeremy/Source/Repos/Pry_SalonSpaUPN/Views/Inventario/_ListaInventario.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW52ZW50YXJpb1xfTGlzdGFJbnZlbnRhcmlvLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Jeremy/Source/Repos/Pry_SalonSpaUPN/Views/Main.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFpbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Joaquin/Source/Repos/Pry_Salon/Views/Marcas/Index.cshtml]
+[C:/Users/Jeremy/Source/Repos/Pry_SalonSpaUPN/Views/Marcas/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFyY2FzXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Joaquin/Source/Repos/Pry_Salon/Views/Productos/Index.cshtml]
+[C:/Users/Jeremy/Source/Repos/Pry_SalonSpaUPN/Views/Productos/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdG9zXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Joaquin/Source/Repos/Pry_Salon/Views/Proveedores/Index.cshtml]
+[C:/Users/Jeremy/Source/Repos/Pry_SalonSpaUPN/Views/Proveedores/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvdmVlZG9yZXNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 [C:/Users/Jeremy/Source/Repos/Pry_SalonSpaUPN/Views/Proveedores/_CrearProveedor.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvdmVlZG9yZXNcX0NyZWFyUHJvdmVlZG9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
@@ -131,35 +149,29 @@ build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvdmVlZG9yZXNcX0xpc3RhUHJv
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Jeremy/Source/Repos/Pry_SalonSpaUPN/Views/Servicios/Index.cshtml]
-=======
-[C:/Users/Joaquin/Source/Repos/Pry_Salon/Views/Servicios/Index.cshtml]
->>>>>>> 57dc41c3f2e001365418614563eb0680ee783535
-=======
-[C:/Users/Joaquin/Source/Repos/Pry_Salon/Views/Servicios/Index.cshtml]
->>>>>>> 57dc41c3f2e001365418614563eb0680ee783535
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2VydmljaW9zXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Joaquin/Source/Repos/Pry_Salon/Views/Shared/_Header.cshtml]
+[C:/Users/Jeremy/Source/Repos/Pry_SalonSpaUPN/Views/Shared/_Header.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9IZWFkZXIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Joaquin/Source/Repos/Pry_Salon/Views/Shared/_SideBar.cshtml]
+[C:/Users/Jeremy/Source/Repos/Pry_SalonSpaUPN/Views/Shared/_SideBar.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9TaWRlQmFyLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Joaquin/Source/Repos/Pry_Salon/Views/Turnos/Index.cshtml]
+[C:/Users/Jeremy/Source/Repos/Pry_SalonSpaUPN/Views/Turnos/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVHVybm9zXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Joaquin/Source/Repos/Pry_Salon/Views/Ventas/Index.cshtml]
+[C:/Users/Jeremy/Source/Repos/Pry_SalonSpaUPN/Views/Ventas/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVmVudGFzXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Joaquin/Source/Repos/Pry_Salon/Views/_ViewImports.cshtml]
+[C:/Users/Jeremy/Source/Repos/Pry_SalonSpaUPN/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Joaquin/Source/Repos/Pry_Salon/Views/_ViewStart.cshtml]
+[C:/Users/Jeremy/Source/Repos/Pry_SalonSpaUPN/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 

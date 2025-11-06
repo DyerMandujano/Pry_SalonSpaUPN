@@ -1,0 +1,75 @@
+﻿@model IEnumerable<Pry_Solu_SalonSPA.Models.InventarioViewModel>
+
+@{
+    ViewData["Title"] = "Lista de Inventario";
+}
+
+<link href="~/css/VInventario/_ListaInventario.css" rel="stylesheet" />
+
+<div class="contenedor-inventario">
+
+    <div class="fila-inventario encabezado" role="row">
+        <div>ID</div>
+        <div>Producto</div>
+        <div>Cantidad</div>
+        <div>Precio</div>
+        <div>Movimiento</div>
+        <div>Fecha</div>
+        <div>Stock Actual</div>
+        <div>Estado</div>
+    </div>
+
+    @if (Model != null && Model.Any())
+    {
+        foreach (var item in Model)
+        {
+            var estadoClass = (item.Estado_Stock ?? "").ToUpper() switch
+            {
+                "AGOTADO" => "danger",
+                "BAJO STOCK" => "warning",
+                "EN STOCK" => "success",
+                _ => "secondary"
+            };
+
+            var movimientoClass = (item.Tipo_Movimiento ?? "").ToUpper() switch
+            {
+                "ENTRADA" => "entrada",
+                "SALIDA" => "salida",
+                _ => "neutral"
+            };
+            <div class="fila-inventario" role="row">
+                <div class="celda" data-label="ID">@item.Id_Inventario</div>
+
+                <div class="celda" data-label="Producto" title="@(item.Nom_Prod ?? String.Empty)">
+                    @(item.Nom_Prod ?? String.Empty)
+                </div>
+
+                <div class="celda" data-label="Cantidad">@item.Cantidad</div>
+
+                <div class="celda" data-label="Precio">
+                    @(item.Precio.HasValue ? string.Format("{0:C}", item.Precio.Value) : String.Empty)
+                </div>
+
+                <div class="celda" data-label="Movimiento">
+                    <span class="movimiento @movimientoClass">@( (item.Tipo_Movimiento ?? String.Empty).ToUpper() )</span>
+                </div>
+
+                <div class="celda" data-label="Fecha">
+                    @(item.Fecha_Registro.HasValue? item.Fecha_Registro.Value.ToString("dd/MM/yyyy") : String.Empty)
+                </div>
+
+                <div class="celda" data-label="Stock Actual">@item.Stock_Actual</div>
+
+                <div class="celda" data-label="Estado">
+                    <span class="badge @estadoClass">@(item.Estado_Stock ?? String.Empty)</span>
+                </div>
+            </div>
+        }
+    }
+    else
+    {
+        <div class="fila-inventario vacio" role="row">
+            <div class="celda" data-label="Sin registros">No se encontraron registros en el inventario.</div>
+        </div>
+    }
+</div>

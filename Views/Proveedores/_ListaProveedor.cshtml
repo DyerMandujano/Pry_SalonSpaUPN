@@ -1,42 +1,47 @@
 ﻿@model IEnumerable<Pry_Solu_SalonSPA.Models.Proveedor>
 
-@{
-    ViewData["Title"] = "Proveedores";
-}
-
-<h2>Proveedores</h2>
-
-<table class="table table-striped">
+<table class="table table-striped table-bordered tabla-proveedores">
     <thead>
         <tr>
             <th>Nombre</th>
             <th>RUC</th>
             <th>Correo</th>
             <th>Teléfono</th>
-            <th>Categoría</th>
+            <th>Tipo proveedor</th>
             <th>Estado</th>
             <th>Acciones</th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model)
+        @if (Model != null && Model.Any())
+        {
+            foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.NomProve</td>
+                    <td>@item.Ruc</td>
+                    <td>@item.Correo</td>
+                    <td>@item.Telefono</td>
+                    <td>@(item.TipoProveedor ?? string.Empty)</td>
+                    <td>@(item.Estado == 1 ? "Activo" : "Inactivo")</td>
+                    <td>
+                        <a asp-action="Editar" asp-route-id="@item.IdProveedor" class="btn btn-sm btn-warning">Editar</a>
+
+                        <form asp-action="CambiarEstado" method="post" style="display:inline;">
+                            @Html.AntiForgeryToken()
+                            <input type="hidden" name="id" value="@item.IdProveedor" />
+                            <button type="submit" class="btn btn-sm @(item.Estado == 1 ? "btn-danger" : "btn-success")">
+                                @(item.Estado == 1 ? "Desactivar" : "Activar")
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        }
+        else
         {
             <tr>
-                <td>@item.NomProve</td>
-                <td>@item.Ruc</td>
-                <td>@item.Correo</td>
-                <td>@item.Telefono</td>
-                <td>@item.IdCategoriaNavigation?.NomCate</td>
-                <td>@(item.Estado == 1 ? "Activo" : "Inactivo")</td>
-                <td>
-                    <a asp-action="Editar" asp-route-id="@item.IdProveedor" class="btn btn-sm btn-warning">Editar</a>
-                    <form asp-action="CambiarEstado" method="post" style="display:inline;">
-                        <input type="hidden" name="id" value="@item.IdProveedor" />
-                        <button type="submit" class="btn btn-sm @(item.Estado == 1 ? "btn-success" : "btn-danger")">
-                            @(item.Estado == 1 ? "Activo" : "Inactivo")
-                        </button>
-                    </form>
-                </td>
+                <td colspan="7" class="text-center">No se encontraron proveedores registrados.</td>
             </tr>
         }
     </tbody>

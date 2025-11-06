@@ -16,6 +16,12 @@ public partial class Conexion : DbContext
     {
     }
 
+    //AUXILIARES
+    public virtual DbSet<InventarioViewModel> InventarioViewModels { get; set; }
+
+    
+    //ENTITADES
+
     public virtual DbSet<Categoria> Categoria { get; set; }
 
     public virtual DbSet<CitaServicio> CitaServicios { get; set; }
@@ -38,7 +44,6 @@ public partial class Conexion : DbContext
 
     public virtual DbSet<Inventario> Inventarios { get; set; }
 
-    public virtual DbSet<Item> Items { get; set; }
 
     public virtual DbSet<Marca> Marcas { get; set; }
 
@@ -61,9 +66,12 @@ public partial class Conexion : DbContext
     public virtual DbSet<Venta> Venta { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Server=localhost;Database=ROMIS_SALON_SPA;Trusted_Connection=True;TrustServerCertificate=True;");
-
+    {/*
+        if (!optionsBuilder.IsConfigured)
+        {
+            optionsBuilder.UseSqlServer("Server=localhost;Database=DB_ROMIS;Trusted_Connection=True;TrustServerCertificate=True;");
+        }*/
+    }
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Categoria>(entity =>
@@ -86,9 +94,7 @@ public partial class Conexion : DbContext
             entity.Property(e => e.IdCitaServicio).HasColumnName("Id_CitaServicio");
             entity.Property(e => e.IdCita).HasColumnName("Id_Cita");
             entity.Property(e => e.IdServicio).HasColumnName("Id_Servicio");
-            entity.Property(e => e.Observacion)
-                .HasMaxLength(100)
-                .IsUnicode(false);
+            entity.Property(e => e.Estado).HasColumnName("Estado");
 
             entity.HasOne(d => d.IdCitaNavigation).WithMany(p => p.CitaServicios)
                 .HasForeignKey(d => d.IdCita)
@@ -109,6 +115,11 @@ public partial class Conexion : DbContext
             entity.Property(e => e.FechaCita)
                 .HasColumnType("datetime")
                 .HasColumnName("Fecha_cita");
+            entity.Property(e => e.Descripcion)
+                 .HasMaxLength(100)
+                 .IsUnicode(false)
+                 .HasColumnName("Observacion");
+            entity.Property(e => e.Estado).HasColumnName("Estado");
             entity.Property(e => e.IdCliente).HasColumnName("Id_Cliente");
             entity.Property(e => e.IdEmpleadoHorario).HasColumnName("Id_Empleado_Horario");
 
@@ -187,21 +198,23 @@ public partial class Conexion : DbContext
         modelBuilder.Entity<DetalleVenta>(entity =>
         {
             entity.HasKey(e => e.IdDetalleVenta).HasName("Detalle_Venta_pk");
-
             entity.ToTable("Detalle_Venta");
-
             entity.Property(e => e.IdDetalleVenta).HasColumnName("Id_Detalle_Venta");
-            entity.Property(e => e.IdItem).HasColumnName("Id_Item");
             entity.Property(e => e.IdTipoCompro).HasColumnName("Id_TipoCompro");
             entity.Property(e => e.IdVenta).HasColumnName("Id_Venta");
-            entity.Property(e => e.PrecioUnitario)
-                .HasColumnType("decimal(10, 2)")
-                .HasColumnName("Precio_Unitario");
 
-            entity.HasOne(d => d.IdItemNavigation).WithMany(p => p.DetalleVenta)
-                .HasForeignKey(d => d.IdItem)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("Detalle_Venta_Item");
+            entity.Property(e => e.IdProducto).HasColumnName("Id_Producto");
+
+            entity.Property(e => e.PrecioVenta)
+                .HasColumnType("decimal(10, 2)")
+                .HasColumnName("Precio_Venta");
+
+            entity.Property(e => e.IdCitaServicio).HasColumnName("Id_CitaServicio");
+            entity.Property(e => e.Cantidad).HasColumnName("Cantidad");
+
+            entity.HasOne(d => d.IdProductoNavigation).WithMany(p => p.DetalleVenta)
+                .HasForeignKey(d => d.IdProducto)
+                .HasConstraintName("Detalle_Venta_Producto");
 
             entity.HasOne(d => d.Ventum).WithMany(p => p.DetalleVenta)
                 .HasForeignKey(d => new { d.IdVenta, d.IdTipoCompro })
@@ -266,6 +279,12 @@ public partial class Conexion : DbContext
             entity.Property(e => e.FechaInicio)
                 .HasColumnType("datetime")
                 .HasColumnName("Fecha_Inicio");
+            entity.Property(e => e.HoraInicio)
+                .HasColumnType("time(0)")
+                .HasColumnName("Hora_Inicio");
+            entity.Property(e => e.HoraFin)
+                .HasColumnType("time(0)")
+                .HasColumnName("Hora_Fin");
         });
 
         modelBuilder.Entity<Inventario>(entity =>
@@ -292,28 +311,7 @@ public partial class Conexion : DbContext
                 .HasConstraintName("Inventario_Detalle_Venta");
         });
 
-        modelBuilder.Entity<Item>(entity =>
-        {
-            entity.HasKey(e => e.IdItem).HasName("Item_pk");
 
-            entity.ToTable("Item");
-
-            entity.Property(e => e.IdItem).HasColumnName("Id_Item");
-            entity.Property(e => e.IdProducto).HasColumnName("Id_Producto");
-            entity.Property(e => e.IdServicio).HasColumnName("Id_Servicio");
-            entity.Property(e => e.TipoItem)
-                .HasMaxLength(20)
-                .IsUnicode(false)
-                .HasColumnName("Tipo_Item");
-
-            entity.HasOne(d => d.IdProductoNavigation).WithMany(p => p.Items)
-                .HasForeignKey(d => d.IdProducto)
-                .HasConstraintName("Item_Producto");
-
-            entity.HasOne(d => d.IdServicioNavigation).WithMany(p => p.Items)
-                .HasForeignKey(d => d.IdServicio)
-                .HasConstraintName("Item_Servicio");
-        });
 
         modelBuilder.Entity<Marca>(entity =>
         {
@@ -411,7 +409,6 @@ public partial class Conexion : DbContext
             entity.Property(e => e.Correo)
                 .HasMaxLength(100)
                 .IsUnicode(false);
-            entity.Property(e => e.IdCategoria).HasColumnName("Id_Categoria");
             entity.Property(e => e.NomProve)
                 .HasMaxLength(50)
                 .IsUnicode(false)
@@ -423,10 +420,10 @@ public partial class Conexion : DbContext
                 .HasMaxLength(9)
                 .IsUnicode(false)
                 .IsFixedLength();
-
-            entity.HasOne(d => d.IdCategoriaNavigation).WithMany(p => p.Proveedors)
-                .HasForeignKey(d => d.IdCategoria)
-                .HasConstraintName("FK_Proveedor_Categoria");
+            entity.Property(e => e.TipoProveedor)
+                .HasMaxLength(40)
+                .IsUnicode(false)
+                .HasColumnName("Tipo_Proveedor");
         });
 
         modelBuilder.Entity<Servicio>(entity =>
@@ -527,6 +524,24 @@ public partial class Conexion : DbContext
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("Venta_Tipo_Pago");
         });
+
+
+        //AUXILIARES
+
+        modelBuilder.Entity<InventarioViewModel>(eb =>
+        {
+            eb.HasNoKey();
+            eb.ToView(null);
+            eb.Property(v => v.Id_Inventario).HasColumnName("Id_Inventario");
+            eb.Property(v => v.Nom_Prod).HasColumnName("Nom_Prod");
+            eb.Property(v => v.Cantidad).HasColumnName("Cantidad");
+            eb.Property(v => v.Precio).HasColumnName("Precio");
+            eb.Property(v => v.Tipo_Movimiento).HasColumnName("Tipo_Movimiento");
+            eb.Property(v => v.Fecha_Registro).HasColumnName("Fecha_registro");
+            eb.Property(v => v.Stock_Actual).HasColumnName("Stock_Actual");
+            eb.Property(v => v.Estado_Stock).HasColumnName("Estado_Stock");
+        });
+
 
         OnModelCreatingPartial(modelBuilder);
     }
