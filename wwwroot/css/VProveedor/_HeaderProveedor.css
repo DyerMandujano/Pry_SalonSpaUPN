@@ -1,0 +1,57 @@
+﻿.proveedor-header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0.5rem;
+    margin: 1rem 0.5rem;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.proveedor-header-titulo {
+    margin: 0;
+    color: #2B2766;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.proveedor-header-subtitulo {
+    color: #A138C2;
+    margin: 0;
+    margin-bottom: 0;
+}
+
+.btn-nuevo-proveedor {
+    background-color: #EB2885;
+    color: white;
+    padding: 0.6rem 1.2rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 1rem;
+}
+
+    .btn-nuevo-proveedor:hover {
+        background-color: #EB3B8F;
+        cursor: pointer;
+    }
+
+    .btn-nuevo-proveedor i {
+        font-size: 1.1rem;
+    }
+
+@media (max-width: 768px) {
+    .proveedor-header-container {
+        flex-direction: column;
+        text-align: center;
+        gap: 1rem;
+    }
+
+    .btn-nuevo-proveedor {
+        width: 100%;
+        justify-content: center;
+    }
+}

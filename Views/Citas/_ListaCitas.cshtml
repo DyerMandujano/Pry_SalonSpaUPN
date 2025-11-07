@@ -28,7 +28,6 @@
                 foreach (var cs in cita.CitaServicios)
                 {
                     <div class="fila-cita" role="row">
-
                         <div class="celda" data-label="Cliente">
                             @(cliente != null ? $"{cliente.Nombres} {cliente.Apellidos}" : "")
                         </div>
@@ -38,53 +37,53 @@
                         </div>
 
                         <div class="celda" data-label="Servicio">@cs.IdServicioNavigation?.Nombre</div>
-
                         <div class="celda" data-label="Fecha">@cita.FechaCita.ToString("dd/MM/yyyy")</div>
-
                         <div class="celda" data-label="Hora">@cita.FechaCita.ToString("HH:mm")</div>
-
                         <div class="celda" data-label="Precio">@cs.IdServicioNavigation?.Precio.ToString("C")</div>
 
                         <div class="celda" data-label="Estado Cita">
-                            @{
-                                string estadoCitaTexto = cita.Estado switch
-                                {
-                                    1 => "Pendiente",
-                                    2 => "Completado",
-                                    3 => "Reprogramado",
-                                    4 => "Cancelado",
-                                    _ => "Desconocido"
-                                };
+                            <div class="div-estados">
+                                @{
+                                    string estadoCitaTexto = cita.Estado switch
+                                    {
+                                        1 => "Pendiente",
+                                        2 => "Completado",
+                                        3 => "Reprogramado",
+                                        4 => "Cancelado",
+                                        _ => "Desconocido"
+                                    };
 
-                                string badgeCita = cita.Estado switch
-                                {
-                                    1 => "badge-warning",
-                                    2 => "badge-success",
-                                    3 => "badge-info",
-                                    4 => "badge-danger",
-                                    _ => "badge-secondary"
-                                };
-                            }
-                            <span class="badge @badgeCita">@estadoCitaTexto</span>
+                                    string badgeCita = cita.Estado switch
+                                    {
+                                        1 => "badge-pendiente",
+                                        2 => "badge-completado",
+                                        3 => "badge-reprogramado",
+                                        4 => "badge-cancelado",
+                                        _ => "badge-secondary"
+                                    };
+                                }
+                                <span class="badge @badgeCita">@estadoCitaTexto</span>
+                            </div>
                         </div>
 
                         <div class="celda" data-label="Estado Servicio">
-                            @{
-                                string estadoServicioTexto = cs.Estado switch
-                                {
-                                    1 => "Activo",
-                                    2 => "Inactivo",
-                                    _ => "Desconocido"
-                                };
-
-                                string badgeServicio = cs.Estado switch
-                                {
-                                    1 => "badge-success",
-                                    2 => "badge-danger",
-                                    _ => "badge-secondary"
-                                };
-                            }
-                            <span class="badge @badgeServicio">@estadoServicioTexto</span>
+                            <div class="div-estados">
+                                @{
+                                    string estadoServicioTexto = cs.Estado switch
+                                    {
+                                        1 => "Activo",
+                                        2 => "Inactivo",
+                                        _ => "Desconocido"
+                                    };
+                                    string badgeServicio = cs.Estado switch
+                                    {
+                                        1 => "badge-completado",
+                                        2 => "badge-cancelado",
+                                        _ => "badge-secondary"
+                                    };
+                                }
+                                <span class="badge @badgeServicio">@estadoServicioTexto</span>
+                            </div>
                         </div>
 
                         <div class="celda acciones" data-label="Acciones">
@@ -93,8 +92,6 @@
                                class="btn-accion detalles" title="Ver observaciones">
                                 <i class="bi bi-eye"></i>
                             </a>
-
-                            <!-- EDITAR: Mantener filtros y página -->
                             <a asp-action="Editar"
                                asp-route-id="@cita.IdCita"
                                asp-route-dni="@ViewBag.DniActual"
@@ -108,7 +105,6 @@
                                title="Editar cita">
                                 <i class="bi bi-pencil"></i>
                             </a>
-
                             <form asp-action="CambiarEstado"
                                   method="post"
                                   style="display:inline"
@@ -122,7 +118,6 @@
                                 <input type="hidden" name="estadoServicio" value="@ViewBag.EstadoServicioSeleccionado" />
                                 <input type="hidden" name="pageNumber" value="@ViewBag.PageNumber" />
                                 <input type="hidden" name="pageSize" value="@ViewBag.PageSize" />
-
                                 <button type="submit"
                                         class="btn-accion @(cita.Estado == 4 ? "activar" : "eliminar")"
                                         title="@(cita.Estado == 4 ? "Activar cita" : "Desactivar cita")">
@@ -142,36 +137,35 @@
                     <div class="celda" data-label="Fecha">@cita.FechaCita.ToString("dd/MM/yyyy")</div>
                     <div class="celda" data-label="Hora">@cita.FechaCita.ToString("HH:mm")</div>
                     <div class="celda" data-label="Precio"></div>
-
                     <div class="celda" data-label="Estado Cita">
-                        @{
-                            string estadoCitaTexto = cita.Estado switch
-                            {
-                                1 => "Pendiente",
-                                2 => "Completado",
-                                3 => "Reprogramado",
-                                4 => "Cancelado",
-                                _ => "Desconocido"
-                            };
-
-                            string badgeCita = cita.Estado switch
-                            {
-                                1 => "badge-warning",
-                                2 => "badge-success",
-                                3 => "badge-info",
-                                4 => "badge-danger",
-                                _ => "badge-secondary"
-                            };
-                        }
-                        <span class="badge @badgeCita">@estadoCitaTexto</span>
+                        <div class="div-estados">
+                            @{
+                                string estadoCitaTexto = cita.Estado switch
+                                {
+                                    1 => "Pendiente",
+                                    2 => "Completado",
+                                    3 => "Reprogramado",
+                                    4 => "Cancelado",
+                                    _ => "Desconocido"
+                                };
+                                string badgeCita = cita.Estado switch
+                                {
+                                    1 => "badge-pendiente",
+                                    2 => "badge-completado",
+                                    3 => "badge-reprogramado",
+                                    4 => "badge-cancelado",
+                                    _ => "badge-secondary"
+                                };
+                            }
+                            <span class="badge @badgeCita">@estadoCitaTexto</span>
+                        </div>
                     </div>
-
                     <div class="celda" data-label="Estado Servicio">
-                        <span class="badge badge-secondary">Sin servicios</span>
+                        <div class="div-estados">
+                            <span class="badge badge-secondary">Sin servicios</span>
+                        </div>
                     </div>
-
                     <div class="celda acciones" data-label="Acciones">
-
                         <a asp-action="Editar"
                            asp-route-id="@cita.IdCita"
                            asp-route-dni="@ViewBag.DniActual"
@@ -185,7 +179,6 @@
                            title="Editar cita">
                             <i class="bi bi-pencil"></i>
                         </a>
-
                         <form asp-action="CambiarEstado"
                               method="post"
                               style="display:inline"
@@ -199,7 +192,6 @@
                             <input type="hidden" name="estadoServicio" value="@ViewBag.EstadoServicioSeleccionado" />
                             <input type="hidden" name="pageNumber" value="@ViewBag.PageNumber" />
                             <input type="hidden" name="pageSize" value="@ViewBag.PageSize" />
-
                             <button type="submit"
                                     class="btn-accion @(cita.Estado == 4 ? "activar" : "eliminar")"
                                     title="@(cita.Estado == 4 ? "Activar cita" : "Desactivar cita")">

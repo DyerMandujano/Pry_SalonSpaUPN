@@ -1,48 +1,82 @@
-﻿@model IEnumerable<Pry_Solu_SalonSPA.Models.Proveedor>
+﻿@model List<Pry_Solu_SalonSPA.Models.Proveedor>
 
-<table class="table table-striped table-bordered tabla-proveedores">
-    <thead>
-        <tr>
-            <th>Nombre</th>
-            <th>RUC</th>
-            <th>Correo</th>
-            <th>Teléfono</th>
-            <th>Tipo proveedor</th>
-            <th>Estado</th>
-            <th>Acciones</th>
-        </tr>
-    </thead>
-    <tbody>
-        @if (Model != null && Model.Any())
-        {
-            foreach (var item in Model)
-            {
-                <tr>
-                    <td>@item.NomProve</td>
-                    <td>@item.Ruc</td>
-                    <td>@item.Correo</td>
-                    <td>@item.Telefono</td>
-                    <td>@(item.TipoProveedor ?? string.Empty)</td>
-                    <td>@(item.Estado == 1 ? "Activo" : "Inactivo")</td>
-                    <td>
-                        <a asp-action="Editar" asp-route-id="@item.IdProveedor" class="btn btn-sm btn-warning">Editar</a>
+@{
+    string busqueda = ViewBag.Busqueda;
+    int? estado = ViewBag.Estado;
+    string tipoProveedor = ViewBag.TipoProveedor;
+    int pageNumber = ViewBag.PageNumber ?? 1;
+    int pageSize = ViewBag.PageSize ?? 10;
+}
 
-                        <form asp-action="CambiarEstado" method="post" style="display:inline;">
-                            @Html.AntiForgeryToken()
-                            <input type="hidden" name="id" value="@item.IdProveedor" />
-                            <button type="submit" class="btn btn-sm @(item.Estado == 1 ? "btn-danger" : "btn-success")">
-                                @(item.Estado == 1 ? "Desactivar" : "Activar")
-                            </button>
-                        </form>
-                    </td>
-                </tr>
-            }
-        }
-        else
+<link rel="stylesheet" href="~/css/VProveedor/_ListaProveedor.css" />
+
+<div class="contenedor-proveedores">
+    <div class="fila-proveedores encabezado">
+        <div>Nombre</div>
+        <div>RUC</div>
+        <div>Teléfono</div>
+        <div>Correo</div>
+        <div>Tipo</div>
+        <div>Estado</div>
+        <div>Acciones</div>
+    </div>
+
+    @if (Model != null && Model.Any())
+    {
+        @foreach (var proveedor in Model)
         {
-            <tr>
-                <td colspan="7" class="text-center">No se encontraron proveedores registrados.</td>
-            </tr>
+            <div class="fila-proveedores">
+                <div class="celda" data-label="Nombre:">@proveedor.NomProve</div>
+                <div class="celda" data-label="RUC:">@proveedor.Ruc</div>
+                <div class="celda" data-label="Teléfono:">@proveedor.Telefono</div>
+                <div class="celda" data-label="Correo:">@proveedor.Correo</div>
+                <div class="celda" data-label="Tipo:">@proveedor.TipoProveedor</div>
+                <div class="celda" data-label="Estado:">
+                    <div class="div-estados">
+                        <span class="badge @(proveedor.Estado == 1 ? "badge-activo" : "badge-inactivo")">
+                            @(proveedor.Estado == 1 ? "Activo" : "Inactivo")
+                        </span>
+                    </div>
+                </div>
+
+
+                <div class="celda acciones-proveedores" data-label="Acciones:">
+
+                    <a asp-action="Editar"
+                       asp-route-id="@proveedor.IdProveedor"
+                       asp-route-busqueda="@busqueda"
+                       asp-route-estado="@estado"
+                       asp-route-tipoProveedor="@tipoProveedor"
+                       asp-route-pageNumber="@pageNumber"
+                       asp-route-pageSize="@pageSize"
+                       class="btn-icon"
+                       title="Editar">
+                        <i class="fas fa-pen-to-square"></i>
+                    </a>
+
+                    <form asp-action="CambiarEstado" method="post" style="display:inline">
+                        @Html.AntiForgeryToken()
+                        <input type="hidden" name="id" value="@proveedor.IdProveedor" />
+                        <input type="hidden" name="busqueda" value="@busqueda" />
+                        <input type="hidden" name="estado" value="@estado" />
+                        <input type="hidden" name="tipoProveedor" value="@tipoProveedor" />
+                        <input type="hidden" name="pageNumber" value="@pageNumber" />
+                        <input type="hidden" name="pageSize" value="@pageSize" />
+
+                        <button type="submit"
+                                class="btn-icon"
+                                title="@(proveedor.Estado == 1 ? "Inactivar" : "Activar")">
+                            <i class="fas fa-@(proveedor.Estado == 1 ? "toggle-on" : "toggle-off")"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
         }
-    </tbody>
-</table>
+    }
+    else
+    {
+        <div class="sin-resultados">
+            <p>No se encontraron proveedores con los filtros aplicados.</p>
+        </div>
+    }
+</div>

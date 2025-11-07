@@ -2,47 +2,40 @@
     string busquedaActual = ViewBag.Busqueda;
     string fechaInicio = ViewBag.FechaInicio;
     string fechaFin = ViewBag.FechaFin;
-    bool? estadoActual = ViewBag.Estado;
+    int? estadoActual = ViewBag.Estado;
     int pageSize = ViewBag.PageSize ?? 10;
 }
-
 <link href="~/css/VClientes/_FilterClientes.css" rel="stylesheet" />
 
 <div class="busqueda-filtros-container">
     <div class="contenedor-buscador">
         <p>Buscar clientes:</p>
-
         <form method="get" asp-action="Index" class="form-buscador-derecha" id="searchForm">
             <button type="submit" class="btn-search-separated" title="Buscar">
                 <i class="bi bi-search"></i>
             </button>
-
             <input type="text"
                    name="busqueda"
                    value="@busquedaActual"
                    class="input-buscador"
                    placeholder="Ingrese DNI o nombre del cliente" />
-
             <div class="form-compact-dates">
                 <input type="date"
                        name="fechaInicio"
                        value="@fechaInicio"
                        class="input-date"
                        title="Fecha de inicio" />
-
                 <input type="date"
                        name="fechaFin"
                        value="@fechaFin"
                        class="input-date"
                        title="Fecha de fin" />
             </div>
-
             <input type="hidden" name="estado" value="@estadoActual" />
             <input type="hidden" name="pageSize" value="@pageSize" />
             <input type="hidden" name="pageNumber" value="1" />
         </form>
     </div>
-
     <div class="filtros-derecha">
         <form method="get" asp-action="Index" style="display: flex; gap: 0.9rem; align-items: center;">
             <input type="hidden" name="busqueda" value="@busquedaActual" />
@@ -50,17 +43,15 @@
             <input type="hidden" name="fechaFin" value="@fechaFin" />
             <input type="hidden" name="pageSize" value="@pageSize" />
             <input type="hidden" name="pageNumber" value="1" />
-
             <select name="estado"
                     class="filtro-select"
                     data-active="@(estadoActual.HasValue)"
                     onchange="this.form.submit()">
                 <option value="">Estado: Todos</option>
-                <option value="true" selected="@(estadoActual == true)">Activo</option>
-                <option value="false" selected="@(estadoActual == false)">Inactivo</option>
+                <option value="1" selected="@(estadoActual == 1)">Activo</option>
+                <option value="0" selected="@(estadoActual == 0)">Inactivo</option>
             </select>
         </form>
-
         <a asp-action="Index" class="limpiar-btn">
             <i class="bi bi-x-circle"></i>
             <span>Limpiar</span>

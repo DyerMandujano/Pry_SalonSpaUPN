@@ -112,6 +112,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW52ZW50YXJpb1xfTGlzdGFJbnZlbnRhcmlvLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/Jeremy/Source/Repos/Pry_SalonSpaUPN/Views/Inventario/_PaginaInventario.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW52ZW50YXJpb1xfUGFnaW5hSW52ZW50YXJpby5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Jeremy/Source/Repos/Pry_SalonSpaUPN/Views/Main.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFpbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -146,6 +150,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/Jeremy/Source/Repos/Pry_SalonSpaUPN/Views/Proveedores/_ListaProveedor.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvdmVlZG9yZXNcX0xpc3RhUHJvdmVlZG9yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Jeremy/Source/Repos/Pry_SalonSpaUPN/Views/Proveedores/_PaginaProveedor.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvdmVlZG9yZXNcX1BhZ2luYVByb3ZlZWRvci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Jeremy/Source/Repos/Pry_SalonSpaUPN/Views/Servicios/Index.cshtml]

@@ -1,15 +1,20 @@
-﻿@model IEnumerable<Pry_Solu_SalonSPA.Models.InventarioViewModel>
+﻿@model List<Pry_Solu_SalonSPA.Models.InventarioViewModel>
 
 @{
-    ViewData["Title"] = "Lista de Inventario";
+    string orden = ViewBag.Orden ?? "ASC";
+    string nomProd = ViewBag.NomProd;
+    string fechaInicio = ViewBag.FechaInicio;
+    string fechaFin = ViewBag.FechaFin;
+    string tipoMovimiento = ViewBag.TipoMovimiento;
+    int pageNumber = ViewBag.PageNumber ?? 1;
+    int pageSize = ViewBag.PageSize ?? 10;
 }
 
 <link href="~/css/VInventario/_ListaInventario.css" rel="stylesheet" />
 
 <div class="contenedor-inventario">
 
-    <div class="fila-inventario encabezado" role="row">
-        <div>ID</div>
+    <div class="fila-inventario encabezado">
         <div>Producto</div>
         <div>Cantidad</div>
         <div>Precio</div>
@@ -37,39 +42,42 @@
                 "SALIDA" => "salida",
                 _ => "neutral"
             };
-            <div class="fila-inventario" role="row">
-                <div class="celda" data-label="ID">@item.Id_Inventario</div>
 
-                <div class="celda" data-label="Producto" title="@(item.Nom_Prod ?? String.Empty)">
-                    @(item.Nom_Prod ?? String.Empty)
+            <div class="fila-inventario">
+                <div class="celda" data-label="Producto:" title="@(item.Nom_Prod ?? "Sin producto")">
+                    @(item.Nom_Prod ?? "Sin producto")
                 </div>
 
-                <div class="celda" data-label="Cantidad">@item.Cantidad</div>
+                <div class="celda" data-label="Cantidad:">@item.Cantidad</div>
 
-                <div class="celda" data-label="Precio">
-                    @(item.Precio.HasValue ? string.Format("{0:C}", item.Precio.Value) : String.Empty)
+                <div class="celda" data-label="Precio:">
+                    S/. @(item.Precio?.ToString("N2") ?? "0.00")
                 </div>
 
-                <div class="celda" data-label="Movimiento">
-                    <span class="movimiento @movimientoClass">@( (item.Tipo_Movimiento ?? String.Empty).ToUpper() )</span>
+                <div class="celda" data-label="Movimiento:">
+                    <span class="movimiento @movimientoClass">
+                        @((item.Tipo_Movimiento ?? "N/A").ToUpper())
+                    </span>
                 </div>
 
-                <div class="celda" data-label="Fecha">
-                    @(item.Fecha_Registro.HasValue? item.Fecha_Registro.Value.ToString("dd/MM/yyyy") : String.Empty)
+                <div class="celda" data-label="Fecha:">
+                    @(item.Fecha_Registro?.ToString("dd/MM/yyyy HH:mm") ?? "N/A")
                 </div>
 
-                <div class="celda" data-label="Stock Actual">@item.Stock_Actual</div>
+                <div class="celda" data-label="Stock:">@item.Stock_Actual</div>
 
-                <div class="celda" data-label="Estado">
-                    <span class="badge @estadoClass">@(item.Estado_Stock ?? String.Empty)</span>
+                <div class="celda" data-label="Estado:">
+                    <span class="badge @estadoClass">
+                        @(item.Estado_Stock ?? "Desconocido")
+                    </span>
                 </div>
             </div>
         }
     }
     else
     {
-        <div class="fila-inventario vacio" role="row">
-            <div class="celda" data-label="Sin registros">No se encontraron registros en el inventario.</div>
+        <div class="sin-resultados">
+            <p>No se encontraron registros en el inventario con los filtros aplicados.</p>
         </div>
     }
 </div>

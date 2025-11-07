@@ -3,26 +3,59 @@
 <div class="stats-container">
 
     <div class="stats-card hoy">
-        <i class="bi bi-calendar3 icono"></i>
+
+        <span class="icono-wrap">
+            <i class="bi bi-calendar3 icono"></i>
+        </span>
+
         <span>Total</span>
         <span class="stats-number">@ViewBag.TotalCitas</span>
+
     </div>
 
     <div class="stats-card pendiente">
-        <i class="bi bi-clock icono"></i>
+
+        <span class="icono-wrap">
+            <i class="bi bi-clock icono"></i>
+        </span>
+
         <span>Pendientes</span>
+
         <span class="stats-number">@ViewBag.Pendientes</span>
     </div>
 
     <div class="stats-card completada">
-        <i class="bi bi-check2-circle icono"></i>
+
+        <span class="icono-wrap">
+            <i class="bi bi-check2-circle icono"></i>
+        </span>
+
         <span>Completadas</span>
+
         <span class="stats-number">@ViewBag.Completadas</span>
+
     </div>
 
     <div class="stats-card cancelada">
-        <i class="bi bi-x-circle icono"></i>
+
+        <span class="icono-wrap">
+            <i class="bi bi-x-circle icono"></i>
+        </span>
+
         <span>Canceladas</span>
+
         <span class="stats-number">@ViewBag.Canceladas</span>
+
+    </div>
+
+    <div class="stats-card reprogramado">
+
+        <span class="icono-wrap">
+            <i class="bi bi-arrow-repeat icono"></i>
+        </span>
+
+        <span>Reprogramadas</span>
+
+        <span class="stats-number">@ViewBag.Reprogramadas</span>
     </div>
 </div>

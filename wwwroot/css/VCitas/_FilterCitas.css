@@ -1,6 +1,4 @@
-﻿/* _FilterCitas.css */
-
-:root {
+﻿:root {
     --rs-primary: #5A2D82;
     --rs-accent: #EBC5E5;
     --rs-bg-input: #EDE3FB;
@@ -20,7 +18,6 @@
     font-family: 'Arial', sans-serif;
 }
 
-/* Sección izquierda: buscador */
 .contenedor-buscador {
     display: flex;
     flex-direction: column;
@@ -37,7 +34,6 @@
         font-weight: 500;
     }
 
-/* Formulario de búsqueda */
 .form-buscador-derecha {
     display: flex;
     align-items: center;
@@ -45,7 +41,6 @@
     flex-wrap: nowrap;
 }
 
-/* Input de búsqueda DNI (sin botón interno) */
 .input-buscador {
     flex: 1 1 320px;
     padding: 0.48rem 0.75rem;
@@ -108,7 +103,6 @@
         font-size: 1.05rem;
     }
 
-/* Fechas compactas */
 .form-compact-dates {
     display: flex;
     gap: 0.45rem;
@@ -131,7 +125,6 @@
         box-shadow: 0 0 0 3px rgba(127, 74, 168, 0.08);
     }
 
-/* Sección derecha: filtros */
 .filtros-derecha {
     display: flex;
     align-items: flex-start;
@@ -139,7 +132,6 @@
     padding-right: 1rem;
 }
 
-/* Selects de filtro */
 .filtro-select {
     appearance: none;
     -webkit-appearance: none;
@@ -176,7 +168,6 @@
         box-shadow: 0 0 0 3px rgba(99, 33, 122, 0.06);
     }
 
-/* Botón limpiar */
 .limpiar-btn {
     display: inline-flex;
     align-items: center;
@@ -283,7 +274,6 @@
     }
 }
 
-/* Animación de entrada */
 @keyframes fadeInDown {
     from {
         opacity: 0;

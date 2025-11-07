@@ -1,22 +1,19 @@
-﻿/* CSS mínimo y consistente: encabezado y filas usan la misma grid */
-.contenedor-inventario {
+﻿.contenedor-inventario {
     width: 95%;
     margin: 0.2rem auto;
     font-family: 'Arial', sans-serif;
 }
 
-/* GRID: misma plantilla para encabezado y filas */
 .fila-inventario,
 .fila-inventario.encabezado {
     display: grid;
-    grid-template-columns: 0.6fr 2.0fr 1.1fr 1.1fr 1.3fr 1fr 1.1fr 0.9fr;
+    grid-template-columns: 1.3fr 0.7fr 0.7fr 1.0fr 1.0fr 1.1fr 0.9fr;
     align-items: center;
     gap: 0.2rem;
-    padding: 0.45rem 0.35rem;
+    padding: 0.65rem 0.35rem;
     box-sizing: border-box;
 }
 
-/* Estética */
 .fila-inventario {
     border-bottom: 2px solid #EBC5E5;
     transition: background .15s;
@@ -34,7 +31,6 @@
         border-bottom: 2px solid #EBC5E5;
     }
 
-        /* Cada "celda" ocupa su columna del grid */
         .fila-inventario > div,
         .fila-inventario.encabezado > div {
             overflow: hidden;
@@ -44,7 +40,6 @@
             font-size: 0.85rem;
         }
 
-/* clases pequeñas para badge/movimiento (sin cambios funcionales) */
 .movimiento {
     display: inline-block;
     padding: .18rem .6rem;
@@ -89,7 +84,6 @@
         color: #2B2766;
     }
 
-/* Responsive: en móvil apilar filas */
 @media (max-width: 768px) {
     .fila-inventario.encabezado {
         display: none;

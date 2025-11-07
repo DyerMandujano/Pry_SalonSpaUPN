@@ -1,0 +1,25 @@
+﻿.modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 10000;
+}
+
+.proveedor-container {
+    display: flex;
+    flex-direction: column;
+    max-width: 1200px;
+}
+
+.proveedor-lista-container {
+    border: 2px solid #EBC5E5;
+    border-radius: 25px;
+    max-width: var(--max-width-lista,100%);
+    display: flex;
+    flex-direction: column;
+    transform: translate(15px,0px);
+    padding: 0.3rem;
+}

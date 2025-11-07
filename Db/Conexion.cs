@@ -406,25 +406,34 @@ public partial class Conexion : DbContext
             entity.ToTable("Proveedor");
 
             entity.Property(e => e.IdProveedor).HasColumnName("Id_Proveedor");
-            entity.Property(e => e.Correo)
-                .HasMaxLength(100)
-                .IsUnicode(false);
+
             entity.Property(e => e.NomProve)
                 .HasMaxLength(50)
                 .IsUnicode(false)
                 .HasColumnName("Nom_Prove");
+
             entity.Property(e => e.Ruc)
                 .HasMaxLength(11)
                 .IsUnicode(false);
+
             entity.Property(e => e.Telefono)
                 .HasMaxLength(9)
                 .IsUnicode(false)
                 .IsFixedLength();
+
+            entity.Property(e => e.Correo)
+                .HasMaxLength(100)
+                .IsUnicode(false);
+
             entity.Property(e => e.TipoProveedor)
                 .HasMaxLength(40)
                 .IsUnicode(false)
                 .HasColumnName("Tipo_Proveedor");
+
+            entity.Property(e => e.Estado)
+                .HasColumnName("Estado");
         });
+
 
         modelBuilder.Entity<Servicio>(entity =>
         {
@@ -541,6 +550,7 @@ public partial class Conexion : DbContext
             eb.Property(v => v.Stock_Actual).HasColumnName("Stock_Actual");
             eb.Property(v => v.Estado_Stock).HasColumnName("Estado_Stock");
         });
+
 
 
         OnModelCreatingPartial(modelBuilder);

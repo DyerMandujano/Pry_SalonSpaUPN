@@ -34,6 +34,7 @@ C:\Users\Jeremy\Source\Repos\Pry_SalonSpaUPN\bin\Debug\net8.0\Pry_Solu_SalonSPA.
 C:\Users\Jeremy\Source\Repos\Pry_SalonSpaUPN\bin\Debug\net8.0\Pry_Solu_SalonSPA.staticwebassets.endpoints.json
 C:\Users\Jeremy\Source\Repos\Pry_SalonSpaUPN\bin\Debug\net8.0\Pry_Solu_SalonSPA.exe
 C:\Users\Jeremy\Source\Repos\Pry_SalonSpaUPN\bin\Debug\net8.0\Views\Citas\_HeaderCitas.cshtml
+C:\Users\Jeremy\Source\Repos\Pry_SalonSpaUPN\bin\Debug\net8.0\Views\Clientes\_FilterClientes.cshtml
 C:\Users\Jeremy\Source\Repos\Pry_SalonSpaUPN\bin\Debug\net8.0\Views\Clientes\_HeaderClientes.cshtml
 C:\Users\Jeremy\Source\Repos\Pry_SalonSpaUPN\bin\Debug\net8.0\Views\Clientes\_ListaClientes.cshtml
 C:\Users\Jeremy\Source\Repos\Pry_SalonSpaUPN\bin\Debug\net8.0\Pry_Solu_SalonSPA.deps.json
@@ -162,11 +163,10 @@ C:\Users\Jeremy\Source\Repos\Pry_SalonSpaUPN\obj\Debug\net8.0\staticwebassets.bu
 C:\Users\Jeremy\Source\Repos\Pry_SalonSpaUPN\obj\Debug\net8.0\staticwebassets.build.json.cache
 C:\Users\Jeremy\Source\Repos\Pry_SalonSpaUPN\obj\Debug\net8.0\staticwebassets.development.json
 C:\Users\Jeremy\Source\Repos\Pry_SalonSpaUPN\obj\Debug\net8.0\staticwebassets.build.endpoints.json
+C:\Users\Jeremy\Source\Repos\Pry_SalonSpaUPN\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
 C:\Users\Jeremy\Source\Repos\Pry_SalonSpaUPN\obj\Debug\net8.0\Pry_Solu.601F369E.Up2Date
 C:\Users\Jeremy\Source\Repos\Pry_SalonSpaUPN\obj\Debug\net8.0\Pry_Solu_SalonSPA.dll
 C:\Users\Jeremy\Source\Repos\Pry_SalonSpaUPN\obj\Debug\net8.0\refint\Pry_Solu_SalonSPA.dll
 C:\Users\Jeremy\Source\Repos\Pry_SalonSpaUPN\obj\Debug\net8.0\Pry_Solu_SalonSPA.pdb
 C:\Users\Jeremy\Source\Repos\Pry_SalonSpaUPN\obj\Debug\net8.0\Pry_Solu_SalonSPA.genruntimeconfig.cache
 C:\Users\Jeremy\Source\Repos\Pry_SalonSpaUPN\obj\Debug\net8.0\ref\Pry_Solu_SalonSPA.dll
-C:\Users\Jeremy\Source\Repos\Pry_SalonSpaUPN\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
-C:\Users\Jeremy\Source\Repos\Pry_SalonSpaUPN\bin\Debug\net8.0\Views\Clientes\_FilterClientes.cshtml

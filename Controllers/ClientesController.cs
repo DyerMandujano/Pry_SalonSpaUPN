@@ -20,11 +20,9 @@ namespace Pry_Solu_SalonSPA.Controllers
         {
             _context = context;
         }
-
-        // GET: Clientes
         public async Task<IActionResult> Index(
             string busqueda,
-            bool? estado,
+            int? estado,
             DateTime? fechaInicio,
             DateTime? fechaFin,
             int pageNumber = 1,
@@ -111,7 +109,6 @@ namespace Pry_Solu_SalonSPA.Controllers
             return View(listaClientes);
         }
 
-        // GET: Clientes/Crear
         [HttpGet]
         public IActionResult Crear()
         {
@@ -127,7 +124,6 @@ namespace Pry_Solu_SalonSPA.Controllers
             return View("_CrearClientes", persona);
         }
 
-        // POST: Clientes/Crear
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Crear(Persona persona)
@@ -173,12 +169,11 @@ namespace Pry_Solu_SalonSPA.Controllers
             return View("_CrearClientes", persona);
         }
 
-        // GET: Clientes/Editar/5
         [HttpGet]
         public async Task<IActionResult> Editar(
             int id,
-            string busqueda,
-            bool? estado,
+            string? busqueda,
+            int? estado,
             DateTime? fechaInicio,
             DateTime? fechaFin,
             int pageNumber = 1,
@@ -211,13 +206,12 @@ namespace Pry_Solu_SalonSPA.Controllers
 
                 ViewBag.IdCliente = cliente.IdCliente;
                 ViewBag.Generos = new List<SelectListItem>
-                {
-                    new SelectListItem { Text = "Masculino", Value = "Masculino" },
-                    new SelectListItem { Text = "Femenino", Value = "Femenino" },
-                    new SelectListItem { Text = "Otro", Value = "Otro" }
-                };
+        {
+            new SelectListItem { Text = "Masculino", Value = "Masculino" },
+            new SelectListItem { Text = "Femenino", Value = "Femenino" },
+            new SelectListItem { Text = "Otro", Value = "Otro" }
+        };
 
-                // Mantener parámetros para regresar a la misma página
                 ViewBag.ReturnBusqueda = busqueda;
                 ViewBag.ReturnEstado = estado;
                 ViewBag.ReturnFechaInicio = fechaInicio?.ToString("yyyy-MM-dd");
@@ -234,75 +228,95 @@ namespace Pry_Solu_SalonSPA.Controllers
             }
         }
 
-        // POST: Clientes/Editar/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Editar(
             int id,
             Persona persona,
-            string busqueda,
-            bool? estado,
-            DateTime? fechaInicio,
-            DateTime? fechaFin,
-            int pageNumber = 1,
-            int pageSize = 10)
+            string? returnBusqueda,
+            int? returnEstado,
+            DateTime? returnFechaInicio,
+            DateTime? returnFechaFin,
+            int returnPageNumber = 1,
+            int returnPageSize = 10)
         {
-            if (ModelState.IsValid)
+            // Remover validación de colecciones de navegación
+            ModelState.Remove("Clientes");
+            ModelState.Remove("Empleados");
+
+            if (!ModelState.IsValid)
             {
-                try
-                {
-                    using var connection = new SqlConnection(_context.Database.GetConnectionString());
-                    await connection.OpenAsync();
+                ViewBag.IdCliente = id;
+                ViewBag.Generos = new List<SelectListItem>
+        {
+            new SelectListItem { Text = "Masculino", Value = "Masculino" },
+            new SelectListItem { Text = "Femenino", Value = "Femenino" },
+            new SelectListItem { Text = "Otro", Value = "Otro" }
+        };
 
-                    using var command = new SqlCommand("SP_Editar_Cliente", connection)
-                    {
-                        CommandType = CommandType.StoredProcedure
-                    };
+                ViewBag.ReturnBusqueda = returnBusqueda;
+                ViewBag.ReturnEstado = returnEstado;
+                ViewBag.ReturnFechaInicio = returnFechaInicio?.ToString("yyyy-MM-dd");
+                ViewBag.ReturnFechaFin = returnFechaFin?.ToString("yyyy-MM-dd");
+                ViewBag.ReturnPageNumber = returnPageNumber;
+                ViewBag.ReturnPageSize = returnPageSize;
 
-                    command.Parameters.AddWithValue("@Id_Cliente", id);
-                    command.Parameters.AddWithValue("@NombresPersona", persona.Nombres);
-                    command.Parameters.AddWithValue("@ApellidosPersona", persona.Apellidos);
-                    command.Parameters.AddWithValue("@TelefonoPersona", persona.Telefono);
-                    command.Parameters.AddWithValue("@DniPersona", persona.Dni);
-                    command.Parameters.AddWithValue("@Fecha_nacimientoPersona", persona.FechaNacimiento);
-                    command.Parameters.AddWithValue("@GeneroPersona", persona.Genero);
-                    command.Parameters.AddWithValue("@Estado_Persona", persona.Estado);
-
-                    await command.ExecuteNonQueryAsync();
-
-                    TempData["Mensaje"] = "Cliente actualizado correctamente.";
-
-                    return RedirectToAction(nameof(Index), new
-                    {
-                        busqueda,
-                        estado,
-                        fechaInicio,
-                        fechaFin,
-                        pageNumber,
-                        pageSize
-                    });
-                }
-                catch (Exception ex)
-                {
-                    ViewBag.Error = $"Error al actualizar el cliente: {ex.Message}";
-                }
+                return View("_EditarClientes", persona);
             }
 
-            ViewBag.Generos = new List<SelectListItem>
+            try
             {
-                new SelectListItem { Text = "Masculino", Value = "Masculino" },
-                new SelectListItem { Text = "Femenino", Value = "Femenino" },
-                new SelectListItem { Text = "Otro", Value = "Otro" }
-            };
+                using var connection = new SqlConnection(_context.Database.GetConnectionString());
+                await connection.OpenAsync();
 
-            ViewBag.ReturnBusqueda = busqueda;
-            ViewBag.ReturnEstado = estado;
-            ViewBag.ReturnFechaInicio = fechaInicio?.ToString("yyyy-MM-dd");
-            ViewBag.ReturnFechaFin = fechaFin?.ToString("yyyy-MM-dd");
-            ViewBag.ReturnPageNumber = pageNumber;
-            ViewBag.ReturnPageSize = pageSize;
+                using var command = new SqlCommand("sp_Editar_Cliente", connection)
+                {
+                    CommandType = CommandType.StoredProcedure
+                };
 
-            return View("_EditarClientes", persona);
+                command.Parameters.AddWithValue("@Id_Cliente", id);
+                command.Parameters.AddWithValue("@NombresPersona", persona.Nombres);
+                command.Parameters.AddWithValue("@ApellidosPersona", persona.Apellidos);
+                command.Parameters.AddWithValue("@TelefonoPersona", persona.Telefono);
+                command.Parameters.AddWithValue("@DniPersona", persona.Dni);
+                command.Parameters.AddWithValue("@Fecha_nacimientoPersona", persona.FechaNacimiento);
+                command.Parameters.AddWithValue("@GeneroPersona", persona.Genero);
+                command.Parameters.AddWithValue("@Estado_Persona", persona.Estado);
+
+                await command.ExecuteNonQueryAsync();
+
+                TempData["Mensaje"] = "Cliente actualizado correctamente.";
+
+                return RedirectToAction(nameof(Index), new
+                {
+                    busqueda = returnBusqueda,
+                    estado = returnEstado,
+                    fechaInicio = returnFechaInicio,
+                    fechaFin = returnFechaFin,
+                    pageNumber = returnPageNumber,
+                    pageSize = returnPageSize
+                });
+            }
+            catch (Exception ex)
+            {
+                ViewBag.Error = $"Error al actualizar el cliente: {ex.Message}";
+                ViewBag.IdCliente = id;
+                ViewBag.Generos = new List<SelectListItem>
+        {
+            new SelectListItem { Text = "Masculino", Value = "Masculino" },
+            new SelectListItem { Text = "Femenino", Value = "Femenino" },
+            new SelectListItem { Text = "Otro", Value = "Otro" }
+        };
+
+                ViewBag.ReturnBusqueda = returnBusqueda;
+                ViewBag.ReturnEstado = returnEstado;
+                ViewBag.ReturnFechaInicio = returnFechaInicio?.ToString("yyyy-MM-dd");
+                ViewBag.ReturnFechaFin = returnFechaFin?.ToString("yyyy-MM-dd");
+                ViewBag.ReturnPageNumber = returnPageNumber;
+                ViewBag.ReturnPageSize = returnPageSize;
+
+                return View("_EditarClientes", persona);
+            }
         }
 
         [HttpPost]
@@ -310,7 +324,7 @@ namespace Pry_Solu_SalonSPA.Controllers
         public async Task<IActionResult> CambiarEstado(
             int id,
             string busqueda,
-            bool? estado,
+            int? estado,
             DateTime? fechaInicio,
             DateTime? fechaFin,
             int pageNumber = 1,
@@ -358,11 +372,10 @@ namespace Pry_Solu_SalonSPA.Controllers
                     : "Cliente inactivado correctamente.";
 
                 // Si hay filtro de estado activo y el nuevo estado no coincide
-                if (estado.HasValue && estado.Value != (nuevoEstado == 1))
+                if (estado.HasValue && estado.Value != nuevoEstado)
                 {
                     mensaje += " (El cliente ya no aparece en esta vista debido a los filtros aplicados)";
                 }
-
                 TempData["Mensaje"] = mensaje;
             }
             catch (Exception ex)

@@ -13,11 +13,10 @@
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    gap: 2rem;
+    gap: 1rem;
     margin: 1.5rem 1.5rem;
     font-family: 'Arial', sans-serif;
 }
-
 .contenedor-buscador {
     display: flex;
     flex-direction: column;
@@ -39,19 +38,18 @@
     align-items: center;
     gap: 0.5rem;
     flex-wrap: nowrap;
+    width: 400px;
 }
 
 .input-buscador {
-    flex: none;
-    width: 250px;
-    max-width: 100%;
+    flex: 1 1 320px;
     padding: 0.48rem 0.75rem;
     border: 2px solid var(--rs-primary);
     border-radius: var(--radius);
     font-size: 0.9rem;
+    outline: none;
     background-color: var(--rs-bg-input);
     color: var(--rs-primary);
-    outline: none;
     transition: 0.2s;
     font-weight: 500;
 }
@@ -76,8 +74,8 @@
     justify-content: center;
     gap: 0.5rem;
     padding: 0.48rem 1.1rem;
-    border-radius: 12px;
     border: none;
+    border-radius: 12px;
     background-color: #fff;
     color: var(--rs-primary);
     font-weight: 600;
@@ -111,29 +109,6 @@
     .btn-search-separated i {
         font-size: 1.05rem;
         color: var(--rs-primary);
-    }
-
-
-.form-compact-dates {
-    display: flex;
-    gap: 0.45rem;
-    align-items: center;
-}
-
-.input-date {
-    padding: 0.38rem 0.5rem;
-    border: 2px solid var(--rs-accent);
-    border-radius: var(--radius);
-    background: #fff;
-    color: var(--rs-text);
-    font-size: 0.88rem;
-    transition: 0.2s;
-    font-weight: 500;
-}
-
-    .input-date:focus {
-        border-color: var(--rs-hover);
-        box-shadow: 0 0 0 3px rgba(127, 74, 168, 0.08);
     }
 
 .filtros-derecha {
@@ -240,15 +215,6 @@
         width: 100%;
     }
 
-    .form-compact-dates {
-        width: 100%;
-        gap: 0.5rem;
-    }
-
-    .input-date {
-        flex: 1;
-    }
-
     .filtros-derecha {
         width: 100%;
         flex-direction: column;
@@ -269,19 +235,10 @@
     }
 
     .input-buscador,
-    .input-date,
     .filtro-select,
     .limpiar-btn,
     .btn-search-separated {
         font-size: 0.85rem;
-    }
-
-    .form-compact-dates {
-        flex-direction: column;
-    }
-
-    .input-date {
-        width: 100%;
     }
 }
 

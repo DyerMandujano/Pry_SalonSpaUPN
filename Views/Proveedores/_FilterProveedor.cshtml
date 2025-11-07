@@ -1,12 +1,64 @@
 ﻿@{
-    var busqueda = ViewBag.Busqueda ?? "";
+    string busqueda = ViewBag.Busqueda;
+    int? estado = ViewBag.Estado;
+    string tipoProveedor = ViewBag.TipoProveedor;
+    int pageSize = ViewBag.PageSize ?? 10;
 }
 
-<form method="get" asp-action="Index" class="form-inline mb-3">
-    <input type="text" name="busqueda" value="@busqueda" class="form-control mr-2" placeholder="Buscar por nombre o RUC" />
+<link href="~/css/VProveedor/_FilterProveedor.css" rel="stylesheet" />
 
-    <select name="estado" class="form-control mr-2" asp-items="(SelectList)ViewBag.Estados"></select>
+<div class="busqueda-filtros-container">
 
-    <button type="submit" class="btn btn-primary">Buscar / Filtrar</button>
-    <a asp-action="Index" class="btn btn-outline-secondary ml-2">Limpiar</a>
-</form>
+    <div class="contenedor-buscador">
+        <p>Buscar proveedores:</p>
+
+        <form method="get" asp-action="Index" class="form-buscador-derecha" id="searchForm">
+            <button type="submit" class="btn-search-separated" title="Buscar">
+                <i class="bi bi-search"></i>
+            </button>
+
+            <input type="text"
+                   name="busqueda"
+                   value="@busqueda"
+                   class="input-buscador"
+                   placeholder="Ingrese nombre o RUC del proveedor" />
+
+            <input type="hidden" name="estado" value="@estado" />
+            <input type="hidden" name="tipoProveedor" value="@tipoProveedor" />
+            <input type="hidden" name="pageSize" value="@pageSize" />
+            <input type="hidden" name="pageNumber" value="1" />
+        </form>
+    </div>
+
+    <div class="filtros-derecha">
+        <form method="get" asp-action="Index" style="display: flex; gap: 0.9rem; align-items: center;">
+            <input type="hidden" name="busqueda" value="@busqueda" />
+            <input type="hidden" name="pageSize" value="@pageSize" />
+            <input type="hidden" name="pageNumber" value="1" />
+
+            <select name="estado"
+                    class="filtro-select"
+                    data-active="@(estado.HasValue)"
+                    onchange="this.form.submit()">
+                <option value="">Estado: Todos</option>
+                <option value="1" selected="@(estado == 1)">Activo</option>
+                <option value="0" selected="@(estado == 0)">Inactivo</option>
+            </select>
+
+            <select name="tipoProveedor"
+                    class="filtro-select"
+                    data-active="@(!string.IsNullOrEmpty(tipoProveedor))"
+                    onchange="this.form.submit()">
+                <option value="">Tipo: Todos</option>
+                <option value="Productos" selected="@(tipoProveedor == "Productos")">Productos</option>
+                <option value="Servicios" selected="@(tipoProveedor == "Servicios")">Servicios</option>
+                <option value="Ambos" selected="@(tipoProveedor == "Ambos")">Ambos</option>
+            </select>
+        </form>
+
+        <a asp-action="Index" class="limpiar-btn">
+            <i class="bi bi-x-circle"></i>
+            <span>Limpiar</span>
+        </a>
+    </div>
+</div>

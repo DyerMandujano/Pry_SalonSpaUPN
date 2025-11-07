@@ -6,7 +6,7 @@
 
 .fila-cita {
     display: grid;
-    grid-template-columns: 3fr 3fr 2.5fr 1.2fr 0.8fr 1.1fr 1.1fr 1.5fr 1.5fr;
+    grid-template-columns: 2.9fr 2.9fr 2.4fr 1.2fr 0.8fr 1.1fr 2.1fr 1.5fr 1.5fr;
     border-bottom: 2px solid #EBC5E5;
     padding: 0.5rem;
     align-items: center;
@@ -53,7 +53,7 @@
 }
 
     .btn-accion i {
-        color: #A138C2; /* todos los iconos en morado */
+        color: #A138C2;
     }
 
     .btn-accion:hover {
@@ -73,9 +73,54 @@
     }
 
 
-/* ================================
-   DETALLE DE OBSERVACIONES
-=================================== */
+.div-estados {
+    display: flex;
+    gap: 0.35rem;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.badge {
+    display: inline-block;
+    padding: 0.15rem 0.65rem;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    line-height: 1;
+    letter-spacing: 0.03em;
+}
+
+.badge-pendiente {
+    color: #856404;
+    background-color: #fff3cd;
+    border: 1px solid #ffe083;
+}
+
+.badge-completado {
+    color: #18794a;
+    background-color: #dff9e6;
+    border: 1px solid #99FFBB;
+}
+
+.badge-reprogramado {
+    color: #274ca1;
+    background-color: #d5e3fa;
+    border: 1px solid #90b9f9;
+}
+
+.badge-cancelado {
+    color: #7f2a8f;
+    background-color: #f7e6fb;
+    border: 1px solid #EBC5E5;
+}
+
+.badge-secondary {
+    color: #2B2766;
+    background-color: #eeebf5;
+    border: 1px solid #EBC5E5;
+}
+
 
 .detalle-observacion {
     display: none;
@@ -91,13 +136,11 @@
     transition: all 0.3s ease-in-out;
 }
 
-    /* Cuando se muestra */
     .detalle-observacion.mostrar {
         display: block;
         animation: aparecerDetalle 0.3s ease;
     }
 
-/* Animación de aparición */
 @keyframes aparecerDetalle {
     from {
         opacity: 0;
@@ -110,7 +153,6 @@
     }
 }
 
-/* Título */
 .detalle-observacion strong {
     display: block;
     margin-bottom: 0.5rem;
@@ -118,7 +160,6 @@
     font-size: 0.9rem;
 }
 
-/* Lista */
 .detalle-observacion ul {
     margin: 0;
     padding-left: 1.4rem;

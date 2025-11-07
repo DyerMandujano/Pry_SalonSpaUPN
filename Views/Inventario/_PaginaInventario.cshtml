@@ -4,23 +4,24 @@
     int totalPaginas = ViewBag.TotalPaginas ?? 0;
     int totalRegistros = ViewBag.TotalRegistros ?? 0;
 
-    string busqueda = ViewBag.Busqueda;
-    int? estado = ViewBag.Estado;
+    string orden = ViewBag.Orden ?? "ASC";
+    string nomProd = ViewBag.NomProd;
     string fechaInicio = ViewBag.FechaInicio;
     string fechaFin = ViewBag.FechaFin;
+    string tipoMovimiento = ViewBag.TipoMovimiento;
 }
 
-<link href="~/css/VClientes/_PaginaClientes.css" rel="stylesheet" />
+<link href="~/css/VInventario/_PaginaInventario.css" rel="stylesheet" />
 
 <div class="paginacion-container">
 
-    <!-- 1. Selector de tamaño de página (PRIMERO) -->
     <div class="paginacion-size">
         <form method="get" asp-action="Index" style="display: flex; align-items: center; gap: 0.5rem;">
-            <input type="hidden" name="busqueda" value="@busqueda" />
-            <input type="hidden" name="estado" value="@estado" />
+            <input type="hidden" name="nomProd" value="@nomProd" />
+            <input type="hidden" name="orden" value="@orden" />
             <input type="hidden" name="fechaInicio" value="@fechaInicio" />
             <input type="hidden" name="fechaFin" value="@fechaFin" />
+            <input type="hidden" name="tipoMovimiento" value="@tipoMovimiento" />
             <input type="hidden" name="pageNumber" value="1" />
 
             <label for="pageSize">Registros por página:</label>
@@ -28,21 +29,22 @@
                 <option value="10" selected="@(pageSize == 10)">10</option>
                 <option value="20" selected="@(pageSize == 20)">20</option>
                 <option value="50" selected="@(pageSize == 50)">50</option>
+                <option value="100" selected="@(pageSize == 100)">100</option>
             </select>
         </form>
     </div>
 
-    <!-- 2. Controles de paginación (SEGUNDO) -->
     @if (totalPaginas > 1)
     {
         <div class="paginacion-controles">
             @if (pageNumber > 1)
             {
                 <a asp-action="Index"
-                   asp-route-busqueda="@busqueda"
-                   asp-route-estado="@estado"
+                   asp-route-nomProd="@nomProd"
+                   asp-route-orden="@orden"
                    asp-route-fechaInicio="@fechaInicio"
                    asp-route-fechaFin="@fechaFin"
+                   asp-route-tipoMovimiento="@tipoMovimiento"
                    asp-route-pageNumber="1"
                    asp-route-pageSize="@pageSize"
                    class="btn-paginacion"
@@ -51,10 +53,11 @@
                 </a>
 
                 <a asp-action="Index"
-                   asp-route-busqueda="@busqueda"
-                   asp-route-estado="@estado"
+                   asp-route-nomProd="@nomProd"
+                   asp-route-orden="@orden"
                    asp-route-fechaInicio="@fechaInicio"
                    asp-route-fechaFin="@fechaFin"
+                   asp-route-tipoMovimiento="@tipoMovimiento"
                    asp-route-pageNumber="@(pageNumber - 1)"
                    asp-route-pageSize="@pageSize"
                    class="btn-paginacion"
@@ -77,10 +80,11 @@
                 else
                 {
                     <a asp-action="Index"
-                       asp-route-busqueda="@busqueda"
-                       asp-route-estado="@estado"
+                       asp-route-nomProd="@nomProd"
+                       asp-route-orden="@orden"
                        asp-route-fechaInicio="@fechaInicio"
                        asp-route-fechaFin="@fechaFin"
+                       asp-route-tipoMovimiento="@tipoMovimiento"
                        asp-route-pageNumber="@i"
                        asp-route-pageSize="@pageSize"
                        class="btn-paginacion">
@@ -92,10 +96,11 @@
             @if (pageNumber < totalPaginas)
             {
                 <a asp-action="Index"
-                   asp-route-busqueda="@busqueda"
-                   asp-route-estado="@estado"
+                   asp-route-nomProd="@nomProd"
+                   asp-route-orden="@orden"
                    asp-route-fechaInicio="@fechaInicio"
                    asp-route-fechaFin="@fechaFin"
+                   asp-route-tipoMovimiento="@tipoMovimiento"
                    asp-route-pageNumber="@(pageNumber + 1)"
                    asp-route-pageSize="@pageSize"
                    class="btn-paginacion"
@@ -104,10 +109,11 @@
                 </a>
 
                 <a asp-action="Index"
-                   asp-route-busqueda="@busqueda"
-                   asp-route-estado="@estado"
+                   asp-route-nomProd="@nomProd"
+                   asp-route-orden="@orden"
                    asp-route-fechaInicio="@fechaInicio"
                    asp-route-fechaFin="@fechaFin"
+                   asp-route-tipoMovimiento="@tipoMovimiento"
                    asp-route-pageNumber="@totalPaginas"
                    asp-route-pageSize="@pageSize"
                    class="btn-paginacion"

@@ -5,8 +5,17 @@
     ViewData["Title"] = "Proveedores";
 }
 
+<link rel="stylesheet" href="~/css/VProveedor/index.css" />
+
 @await Html.PartialAsync("_HeaderProveedor")
 
-@await Html.PartialAsync("_FilterProveedor")
+    <div class="proveedor-lista-container">
 
-@await Html.PartialAsync("_ListaProveedor", Model)
+
+        @await Html.PartialAsync("_FilterProveedor")
+
+        @await Html.PartialAsync("_ListaProveedor", Model)
+
+        @await Html.PartialAsync("_PaginaProveedor")
+
+    </div>

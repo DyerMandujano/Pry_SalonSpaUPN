@@ -3,9 +3,9 @@
 @{
     Layout = "~/Views/Main.cshtml";
     ViewData["Title"] = "Editar Cliente";
-    
+
     string busqueda = ViewBag.ReturnBusqueda;
-    bool? estado = ViewBag.ReturnEstado;
+    int? estadoFiltro = ViewBag.ReturnEstado;
     string fechaInicio = ViewBag.ReturnFechaInicio;
     string fechaFin = ViewBag.ReturnFechaFin;
     int pageNumber = ViewBag.ReturnPageNumber ?? 1;
@@ -20,7 +20,7 @@
 
         <a asp-action="Index"
            asp-route-busqueda="@busqueda"
-           asp-route-estado="@estado"
+           asp-route-estado="@estadoFiltro"
            asp-route-fechaInicio="@fechaInicio"
            asp-route-fechaFin="@fechaFin"
            asp-route-pageNumber="@pageNumber"
@@ -32,68 +32,77 @@
         </div>
 
         <form asp-action="Editar" asp-route-id="@idCliente" method="post" class="form-crear">
+            @Html.AntiForgeryToken()
             <input type="hidden" asp-for="IdPersona" />
-            <input type="hidden" name="busqueda" value="@busqueda" />
-            <input type="hidden" name="estado" value="@estado" />
-            <input type="hidden" name="fechaInicio" value="@fechaInicio" />
-            <input type="hidden" name="fechaFin" value="@fechaFin" />
-            <input type="hidden" name="pageNumber" value="@pageNumber" />
-            <input type="hidden" name="pageSize" value="@pageSize" />
+
+            <input type="hidden" name="returnBusqueda" value="@busqueda" />
+            <input type="hidden" name="returnEstado" value="@estadoFiltro" />
+            <input type="hidden" name="returnFechaInicio" value="@fechaInicio" />
+            <input type="hidden" name="returnFechaFin" value="@fechaFin" />
+            <input type="hidden" name="returnPageNumber" value="@pageNumber" />
+            <input type="hidden" name="returnPageSize" value="@pageSize" />
 
             <div class="form-row">
                 <div class="form-group">
-                    <label asp-for="Nombres">Nombres</label>
-                    <input asp-for="Nombres" class="editable-field" />
+                    <label asp-for="Nombres">Nombres <span class="text-danger">*</span></label>
+                    <input asp-for="Nombres" class="editable-field" required />
+                    <span asp-validation-for="Nombres" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <label asp-for="Apellidos">Apellidos</label>
-                    <input asp-for="Apellidos" class="editable-field" />
+                    <label asp-for="Apellidos">Apellidos <span class="text-danger">*</span></label>
+                    <input asp-for="Apellidos" class="editable-field" required />
+                    <span asp-validation-for="Apellidos" class="text-danger"></span>
                 </div>
             </div>
 
             <div class="form-row">
                 <div class="form-group">
-                    <label asp-for="Telefono">Teléfono</label>
-                    <input asp-for="Telefono" class="editable-field" maxlength="9" />
+                    <label asp-for="Telefono">Teléfono <span class="text-danger">*</span></label>
+                    <input asp-for="Telefono" class="editable-field" maxlength="9" required />
+                    <span asp-validation-for="Telefono" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <label asp-for="Dni">DNI</label>
-                    <input asp-for="Dni" class="editable-field" maxlength="8" />
-                </div>
-            </div>
-
-            <div class="form-row">
-                <div class="form-group">
-                    <label asp-for="FechaNacimiento">Fecha de Nacimiento</label>
-                    <input asp-for="FechaNacimiento" type="date" class="editable-field" />
-                </div>
-                <div class="form-group">
-                    <label>Género</label>
-                    @Html.DropDownListFor(model => model.Genero, (IEnumerable<SelectListItem>)ViewBag.Generos, "Seleccione", new { @class = "editable-field" })
+                    <label asp-for="Dni">DNI <span class="text-danger">*</span></label>
+                    <input asp-for="Dni" class="editable-field" maxlength="8" required />
+                    <span asp-validation-for="Dni" class="text-danger"></span>
                 </div>
             </div>
 
             <div class="form-row">
                 <div class="form-group">
-                    <label>Estado</label>
-                    @Html.DropDownListFor(model => model.Estado,
-                    new List<SelectListItem>
-                    {
-                        new SelectListItem { Text = "Activo", Value = "1", Selected = Model.Estado == 1 },
-                        new SelectListItem { Text = "Inactivo", Value = "0", Selected = Model.Estado == 0 }
-                    },
-                    new { @class = "editable-field" })
+                    <label asp-for="FechaNacimiento">Fecha de Nacimiento <span class="text-danger">*</span></label>
+                    <input asp-for="FechaNacimiento" type="date" class="editable-field" required />
+                    <span asp-validation-for="FechaNacimiento" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <label>Fecha de Registro</label>
-                    <input asp-for="FechaRegistro" type="datetime-local" class="readonly-field" readonly />
+                    <label asp-for="Genero">Género <span class="text-danger">*</span></label>
+                    <select asp-for="Genero" asp-items="@ViewBag.Generos" class="editable-field" required>
+                        <option value="">Seleccione</option>
+                    </select>
+                    <span asp-validation-for="Genero" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label asp-for="Estado">Estado <span class="text-danger">*</span></label>
+                    <select asp-for="Estado" class="editable-field" required>
+                        <option value="1">Activo</option>
+                        <option value="0">Inactivo</option>
+                    </select>
+                    <span asp-validation-for="Estado" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="FechaRegistro">Fecha de Registro</label>
+                    <input type="text" value="@Model.FechaRegistro.ToString("dd/MM/yyyy HH:mm")" class="readonly-field" readonly />
                 </div>
             </div>
 
             <div class="form-buttons">
                 <a asp-action="Index"
                    asp-route-busqueda="@busqueda"
-                   asp-route-estado="@estado"
+                   asp-route-estado="@estadoFiltro"
                    asp-route-fechaInicio="@fechaInicio"
                    asp-route-fechaFin="@fechaFin"
                    asp-route-pageNumber="@pageNumber"

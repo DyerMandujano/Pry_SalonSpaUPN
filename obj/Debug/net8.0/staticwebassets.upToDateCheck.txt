@@ -9,9 +9,9 @@ wwwroot\css\VCitas\_HeaderCitas.css
 wwwroot\css\VCitas\_ListaCitas.css
 wwwroot\css\VCitas\_ObservacionCitas.css
 wwwroot\css\VCitas\_PaginaCitas.css
-wwwroot\css\VCitas\_StatsCitas.css
 wwwroot\css\VClientes\index.css
 wwwroot\css\VClientes\_ClienteForm.css
+wwwroot\css\VClientes\_FilterClientes.css
 wwwroot\css\VClientes\_HeaderClientes.css
 wwwroot\css\VClientes\_ListaClientes.css
 wwwroot\css\VClientes\_ModalDetalles.css
@@ -20,6 +20,13 @@ wwwroot\css\VInventario\index.css
 wwwroot\css\VInventario\_FilterInventario.css
 wwwroot\css\VInventario\_HeaderInventario.css
 wwwroot\css\VInventario\_ListaInventario.css
+wwwroot\css\VInventario\_PaginaInventario.css
+wwwroot\css\VProveedor\index.css
+wwwroot\css\VProveedor\_FilterProveedor.css
+wwwroot\css\VProveedor\_HeaderProveedor.css
+wwwroot\css\VProveedor\_ListaProveedor.css
+wwwroot\css\VProveedor\_PaginaProveedor.css
+wwwroot\css\VProveedor\_ProveedorForm.css
 wwwroot\Imagenes\tijera.jpg
 wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css
 wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css.map
@@ -79,4 +86,4 @@ wwwroot\lib\jquery\dist\jquery.min.js
 wwwroot\lib\jquery\dist\jquery.min.map
 wwwroot\lib\jquery\LICENSE.txt
 wwwroot\logo_spa.jpg
-wwwroot\css\VClientes\_FilterClientes.css
+wwwroot\css\VCitas\_StatsCitas.css

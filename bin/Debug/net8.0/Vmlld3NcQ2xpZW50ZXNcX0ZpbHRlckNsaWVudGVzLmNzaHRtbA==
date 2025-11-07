@@ -1,18 +1,16 @@
 ﻿@{
-    string orden = ViewBag.Orden ?? "ASC";
-    string nomProd = ViewBag.NomProd;
+    string busquedaActual = ViewBag.Busqueda;
     string fechaInicio = ViewBag.FechaInicio;
     string fechaFin = ViewBag.FechaFin;
-    string tipoMovimiento = ViewBag.TipoMovimiento;
+    bool? estadoActual = ViewBag.Estado;
     int pageSize = ViewBag.PageSize ?? 10;
 }
 
-<link href="~/css/VInventario/_FilterInventario.css" rel="stylesheet" />
+<link href="~/css/VClientes/_FilterClientes.css" rel="stylesheet" />
 
 <div class="busqueda-filtros-container">
-
     <div class="contenedor-buscador">
-        <p>Buscar en inventario:</p>
+        <p>Buscar clientes:</p>
 
         <form method="get" asp-action="Index" class="form-buscador-derecha" id="searchForm">
             <button type="submit" class="btn-search-separated" title="Buscar">
@@ -20,10 +18,10 @@
             </button>
 
             <input type="text"
-                   name="nomProd"
-                   value="@nomProd"
+                   name="busqueda"
+                   value="@busquedaActual"
                    class="input-buscador"
-                   placeholder="Ingrese nombre del producto" />
+                   placeholder="Ingrese DNI o nombre del cliente" />
 
             <div class="form-compact-dates">
                 <input type="date"
@@ -39,8 +37,7 @@
                        title="Fecha de fin" />
             </div>
 
-            <input type="hidden" name="orden" value="@orden" />
-            <input type="hidden" name="tipoMovimiento" value="@tipoMovimiento" />
+            <input type="hidden" name="estado" value="@estadoActual" />
             <input type="hidden" name="pageSize" value="@pageSize" />
             <input type="hidden" name="pageNumber" value="1" />
         </form>
@@ -48,27 +45,19 @@
 
     <div class="filtros-derecha">
         <form method="get" asp-action="Index" style="display: flex; gap: 0.9rem; align-items: center;">
-            <input type="hidden" name="nomProd" value="@nomProd" />
+            <input type="hidden" name="busqueda" value="@busquedaActual" />
             <input type="hidden" name="fechaInicio" value="@fechaInicio" />
             <input type="hidden" name="fechaFin" value="@fechaFin" />
             <input type="hidden" name="pageSize" value="@pageSize" />
             <input type="hidden" name="pageNumber" value="1" />
 
-            <select name="tipoMovimiento"
+            <select name="estado"
                     class="filtro-select"
-                    data-active="@(!string.IsNullOrEmpty(tipoMovimiento))"
+                    data-active="@(estadoActual.HasValue)"
                     onchange="this.form.submit()">
-                <option value="">Tipo: Todos</option>
-                <option value="ENTRADA" selected="@(tipoMovimiento == "ENTRADA")">Entrada</option>
-                <option value="SALIDA" selected="@(tipoMovimiento == "SALIDA")">Salida</option>
-            </select>
-
-            <select name="orden"
-                    class="filtro-select"
-                    data-active="@(orden != "ASC")"
-                    onchange="this.form.submit()">
-                <option value="ASC" selected="@(orden == "ASC")">Más antiguos</option>
-                <option value="DESC" selected="@(orden == "DESC")">Más recientes</option>
+                <option value="">Estado: Todos</option>
+                <option value="true" selected="@(estadoActual == true)">Activo</option>
+                <option value="false" selected="@(estadoActual == false)">Inactivo</option>
             </select>
         </form>
 

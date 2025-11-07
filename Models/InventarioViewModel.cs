@@ -15,6 +15,7 @@ namespace Pry_Solu_SalonSPA.Models
         public DateTime? Fecha_Registro { get; set; }
         public int? Stock_Actual { get; set; }
         public string? Estado_Stock { get; set; }
+        public int TotalRegistros { get; set; }
+        public int TotalPaginas { get; set; }
     }
-
 }

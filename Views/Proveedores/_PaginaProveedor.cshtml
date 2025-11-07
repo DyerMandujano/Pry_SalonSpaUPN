@@ -6,21 +6,18 @@
 
     string busqueda = ViewBag.Busqueda;
     int? estado = ViewBag.Estado;
-    string fechaInicio = ViewBag.FechaInicio;
-    string fechaFin = ViewBag.FechaFin;
+    string tipoProveedor = ViewBag.TipoProveedor;
 }
 
-<link href="~/css/VClientes/_PaginaClientes.css" rel="stylesheet" />
+<link href="~/css/VProveedor/_PaginaProveedor.css" rel="stylesheet" />
 
 <div class="paginacion-container">
 
-    <!-- 1. Selector de tamaño de página (PRIMERO) -->
     <div class="paginacion-size">
         <form method="get" asp-action="Index" style="display: flex; align-items: center; gap: 0.5rem;">
             <input type="hidden" name="busqueda" value="@busqueda" />
             <input type="hidden" name="estado" value="@estado" />
-            <input type="hidden" name="fechaInicio" value="@fechaInicio" />
-            <input type="hidden" name="fechaFin" value="@fechaFin" />
+            <input type="hidden" name="tipoProveedor" value="@tipoProveedor" />
             <input type="hidden" name="pageNumber" value="1" />
 
             <label for="pageSize">Registros por página:</label>
@@ -28,11 +25,11 @@
                 <option value="10" selected="@(pageSize == 10)">10</option>
                 <option value="20" selected="@(pageSize == 20)">20</option>
                 <option value="50" selected="@(pageSize == 50)">50</option>
+                <option value="100" selected="@(pageSize == 100)">100</option>
             </select>
         </form>
     </div>
 
-    <!-- 2. Controles de paginación (SEGUNDO) -->
     @if (totalPaginas > 1)
     {
         <div class="paginacion-controles">
@@ -41,26 +38,20 @@
                 <a asp-action="Index"
                    asp-route-busqueda="@busqueda"
                    asp-route-estado="@estado"
-                   asp-route-fechaInicio="@fechaInicio"
-                   asp-route-fechaFin="@fechaFin"
+                   asp-route-tipoProveedor="@tipoProveedor"
                    asp-route-pageNumber="1"
                    asp-route-pageSize="@pageSize"
                    class="btn-paginacion"
-                   title="Primera página">
-                    «
-                </a>
+                   title="Primera página">«</a>
 
                 <a asp-action="Index"
                    asp-route-busqueda="@busqueda"
                    asp-route-estado="@estado"
-                   asp-route-fechaInicio="@fechaInicio"
-                   asp-route-fechaFin="@fechaFin"
+                   asp-route-tipoProveedor="@tipoProveedor"
                    asp-route-pageNumber="@(pageNumber - 1)"
                    asp-route-pageSize="@pageSize"
                    class="btn-paginacion"
-                   title="Anterior">
-                    ‹
-                </a>
+                   title="Anterior">‹</a>
             }
 
             @{
@@ -79,13 +70,10 @@
                     <a asp-action="Index"
                        asp-route-busqueda="@busqueda"
                        asp-route-estado="@estado"
-                       asp-route-fechaInicio="@fechaInicio"
-                       asp-route-fechaFin="@fechaFin"
+                       asp-route-tipoProveedor="@tipoProveedor"
                        asp-route-pageNumber="@i"
                        asp-route-pageSize="@pageSize"
-                       class="btn-paginacion">
-                        @i
-                    </a>
+                       class="btn-paginacion">@i</a>
                 }
             }
 
@@ -94,26 +82,20 @@
                 <a asp-action="Index"
                    asp-route-busqueda="@busqueda"
                    asp-route-estado="@estado"
-                   asp-route-fechaInicio="@fechaInicio"
-                   asp-route-fechaFin="@fechaFin"
+                   asp-route-tipoProveedor="@tipoProveedor"
                    asp-route-pageNumber="@(pageNumber + 1)"
                    asp-route-pageSize="@pageSize"
                    class="btn-paginacion"
-                   title="Siguiente">
-                    ›
-                </a>
+                   title="Siguiente">›</a>
 
                 <a asp-action="Index"
                    asp-route-busqueda="@busqueda"
                    asp-route-estado="@estado"
-                   asp-route-fechaInicio="@fechaInicio"
-                   asp-route-fechaFin="@fechaFin"
+                   asp-route-tipoProveedor="@tipoProveedor"
                    asp-route-pageNumber="@totalPaginas"
                    asp-route-pageSize="@pageSize"
                    class="btn-paginacion"
-                   title="Última página">
-                    »
-                </a>
+                   title="Última página">»</a>
             }
         </div>
     }
