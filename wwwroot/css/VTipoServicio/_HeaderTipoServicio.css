@@ -1,0 +1,104 @@
+﻿.header-tipoServicio {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem 0.4rem;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.header-left {
+    flex: 1;
+    padding-left: 1rem;
+}
+
+.titulo-tituloServicio {
+    margin: 0;
+    color: #2B2766;
+    font-weight: 600;
+    font-size: 1.5rem;
+}
+
+.tipoServicio-header-subtitulo {
+    color: #A138C2;
+    font-size: 0.95rem;
+    margin: 1.1rem 0 0 0;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+}
+
+.btn-nuevo {
+    background-color: #EB2885;
+    color: white;
+    padding: 0.7rem 1.4rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: background 0.3s ease, transform 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+    .btn-nuevo:hover {
+        background-color: #EB3B8F;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(235, 40, 133, 0.3);
+    }
+
+    .btn-nuevo:active {
+        transform: translateY(0);
+    }
+
+    .btn-nuevo i {
+        font-size: 1rem;
+    }
+
+@media (max-width: 768px) {
+    .header-tipoServicio {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 1rem;
+        margin: 1rem;
+    }
+
+    .header-left {
+        text-align: center;
+        padding-left: 0;
+    }
+
+    .titulo-tituloServicio {
+        font-size: 1.5rem;
+    }
+
+    .tipoServicio-header-subtitulo {
+        font-size: 0.9rem;
+    }
+
+    .header-right {
+        justify-content: center;
+    }
+
+    .btn-nuevo {
+        width: 100%;
+        justify-content: center;
+        padding: 0.8rem 1.2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .titulo-tituloServicio {
+        font-size: 1.3rem;
+    }
+
+    .tipoServicio-header-subtitulo {
+        font-size: 0.85rem;
+    }
+
+    .btn-nuevo {
+        font-size: 0.9rem;
+        padding: 0.7rem 1rem;
+    }
+}

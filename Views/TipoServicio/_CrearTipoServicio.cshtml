@@ -1,0 +1,45 @@
+﻿@model Pry_Solu_SalonSPA.Models.TipoServicio
+
+@{
+    Layout = "~/Views/Main.cshtml";
+    ViewData["Title"] = "Crear Tipo de Servicio";
+}
+
+<link href="~/css/VTipoServicio/_TipoServicioForm.css" rel="stylesheet" />
+
+<div class="crear-tipoServicio-wrapper">
+
+    <div class="crear-tipoServicio-box">
+
+        <a asp-action="Index" class="btn-back">← Volver</a>
+
+        <div class="header-crear">
+            <h2>Crear Tipo de Servicio</h2>
+        </div>
+
+        <form asp-action="Crear" method="post" class="form-crear">
+            @Html.AntiForgeryToken()
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label asp-for="Descripcion">Descripción <span class="text-danger">*</span></label>
+                    <input asp-for="Descripcion" class="editable-field" required />
+                    <span asp-validation-for="Descripcion" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Estado</label>
+                    <input type="text" value="Activo" readonly class="readonly-field" />
+                    <input type="hidden" asp-for="Estado" value="1" />
+                </div>
+            </div>
+
+            <div class="form-buttons">
+                <a asp-action="Index" class="btn-cancelar">Cancelar</a>
+                <button type="submit" class="btn-crear">Crear Tipo de Servicio</button>
+            </div>
+        </form>
+    </div>
+</div>

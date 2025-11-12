@@ -49,6 +49,12 @@
             </a>
         </li>
         <li>
+            <a class="@(ViewContext.RouteData.Values["controller"]?.ToString() == "TipoServicio" ? "active" : "")"
+               asp-controller="TipoServicio" asp-action="Index">
+                <i class="bi bi-list-task"></i> Tipo Servicios
+            </a>
+        </li>
+        <li>
             <a class="@(ViewContext.RouteData.Values["controller"]?.ToString() == "Proveedores" ? "active" : "")"
                asp-controller="Proveedores" asp-action="Index">
                 <i class="bi bi-truck"></i> Proveedores

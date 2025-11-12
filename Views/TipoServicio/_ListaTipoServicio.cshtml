@@ -1,0 +1,82 @@
+﻿@model IEnumerable<Pry_Solu_SalonSPA.Models.TipoServicio>
+
+@{
+    string busqueda = ViewBag.Busqueda;
+    int? estado = ViewBag.Estado;
+    int pageNumber = ViewBag.PageNumber ?? 1;
+    int pageSize = ViewBag.PageSize ?? 10;
+}
+
+<link rel="stylesheet" href="~/css/VTipoServicio/_ListaTipoServicio.css" />
+
+<div class="contenedor-tiposervicio">
+
+    <div class="fila-tiposervicio encabezado">
+        <div>Descripción</div>
+        <div>Estado</div>
+        <div>Acciones</div>
+    </div>
+
+    @if (Model != null && Model.Any())
+    {
+        @foreach (var tipoServicio in Model)
+        {
+            <div class="fila-tiposervicio">
+                <div class="celda" data-label="Descripción:">@tipoServicio.Descripcion</div>
+
+                <div class="celda" data-label="Estado:">
+                    <span class="@(tipoServicio.Estado == 1 ? "estado-activo" : "estado-inactivo")">
+                        @(tipoServicio.Estado == 1 ? "Activo" : "Inactivo")
+                    </span>
+                </div>
+
+                <div class="celda acciones-tiposervicio" data-label="Acciones:">
+                    <a asp-action="Editar"
+                       asp-route-id="@tipoServicio.IdTipoServicio"
+                       asp-route-busqueda="@busqueda"
+                       asp-route-estado="@estado"
+                       asp-route-pageNumber="@pageNumber"
+                       asp-route-pageSize="@pageSize"
+                       class="btn-icon"
+                       title="Editar">
+                        <i class="fas fa-pen-to-square"></i>
+                    </a>
+
+                    <form asp-action="CambiarEstado" method="post" style="display:inline">
+                        <input type="hidden" name="id" value="@tipoServicio.IdTipoServicio" />
+                        <input type="hidden" name="busqueda" value="@busqueda" />
+                        <input type="hidden" name="estado" value="@estado" />
+                        <input type="hidden" name="pageNumber" value="@pageNumber" />
+                        <input type="hidden" name="pageSize" value="@pageSize" />
+
+                        <button type="submit"
+                                class="btn-icon"
+                                title="@(tipoServicio.Estado == 1 ? "Inactivar" : "Activar")">
+                            <i class="fas fa-@(tipoServicio.Estado == 1 ? "toggle-on" : "toggle-off")"></i>
+                        </button>
+                    </form>
+
+                    <form asp-action="Eliminar" method="post" style="display:inline" onsubmit="return confirm('¿Está seguro de eliminar este tipo de servicio?');">
+                        <input type="hidden" name="id" value="@tipoServicio.IdTipoServicio" />
+                        <input type="hidden" name="busqueda" value="@busqueda" />
+                        <input type="hidden" name="estado" value="@estado" />
+                        <input type="hidden" name="pageNumber" value="@pageNumber" />
+                        <input type="hidden" name="pageSize" value="@pageSize" />
+
+                        <button type="submit"
+                                class="btn-icon"
+                                title="Eliminar">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        }
+    }
+    else
+    {
+        <div class="sin-resultados">
+            <p>No se encontraron tipos de servicio con los filtros aplicados.</p>
+        </div>
+    }
+</div>

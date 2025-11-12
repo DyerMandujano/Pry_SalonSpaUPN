@@ -1,0 +1,70 @@
+﻿@model Pry_Solu_SalonSPA.Models.TipoServicio
+
+@{
+    Layout = "~/Views/Main.cshtml";
+    ViewData["Title"] = "Editar Tipo de Servicio";
+
+    string busqueda = ViewBag.ReturnBusqueda;
+    int? estadoFiltro = ViewBag.ReturnEstado;
+    int pageNumber = ViewBag.ReturnPageNumber ?? 1;
+    int pageSize = ViewBag.ReturnPageSize ?? 10;
+    int idTipoServicio = ViewBag.IdTipoServicio ?? 0;
+}
+
+<link href="~/css/VTipoServicio/_TipoServicioForm.css" rel="stylesheet" />
+
+<div class="crear-tipoServicio-wrapper">
+    <div class="crear-tipoServicio-box">
+
+        <a asp-action="Index"
+           asp-route-busqueda="@busqueda"
+           asp-route-estado="@estadoFiltro"
+           asp-route-pageNumber="@pageNumber"
+           asp-route-pageSize="@pageSize"
+           class="btn-back">← Volver</a>
+
+        <div class="header-crear">
+            <h2>Editar Tipo de Servicio</h2>
+        </div>
+
+        <form asp-action="Editar" asp-route-id="@idTipoServicio" method="post" class="form-crear">
+            @Html.AntiForgeryToken()
+            <input type="hidden" asp-for="IdTipoServicio" />
+
+            <input type="hidden" name="returnBusqueda" value="@busqueda" />
+            <input type="hidden" name="returnEstado" value="@estadoFiltro" />
+            <input type="hidden" name="returnPageNumber" value="@pageNumber" />
+            <input type="hidden" name="returnPageSize" value="@pageSize" />
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label asp-for="Descripcion">Descripción <span class="text-danger">*</span></label>
+                    <input asp-for="Descripcion" class="editable-field" required />
+                    <span asp-validation-for="Descripcion" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label asp-for="Estado">Estado <span class="text-danger">*</span></label>
+                    <select asp-for="Estado" class="editable-field" required>
+                        <option value="1">Activo</option>
+                        <option value="0">Inactivo</option>
+                    </select>
+                    <span asp-validation-for="Estado" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-buttons">
+                <a asp-action="Index"
+                   asp-route-busqueda="@busqueda"
+                   asp-route-estado="@estadoFiltro"
+                   asp-route-pageNumber="@pageNumber"
+                   asp-route-pageSize="@pageSize"
+                   class="btn-cancelar">Cancelar</a>
+
+                <button type="submit" class="btn-crear">Guardar Cambios</button>
+            </div>
+        </form>
+    </div>
+</div>

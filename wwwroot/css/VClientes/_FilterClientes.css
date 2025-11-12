@@ -113,7 +113,6 @@
         color: var(--rs-primary);
     }
 
-
 .form-compact-dates {
     display: flex;
     gap: 0.45rem;
@@ -283,20 +282,4 @@
     .input-date {
         width: 100%;
     }
-}
-
-@keyframes fadeInDown {
-    from {
-        opacity: 0;
-        transform: translateY(-10px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.busqueda-filtros-container {
-    animation: fadeInDown 0.3s ease-out;
 }

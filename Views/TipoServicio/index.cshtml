@@ -1,0 +1,21 @@
+﻿@model IEnumerable<Pry_Solu_SalonSPA.Models.TipoServicio>
+
+@{
+    Layout = "~/Views/Main.cshtml";
+    ViewData["Title"] = "Tipo Servicio";
+}
+
+<link rel="stylesheet" href="~/css/VProveedor/index.css" />
+
+@await Html.PartialAsync("_HeaderTipoServicio")
+
+<div class="proveedor-lista-container">
+
+
+    @await Html.PartialAsync("_FilterTipoServicio")
+
+    @await Html.PartialAsync("_ListaTipoServicio", Model)
+
+    @await Html.PartialAsync("_PaginaTipoServicio")
+
+</div>

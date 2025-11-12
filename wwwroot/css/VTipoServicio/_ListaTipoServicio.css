@@ -1,4 +1,4 @@
-﻿.contenedor-clientes {
+﻿.contenedor-tiposervicio {
     width: 95%;
     margin: 0.5rem auto;
     font-family: 'Arial', sans-serif;
@@ -6,9 +6,9 @@
     padding: 0 1rem;
 }
 
-.fila-clientes {
+.fila-tiposervicio {
     display: grid;
-    grid-template-columns: 1.4fr 1.4fr 1.3fr 1.3fr 1.3fr 1.5fr 1.0fr 1.1fr 1.0fr;
+    grid-template-columns: 2.5fr 1.2fr 1.5fr;
     border-bottom: 2px solid #EBC5E5;
     border-radius: 0;
     padding: 0.35rem 0.5rem;
@@ -17,11 +17,11 @@
     margin-bottom: 0.2rem;
 }
 
-    .fila-clientes:hover {
+    .fila-tiposervicio:hover {
         background-color: #ffe6f0;
     }
 
-    .fila-clientes.encabezado {
+    .fila-tiposervicio.encabezado {
         font-weight: bold;
         background-color: #f9f1f7;
         color: #2B2766;
@@ -36,46 +36,7 @@
     font-size: 0.8rem;
 }
 
-/* Estilos para estados con tonos */
-.estado-activo,
-.estado-inactivo {
-    display: inline-block;
-    padding: 0.15rem 0.65rem;
-    border-radius: 999px;
-    font-weight: 600;
-    font-size: 0.78rem;
-    text-transform: uppercase;
-    line-height: 1;
-    letter-spacing: 0.02em;
-    transition: all 0.3s ease;
-}
-
 .estado-activo {
-    color: #18794a;
-    background-color: #dff9e6;
-    border: 1px solid #99FFBB;
-    box-shadow: 0 2px 4px rgba(24, 121, 74, 0.1);
-}
-
-    .estado-activo:hover {
-        background-color: #c7f5d9;
-        box-shadow: 0 3px 6px rgba(24, 121, 74, 0.15);
-    }
-
-.estado-inactivo {
-    color: #7f2a8f;
-    background-color: #f7e6fb;
-    border: 1px solid #EBC5E5;
-    box-shadow: 0 2px 4px rgba(127, 42, 143, 0.1);
-}
-
-    .estado-inactivo:hover {
-        background-color: #f0d4f8;
-        box-shadow: 0 3px 6px rgba(127, 42, 143, 0.15);
-    }
-
-/* Badges (alternativa si usas la clase badge) */
-.badge {
     display: inline-block;
     padding: 0.15rem 0.65rem;
     border-radius: 999px;
@@ -84,27 +45,32 @@
     text-transform: uppercase;
     line-height: 1;
     letter-spacing: 0.02em;
-}
-
-.badge-activo {
     color: #18794a;
     background-color: #dff9e6;
     border: 1px solid #99FFBB;
 }
 
-.badge-inactivo {
+.estado-inactivo {
+    display: inline-block;
+    padding: 0.15rem 0.65rem;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    line-height: 1;
+    letter-spacing: 0.02em;
     color: #7f2a8f;
     background-color: #f7e6fb;
     border: 1px solid #EBC5E5;
 }
 
-.acciones-clientes {
+.acciones-tiposervicio {
     display: flex;
     gap: 0.4rem;
     justify-content: center;
 }
 
-    .acciones-clientes .btn-icon {
+    .acciones-tiposervicio .btn-icon {
         background-color: white;
         border: 2px solid #EBC5E5;
         border-radius: 8px;
@@ -116,43 +82,14 @@
         transition: 0.2s;
     }
 
-        .acciones-clientes .btn-icon i {
+        .acciones-tiposervicio .btn-icon i {
             color: #2B2766;
             font-size: 1rem;
         }
 
-        .acciones-clientes .btn-icon:hover {
+        .acciones-tiposervicio .btn-icon:hover {
             background-color: #ffe6f0;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(235, 197, 229, 0.3);
         }
-
-.btn-editar {
-    background-color: #2B2766;
-    border-color: #EBC5E5;
-}
-
-    .btn-editar:hover {
-        background-color: #4a7ca3;
-    }
-
-.btn-inactivar {
-    background-color: #b95a5a;
-    border-color: #EBC5E5;
-}
-
-    .btn-inactivar:hover {
-        background-color: #a44a4a;
-    }
-
-.btn-activar {
-    background-color: #5ab96f;
-    border-color: #EBC5E5;
-}
-
-    .btn-activar:hover {
-        background-color: #4aa35d;
-    }
 
 .sin-resultados {
     text-align: center;
@@ -164,12 +101,17 @@
     margin: 1rem 0;
 }
 
+    .sin-resultados p {
+        margin: 0;
+        font-size: 0.9rem;
+    }
+
 @media (max-width: 768px) {
-    .fila-clientes.encabezado {
+    .fila-tiposervicio.encabezado {
         display: none;
     }
 
-    .fila-clientes {
+    .fila-tiposervicio {
         display: flex;
         flex-direction: column;
         padding: 0.3rem;
@@ -192,12 +134,15 @@
             color: #b95aa1;
         }
 
-    .acciones-clientes {
+    .acciones-tiposervicio {
         flex-direction: row;
         justify-content: space-around;
+        width: 100%;
+        gap: 0.3rem;
     }
 
-        .acciones-clientes .btn-icon {
+        .acciones-tiposervicio .btn-icon {
             flex: 1;
+            padding: 0.4rem;
         }
 }

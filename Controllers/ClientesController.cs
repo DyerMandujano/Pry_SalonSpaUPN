@@ -240,7 +240,6 @@ namespace Pry_Solu_SalonSPA.Controllers
             int returnPageNumber = 1,
             int returnPageSize = 10)
         {
-            // Remover validación de colecciones de navegación
             ModelState.Remove("Clientes");
             ModelState.Remove("Empleados");
 
@@ -366,12 +365,10 @@ namespace Pry_Solu_SalonSPA.Controllers
 
                 await command.ExecuteNonQueryAsync();
 
-                // Mensaje mejorado que explica si el cliente desaparecerá
                 string mensaje = nuevoEstado == 1
                     ? "Cliente activado correctamente."
                     : "Cliente inactivado correctamente.";
 
-                // Si hay filtro de estado activo y el nuevo estado no coincide
                 if (estado.HasValue && estado.Value != nuevoEstado)
                 {
                     mensaje += " (El cliente ya no aparece en esta vista debido a los filtros aplicados)";
