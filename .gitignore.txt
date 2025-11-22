@@ -1,0 +1,7 @@
+# Ignorar caché y configuraciones de usuario de Visual Studio (importante, veo la carpeta .vs en tu imagen)
+.vs/
+*.user
+
+# Ignorar resultados de compilación (binarios)
+bin/
+obj/
