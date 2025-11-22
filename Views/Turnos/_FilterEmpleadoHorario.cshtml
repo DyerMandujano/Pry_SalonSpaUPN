@@ -1,0 +1,36 @@
+﻿@{
+    string busqueda = ViewBag.Busqueda;
+    int? idPerfil = ViewBag.IdPerfil;
+    int? estado = ViewBag.Estado;
+    int pageSize = ViewBag.PageSize ?? 10;
+}
+
+<link href="~/css/VEmpleados/_FilterEmpleados.css" rel="stylesheet" />
+
+<div class="busqueda-filtros-container">
+    <form method="get" asp-action="Index" class="form-buscador-derecha" id="searchForm">
+        <input type="text" name="busqueda" value="@busqueda" class="input-buscador" placeholder="Nombre o apellido..." />
+        <select name="idPerfil" class="filtro-select" onchange="this.form.submit()">
+            <option value="">Perfil: Todos</option>
+            @if (ViewData["Perfiles"] != null)
+            {
+                foreach (var perfil in (SelectList)ViewData["Perfiles"])
+                {
+                    <option value="@perfil.Value" selected="@(idPerfil.ToString() == perfil.Value)">@perfil.Text</option>
+                }
+            }
+        </select>
+        <select name="estado" class="filtro-select" onchange="this.form.submit()">
+            <option value="">Estado: Todos</option>
+            <option value="1" selected="@(estado == 1)">Activo</option>
+            <option value="0" selected="@(estado == 0)">Inactivo</option>
+        </select>
+        <select name="pageSize" class="filtro-select" onchange="this.form.submit()">
+            <option value="10" selected="@(pageSize == 10)">10</option>
+            <option value="20" selected="@(pageSize == 20)">20</option>
+            <option value="50" selected="@(pageSize == 50)">50</option>
+            <option value="100" selected="@(pageSize == 100)">100</option>
+        </select>
+        <button type="submit" class="btn-search-separated"><i class="bi bi-search"></i></button>
+    </form>
+</div>

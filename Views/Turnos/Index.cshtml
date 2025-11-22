@@ -1,9 +1,21 @@
-﻿@model Pry_Solu_SalonSPA.Models.Horario
-
+﻿@model IEnumerable<Pry_Solu_SalonSPA.Models.Empleado>
 @{
     Layout = "~/Views/Main.cshtml";
-    ViewData["Title"] = "Turnos";
+    ViewData["Title"] = "Turnos de Empleados";
 }
 
-<h1>Turnos</h1>
-<p>Gestión de Turnos registrados en el sistema.</p>
+<link href="~/css/VEmpleados/index.css" rel="stylesheet" />
+
+<div class="empleados-container">
+
+    @await Html.PartialAsync("_HeaderEmpleadoHorario")
+
+    <div class="empleados-lista-container">
+
+        @await Html.PartialAsync("_FilterEmpleadoHorario")
+
+        @await Html.PartialAsync("_ListaEmpleadoHorario", Model)
+
+        @await Html.PartialAsync("_PaginaEmpleadoHorario")
+    </div>
+</div>

@@ -1,0 +1,13 @@
+﻿.empleado-info-box {
+    background-color: #f0f8ff;
+    border: 1px solid #b3d9ff;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+}
+
+    .empleado-info-box h4 {
+        color: #2B2766;
+        margin-bottom: 0.75rem;
+        font-size: 1rem;
+    }

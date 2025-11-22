@@ -1,0 +1,37 @@
+﻿.empleados-header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.0rem 0.4rem;
+    margin: 1.0rem 0.4rem;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+    .empleados-header-container .empleados-header-titulo {
+        margin: 0;
+        color: #2B2766;
+        font-weight: 600;
+    }
+
+.empleados-header-subtitulo {
+    color: #A138C2;
+    font-size: 0.95rem;
+}
+
+.btn-nuevo-empleado {
+    background-color: #EB2885;
+    color: white;
+    padding: 0.7rem 1.4rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: background 0.3s ease;
+}
+
+    .btn-nuevo-empleado:hover {
+        background-color: #EB3B8F;
+    }
+
+    .btn-nuevo-empleado i {
+        margin-right: 6px;
+    }

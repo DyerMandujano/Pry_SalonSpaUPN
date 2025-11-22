@@ -1,0 +1,161 @@
+﻿@model Pry_Solu_SalonSPA.Models.Empleado
+
+@{
+    Layout = "~/Views/Main.cshtml";
+    ViewData["Title"] = "Editar Empleado";
+
+    var busqueda = ViewBag.ReturnBusqueda as string;
+    var idPerfilFiltro = ViewBag.ReturnIdPerfil as int?;
+    var estadoFiltro = ViewBag.ReturnEstado as int?;
+    var fechaDesde = ViewBag.ReturnFechaDesde as string;
+    var fechaHasta = ViewBag.ReturnFechaHasta as string;
+    var orden = ViewBag.ReturnOrden as string;
+    var pageNumber = (ViewBag.ReturnPageNumber as int?) ?? 1;
+    var pageSize = (ViewBag.ReturnPageSize as int?) ?? 10;
+    var idEmpleado = (ViewBag.IdEmpleado as int?) ?? 0;
+    var estadoActual = (ViewBag.EstadoActual as int?) ?? 1;
+}
+
+<link href="~/css/VEmpleados/_EmpleadoForm.css" rel="stylesheet" />
+
+<div class="crear-empleado-wrapper">
+    <div class="crear-empleado-box">
+
+        <a asp-action="Index"
+           asp-route-busqueda="@busqueda"
+           asp-route-idPerfil="@idPerfilFiltro"
+           asp-route-estado="@estadoFiltro"
+           asp-route-fechaDesde="@fechaDesde"
+           asp-route-fechaHasta="@fechaHasta"
+           asp-route-orden="@orden"
+           asp-route-pageNumber="@pageNumber"
+           asp-route-pageSize="@pageSize"
+           class="btn-back">← Volver</a>
+
+        <div class="header-crear">
+            <h2>Editar Empleado</h2>
+        </div>
+
+        @if (ViewBag.Error != null)
+        {
+            <div class="alert alert-danger">
+                @ViewBag.Error
+            </div>
+        }
+
+        <form asp-action="Editar" method="post" class="form-crear">
+            @Html.AntiForgeryToken()
+            <input type="hidden" name="Id_Empleado" value="@idEmpleado" />
+
+            <input type="hidden" name="busqueda" value="@busqueda" />
+            <input type="hidden" name="idPerfil" value="@idPerfilFiltro" />
+            <input type="hidden" name="estado" value="@estadoFiltro" />
+            <input type="hidden" name="fechaDesde" value="@fechaDesde" />
+            <input type="hidden" name="fechaHasta" value="@fechaHasta" />
+            <input type="hidden" name="orden" value="@orden" />
+            <input type="hidden" name="pageNumber" value="@pageNumber" />
+            <input type="hidden" name="pageSize" value="@pageSize" />
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Nombres <span class="text-danger">*</span></label>
+                    <input name="Nombres" value="@(Model?.IdPersonaNavigation?.Nombres ?? "")" class="editable-field" required />
+                </div>
+                <div class="form-group">
+                    <label>Apellidos <span class="text-danger">*</span></label>
+                    <input name="Apellidos" value="@(Model?.IdPersonaNavigation?.Apellidos ?? "")" class="editable-field" required />
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Teléfono <span class="text-danger">*</span></label>
+                    <input name="Telefono" value="@(Model?.IdPersonaNavigation?.Telefono ?? "")" class="editable-field" maxlength="9" required />
+                </div>
+                <div class="form-group">
+                    <label>DNI <span class="text-danger">*</span></label>
+                    <input name="Dni" value="@(Model?.IdPersonaNavigation?.Dni ?? "")" class="editable-field" maxlength="8" required />
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Fecha de Nacimiento <span class="text-danger">*</span></label>
+                    <input name="Fecha_nacimiento" type="date"
+                           value="@(Model?.IdPersonaNavigation?.FechaNacimiento.ToString("yyyy-MM-dd") ?? "")"
+                           class="editable-field" required />
+                </div>
+                <div class="form-group">
+                    <label>Género <span class="text-danger">*</span></label>
+                    <select name="Genero" asp-items="@ViewBag.Generos" class="editable-field" required>
+                        <option value="">Seleccione</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Perfil <span class="text-danger">*</span></label>
+                    <select name="Id_Perfil" asp-items="@ViewData["Perfiles"] as SelectList" class="editable-field" required>
+                        <option value="">Seleccione un perfil</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Sueldo <span class="text-danger">*</span></label>
+                    <input name="Sueldo" type="number" step="0.01" min="0" value="@(Model?.Sueldo ?? 0)" class="editable-field" required />
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Estado <span class="text-danger">*</span></label>
+                    <select name="Estado" class="editable-field" required>
+                        @if (estadoActual == 0)
+                        {
+                            <option value="1">Activo</option>
+                            <option value="0" selected>Inactivo</option>
+                        }
+                        else
+                        {
+                            <option value="1" selected>Activo</option>
+                            <option value="0">Inactivo</option>
+                        }
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Fecha de Registro</label>
+                    <input type="text"
+                           value="@(Model?.IdPersonaNavigation?.FechaRegistro.ToString("dd/MM/yyyy HH:mm") ?? "")"
+                           class="readonly-field" readonly />
+                </div>
+            </div>
+
+            @if (Model?.FechaRetiro != null)
+            {
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Fecha de Retiro</label>
+                        <input type="text" value="@Model.FechaRetiro.Value.ToString("dd/MM/yyyy")" class="readonly-field" readonly />
+                    </div>
+                    <div class="form-group"></div>
+                </div>
+            }
+
+            <div class="form-buttons">
+                <a asp-action="Index"
+                   asp-route-busqueda="@busqueda"
+                   asp-route-idPerfil="@idPerfilFiltro"
+                   asp-route-estado="@estadoFiltro"
+                   asp-route-fechaDesde="@fechaDesde"
+                   asp-route-fechaHasta="@fechaHasta"
+                   asp-route-orden="@orden"
+                   asp-route-pageNumber="@pageNumber"
+                   asp-route-pageSize="@pageSize"
+                   class="btn-cancelar">Cancelar</a>
+
+                <button type="submit" class="btn-crear">Guardar Cambios</button>
+            </div>
+        </form>
+    </div>
+</div>

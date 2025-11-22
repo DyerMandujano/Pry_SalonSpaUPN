@@ -1,0 +1,99 @@
+﻿@{
+    string busqueda = ViewBag.Busqueda;
+    int? idPerfil = ViewBag.IdPerfil;
+    int? estado = ViewBag.Estado;
+    string fechaDesde = ViewBag.FechaDesde;
+    string fechaHasta = ViewBag.FechaHasta;
+    string orden = ViewBag.Orden;
+    int pageSize = ViewBag.PageSize ?? 10;
+}
+
+<link href="~/css/VEmpleados/_FilterEmpleados.css" rel="stylesheet" />
+
+<div class="busqueda-filtros-container">
+
+    <div class="contenedor-buscador">
+        <p>Buscar empleados:</p>
+
+        <form method="get" asp-action="Index" class="form-buscador-derecha" id="searchForm">
+
+            <button type="submit" class="btn-search-separated" title="Buscar">
+                <i class="bi bi-search"></i>
+            </button>
+
+            <input type="text"
+                   name="busqueda"
+                   value="@busqueda"
+                   class="input-buscador"
+                   placeholder="Ingrese DNI, Nombre o Apellido" />
+
+            <div class="form-compact-dates">
+                <input type="date"
+                       name="fechaDesde"
+                       value="@fechaDesde"
+                       class="input-date"
+                       title="Fecha desde" />
+
+                <input type="date"
+                       name="fechaHasta"
+                       value="@fechaHasta"
+                       class="input-date"
+                       title="Fecha hasta" />
+            </div>
+
+            <input type="hidden" name="idPerfil" value="@idPerfil" />
+            <input type="hidden" name="estado" value="@estado" />
+            <input type="hidden" name="orden" value="@orden" />
+            <input type="hidden" name="pageSize" value="@pageSize" />
+            <input type="hidden" name="pageNumber" value="1" />
+        </form>
+    </div>
+
+    <div class="filtros-derecha">
+        <form method="get" asp-action="Index" style="display: flex; gap: 0.9rem; align-items: center;">
+            <input type="hidden" name="busqueda" value="@busqueda" />
+            <input type="hidden" name="fechaDesde" value="@fechaDesde" />
+            <input type="hidden" name="fechaHasta" value="@fechaHasta" />
+            <input type="hidden" name="pageSize" value="@pageSize" />
+            <input type="hidden" name="pageNumber" value="1" />
+
+            <select name="idPerfil"
+                    class="filtro-select"
+                    data-active="@(idPerfil.HasValue)"
+                    onchange="this.form.submit()">
+                <option value="">Perfil: Todos</option>
+                @if (ViewData["Perfiles"] != null)
+                {
+                    @foreach (var perfil in (SelectList)ViewData["Perfiles"])
+                    {
+                        <option value="@perfil.Value" selected="@(idPerfil.ToString() == perfil.Value)">
+                            @perfil.Text
+                        </option>
+                    }
+                }
+            </select>
+
+            <select name="estado"
+                    class="filtro-select"
+                    data-active="@(estado.HasValue)"
+                    onchange="this.form.submit()">
+                <option value="">Estado: Todos</option>
+                <option value="1" selected="@(estado == 1)">Activo</option>
+                <option value="0" selected="@(estado == 0)">Inactivo</option>
+            </select>
+
+            <select name="orden"
+                    class="filtro-select"
+                    data-active="@(!string.IsNullOrEmpty(orden) && orden != "DESC")"
+                    onchange="this.form.submit()">
+                <option value="DESC" selected="@(orden == "DESC" || string.IsNullOrEmpty(orden))">Más Recientes</option>
+                <option value="ASC" selected="@(orden == "ASC")">Más Antiguos</option>
+            </select>
+        </form>
+
+        <a asp-action="Index" class="limpiar-btn">
+            <i class="bi bi-x-circle"></i>
+            <span>Limpiar</span>
+        </a>
+    </div>
+</div>

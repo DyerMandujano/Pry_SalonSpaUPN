@@ -1,0 +1,294 @@
+﻿:root {
+    --rs-primary: #5A2D82;
+    --rs-accent: #EBC5E5;
+    --rs-bg-input: #EDE3FB;
+    --rs-hover: #7F4AA8;
+    --rs-focus: #FFBBCC;
+    --rs-active: #d63384;
+    --rs-text: #2B2766;
+    --radius: 8px;
+}
+
+.busqueda-filtros-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start; /* Cambiar a flex-start */
+    gap: 1.2rem; /* Reducir gap */
+    margin: 0.6rem 1.5rem 0.8rem; /* Ajustar márgenes */
+    font-family: 'Arial', sans-serif;
+}
+
+.contenedor-buscador {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    min-width: 0;
+    flex: 1;
+}
+
+    .contenedor-buscador p {
+        margin: 0;
+        font-size: 0.86rem;
+        color: var(--rs-text);
+        padding-left: 6px;
+        font-weight: 600;
+    }
+
+.form-buscador-derecha {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem; /* Reducir gap */
+    flex-wrap: nowrap;
+}
+
+.input-buscador {
+    flex: none;
+    width: 200px; /* Reducir ancho */
+    max-width: 100%;
+    padding: 0.42rem 0.65rem;
+    border: 2px solid var(--rs-primary);
+    border-radius: var(--radius);
+    font-size: 0.86rem;
+    background-color: var(--rs-bg-input);
+    color: var(--rs-primary);
+    outline: none;
+    transition: 0.2s;
+    font-weight: 500;
+}
+
+    .input-buscador:focus {
+        border-color: var(--rs-focus);
+        box-shadow: 0 0 0 3px rgba(255, 187, 204, 0.12);
+    }
+
+    .input-buscador::placeholder {
+        color: var(--rs-primary);
+        opacity: 0.9;
+    }
+
+    .input-buscador:hover {
+        border-color: var(--rs-hover);
+    }
+
+.btn-search-separated {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    padding: 0.42rem 0.9rem;
+    border-radius: 10px;
+    border: none;
+    background-color: #fff;
+    color: var(--rs-primary);
+    font-weight: 600;
+    font-size: 0.86rem;
+    cursor: pointer;
+    transition: 0.2s;
+    white-space: nowrap;
+    outline: none;
+}
+
+    .btn-search-separated:hover {
+        background-color: var(--rs-primary);
+        border-color: var(--rs-primary);
+        color: white;
+        box-shadow: 0 2px 8px rgba(127, 74, 168, 0.25);
+    }
+
+        .btn-search-separated:hover i {
+            color: white;
+        }
+
+    .btn-search-separated:active {
+        transform: scale(0.98);
+    }
+
+    .btn-search-separated:focus {
+        outline: none;
+        box-shadow: 0 0 0 3px rgba(255, 187, 204, 0.12);
+    }
+
+    .btn-search-separated i {
+        font-size: 0.95rem;
+        color: var(--rs-primary);
+    }
+
+.form-compact-dates {
+    display: flex;
+    gap: 0.35rem;
+    align-items: center;
+}
+
+.input-date {
+    padding: 0.38rem 0.45rem;
+    border: 2px solid var(--rs-accent);
+    border-radius: var(--radius);
+    background: #fff;
+    color: var(--rs-text);
+    font-size: 0.83rem;
+    transition: 0.2s;
+    font-weight: 500;
+}
+
+    .input-date:focus {
+        border-color: var(--rs-hover);
+        box-shadow: 0 0 0 3px rgba(127, 74, 168, 0.08);
+    }
+
+.filtros-derecha {
+    display: flex;
+    align-items: center; /* Center para alinear con inputs */
+    gap: 0.65rem; /* Reducir gap */
+    padding-right: 0.5rem;
+    padding-top: 0.3rem;
+}
+
+    .filtros-derecha form {
+        display: flex;
+        gap: 0.65rem; /* Reducir gap interno del form */
+        align-items: center;
+    }
+
+.filtro-select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    padding: 0.4rem 2.2rem 0.4rem 0.75rem;
+    border: 2px solid var(--rs-accent);
+    border-radius: 10px;
+    background-color: #fff;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%232B2766' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.6rem center;
+    color: var(--rs-text);
+    font-weight: 600;
+    font-size: 0.83rem;
+    cursor: pointer;
+    transition: 0.18s;
+    min-width: 120px; /* Reducir ancho mínimo */
+}
+
+    .filtro-select:hover {
+        border-color: var(--rs-hover);
+        box-shadow: 0 2px 8px rgba(127, 74, 168, 0.15);
+    }
+
+    .filtro-select:focus {
+        outline: none;
+        border-color: var(--rs-active);
+        box-shadow: 0 0 0 3px rgba(214, 51, 132, 0.1);
+    }
+
+    .filtro-select[data-active="True"] {
+        border-color: var(--rs-active);
+        background-color: #fff5f9;
+        box-shadow: 0 0 0 3px rgba(99, 33, 122, 0.06);
+    }
+
+.limpiar-btn {
+    display: inline-flex;
+    align-items: center; /* Cambié de "end" a "center" para mejor alineación */
+    gap: 0.4rem;
+    padding: 0.4rem 0.85rem;
+    border: 2px solid var(--rs-accent);
+    border-radius: 10px;
+    background-color: #fff;
+    color: var(--rs-text);
+    font-weight: 600;
+    font-size: 0.83rem;
+    text-decoration: none;
+    transition: 0.18s;
+    cursor: pointer;
+    margin-left: auto; /* Esto lo empuja hacia la derecha */
+}
+
+    .limpiar-btn:hover {
+        background-color: #ffe6f0;
+        border-color: var(--rs-active);
+    }
+
+    .limpiar-btn i {
+        font-size: 0.9rem;
+    }
+
+@media (max-width: 1024px) {
+    .busqueda-filtros-container {
+        gap: 1.2rem;
+    }
+
+    .filtros-derecha {
+        gap: 0.6rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .busqueda-filtros-container {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 1rem;
+        margin: 1rem;
+    }
+
+    .contenedor-buscador {
+        width: 100%;
+    }
+
+    .form-buscador-derecha {
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+
+    .input-buscador {
+        flex: 1 1 100%;
+        min-width: 100%;
+    }
+
+    .btn-search-separated {
+        width: 100%;
+    }
+
+    .form-compact-dates {
+        width: 100%;
+        gap: 0.5rem;
+    }
+
+    .input-date {
+        flex: 1;
+    }
+
+    .filtros-derecha {
+        width: 100%;
+        flex-direction: column;
+        gap: 0.6rem;
+        padding-right: 0;
+        padding-top: 0;
+    }
+
+    .filtro-select,
+    .limpiar-btn {
+        width: 100%;
+        min-width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .contenedor-buscador p {
+        font-size: 0.85rem;
+    }
+
+    .input-buscador,
+    .input-date,
+    .filtro-select,
+    .limpiar-btn,
+    .btn-search-separated {
+        font-size: 0.85rem;
+    }
+
+    .form-compact-dates {
+        flex-direction: column;
+    }
+
+    .input-date {
+        width: 100%;
+    }
+}

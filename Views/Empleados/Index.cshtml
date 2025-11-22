@@ -1,9 +1,23 @@
-﻿@model Pry_Solu_SalonSPA.Models.Empleado
+﻿@model List<Pry_Solu_SalonSPA.Models.Empleado>
 
 @{
     Layout = "~/Views/Main.cshtml";
     ViewData["Title"] = "Empleados";
+
 }
 
-<h1>Empleados</h1>
-<p>Gestión de Empleados registrados en el sistema.</p>
+<link rel="stylesheet" href="~/css/VEmpleados/index.css" />
+
+<div class="empleados-container">
+
+    @await Html.PartialAsync("_HeaderEmpleados")
+
+    <div class="empleados-lista-container">
+
+        @await Html.PartialAsync("_FilterEmpleados")
+
+        @await Html.PartialAsync("_ListaEmpleados", Model)
+
+        @await Html.PartialAsync("_PaginaEmpleados")
+    </div>
+</div>

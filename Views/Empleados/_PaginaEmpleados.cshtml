@@ -1,0 +1,144 @@
+﻿@{
+    int pageNumber = ViewBag.PageNumber ?? 1;
+    int pageSize = ViewBag.PageSize ?? 10;
+    int totalPaginas = ViewBag.TotalPaginas ?? 0;
+    int totalRegistros = ViewBag.TotalRegistros ?? 0;
+
+    string busqueda = ViewBag.Busqueda;
+    int? idPerfil = ViewBag.IdPerfil;
+    string estado = ViewBag.Estado;
+    string fechaDesde = ViewBag.FechaDesde;
+    string fechaHasta = ViewBag.FechaHasta;
+    string orden = ViewBag.Orden;
+}
+
+<link href="~/css/VEmpleados/_PaginaEmpleados.css" rel="stylesheet" />
+
+<div class="paginacion-container">
+
+    <div class="paginacion-size">
+        <form method="get" asp-action="Index" style="display: flex; align-items: center; gap: 0.5rem;">
+            <input type="hidden" name="busqueda" value="@busqueda" />
+            <input type="hidden" name="idPerfil" value="@idPerfil" />
+            <input type="hidden" name="estado" value="@estado" />
+            <input type="hidden" name="fechaDesde" value="@fechaDesde" />
+            <input type="hidden" name="fechaHasta" value="@fechaHasta" />
+            <input type="hidden" name="orden" value="@orden" />
+            <input type="hidden" name="pageNumber" value="1" />
+
+            <label for="pageSize">Registros por página:</label>
+            <select name="pageSize" id="pageSize" class="select-pagesize" onchange="this.form.submit()">
+                <option value="10" selected="@(pageSize == 10)">10</option>
+                <option value="20" selected="@(pageSize == 20)">20</option>
+                <option value="50" selected="@(pageSize == 50)">50</option>
+                <option value="100" selected="@(pageSize == 100)">100</option>
+            </select>
+        </form>
+    </div>
+
+    @if (totalPaginas > 1)
+    {
+        <div class="paginacion-controles">
+            @if (pageNumber > 1)
+            {
+                <a asp-action="Index"
+                   asp-route-busqueda="@busqueda"
+                   asp-route-idPerfil="@idPerfil"
+                   asp-route-estado="@estado"
+                   asp-route-fechaDesde="@fechaDesde"
+                   asp-route-fechaHasta="@fechaHasta"
+                   asp-route-orden="@orden"
+                   asp-route-pageNumber="1"
+                   asp-route-pageSize="@pageSize"
+                   class="btn-paginacion"
+                   title="Primera página">
+                    «
+                </a>
+
+                <a asp-action="Index"
+                   asp-route-busqueda="@busqueda"
+                   asp-route-idPerfil="@idPerfil"
+                   asp-route-estado="@estado"
+                   asp-route-fechaDesde="@fechaDesde"
+                   asp-route-fechaHasta="@fechaHasta"
+                   asp-route-orden="@orden"
+                   asp-route-pageNumber="@(pageNumber - 1)"
+                   asp-route-pageSize="@pageSize"
+                   class="btn-paginacion"
+                   title="Anterior">
+                    ‹
+                </a>
+            }
+
+            @{
+                int inicio = Math.Max(1, pageNumber - 2);
+                int fin = Math.Min(totalPaginas, pageNumber + 2);
+            }
+
+            @for (int i = inicio; i <= fin; i++)
+            {
+                if (i == pageNumber)
+                {
+                    <span class="btn-paginacion activo">@i</span>
+                }
+                else
+                {
+                    <a asp-action="Index"
+                       asp-route-busqueda="@busqueda"
+                       asp-route-idPerfil="@idPerfil"
+                       asp-route-estado="@estado"
+                       asp-route-fechaDesde="@fechaDesde"
+                       asp-route-fechaHasta="@fechaHasta"
+                       asp-route-orden="@orden"
+                       asp-route-pageNumber="@i"
+                       asp-route-pageSize="@pageSize"
+                       class="btn-paginacion">
+                        @i
+                    </a>
+                }
+            }
+
+            @if (pageNumber < totalPaginas)
+            {
+                <a asp-action="Index"
+                   asp-route-busqueda="@busqueda"
+                   asp-route-idPerfil="@idPerfil"
+                   asp-route-estado="@estado"
+                   asp-route-fechaDesde="@fechaDesde"
+                   asp-route-fechaHasta="@fechaHasta"
+                   asp-route-orden="@orden"
+                   asp-route-pageNumber="@(pageNumber + 1)"
+                   asp-route-pageSize="@pageSize"
+                   class="btn-paginacion"
+                   title="Siguiente">
+                    ›
+                </a>
+
+                <a asp-action="Index"
+                   asp-route-busqueda="@busqueda"
+                   asp-route-idPerfil="@idPerfil"
+                   asp-route-estado="@estado"
+                   asp-route-fechaDesde="@fechaDesde"
+                   asp-route-fechaHasta="@fechaHasta"
+                   asp-route-orden="@orden"
+                   asp-route-pageNumber="@totalPaginas"
+                   asp-route-pageSize="@pageSize"
+                   class="btn-paginacion"
+                   title="Última página">
+                    »
+                </a>
+            }
+        </div>
+    }
+    else
+    {
+        <div class="paginacion-controles" style="visibility: hidden;">
+            <span class="btn-paginacion">1</span>
+        </div>
+    }
+
+    <div class="paginacion-info">
+        <p>Página @pageNumber de @totalPaginas (@totalRegistros registros)</p>
+    </div>
+
+</div>

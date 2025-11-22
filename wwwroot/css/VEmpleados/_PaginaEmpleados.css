@@ -1,0 +1,287 @@
+﻿:root {
+    --rs-primary: #5A2D82;
+    --rs-accent: #EBC5E5;
+    --rs-bg-input: #EDE3FB;
+    --rs-hover: #7F4AA8;
+    --rs-focus: #FFBBCC;
+    --rs-active: #d63384;
+    --rs-text: #2B2766;
+    --radius: 8px;
+}
+
+.paginacion-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 30px 1.5rem;
+    padding: 20px;
+    background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(43, 39, 102, 0.08);
+    flex-wrap: wrap;
+    gap: 20px;
+    border: 1px solid #EBC5E5;
+}
+
+.paginacion-info {
+    font-weight: 600;
+    color: #2B2766;
+    font-size: 14px;
+    background: #EBC5E5;
+    padding: 10px 20px;
+    border-radius: 8px;
+    white-space: nowrap;
+}
+
+    .paginacion-info p {
+        margin: 0;
+        color: #2B2766;
+    }
+
+.paginacion-size {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+    .paginacion-size form {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .paginacion-size label {
+        color: #2B2766;
+        font-weight: 600;
+        font-size: 14px;
+    }
+
+.select-pagesize {
+    padding: 8px 30px 8px 12px;
+    border: 2px solid #d99ac1;
+    border-radius: 8px;
+    background: white;
+    color: #2B2766;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%232B2766' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+}
+
+    .select-pagesize:hover {
+        border-color: #d63384;
+        box-shadow: 0 2px 8px rgba(217, 154, 193, 0.3);
+    }
+
+    .select-pagesize:focus {
+        outline: 3px solid rgba(214, 51, 132, 0.3);
+        outline-offset: 2px;
+        border-color: #d63384;
+        box-shadow: 0 0 0 3px rgba(214, 51, 132, 0.1);
+    }
+
+.paginacion-controles {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.btn-paginacion {
+    padding: 10px 16px;
+    min-width: 40px;
+    background: white;
+    color: #2B2766;
+    border: 2px solid #d99ac1;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-weight: 600;
+    font-size: 14px;
+    text-align: center;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(43, 39, 102, 0.05);
+    position: relative;
+    overflow: hidden;
+}
+
+    .btn-paginacion::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 0;
+        height: 0;
+        border-radius: 50%;
+        background: rgba(214, 51, 132, 0.1);
+        transform: translate(-50%, -50%);
+        transition: width 0.3s, height 0.3s;
+    }
+
+    .btn-paginacion:hover {
+        background: #EBC5E5;
+        border-color: #d63384;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(214, 51, 132, 0.2);
+    }
+
+        .btn-paginacion:hover::before {
+            width: 100%;
+            height: 100%;
+        }
+
+    .btn-paginacion:active {
+        transform: translateY(0);
+        box-shadow: 0 2px 4px rgba(43, 39, 102, 0.1);
+    }
+
+    .btn-paginacion.activo {
+        background: linear-gradient(135deg, #d63384 0%, #c2185b 100%);
+        color: white;
+        border-color: #d63384;
+        font-weight: 700;
+        cursor: default;
+        box-shadow: 0 4px 12px rgba(214, 51, 132, 0.4);
+    }
+
+        .btn-paginacion.activo:hover {
+            transform: none;
+            background: linear-gradient(135deg, #d63384 0%, #c2185b 100%);
+        }
+
+.sin-resultados {
+    text-align: center;
+    padding: 2rem;
+    color: #2B2766;
+    font-size: 1rem;
+}
+
+@media (max-width: 1024px) {
+    .paginacion-container {
+        gap: 15px;
+        padding: 15px;
+    }
+
+    .btn-paginacion {
+        padding: 8px 12px;
+        font-size: 13px;
+        min-width: 36px;
+    }
+
+    .paginacion-info {
+        font-size: 13px;
+        padding: 8px 16px;
+    }
+}
+
+@media (max-width: 768px) {
+    .paginacion-container {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 15px;
+        margin: 1rem;
+    }
+
+    .paginacion-size {
+        justify-content: center;
+    }
+
+    .paginacion-controles {
+        justify-content: center;
+        gap: 6px;
+    }
+
+    .btn-paginacion {
+        padding: 8px 10px;
+        font-size: 12px;
+        min-width: 32px;
+    }
+
+    .paginacion-info {
+        text-align: center;
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .paginacion-container {
+        padding: 12px;
+    }
+
+    .paginacion-size {
+        flex-direction: column;
+        gap: 8px;
+        width: 100%;
+    }
+
+        .paginacion-size form {
+            flex-direction: column;
+            width: 100%;
+        }
+
+        .paginacion-size select,
+        .select-pagesize {
+            width: 100%;
+        }
+
+    .paginacion-controles {
+        gap: 4px;
+    }
+
+    .btn-paginacion {
+        padding: 6px 8px;
+        font-size: 11px;
+        min-width: 28px;
+        white-space: nowrap;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.paginacion-container {
+    animation: fadeIn 0.3s ease-out;
+}
+
+    .paginacion-container.loading {
+        opacity: 0.6;
+        pointer-events: none;
+    }
+
+        .paginacion-container.loading::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 30px;
+            height: 30px;
+            border: 3px solid #EBC5E5;
+            border-top-color: #d63384;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            transform: translate(-50%, -50%);
+        }
+
+@keyframes spin {
+    to {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}

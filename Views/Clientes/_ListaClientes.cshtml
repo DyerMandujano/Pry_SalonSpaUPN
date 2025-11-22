@@ -45,7 +45,7 @@
                 </div>
 
                 <div class="celda acciones-clientes" data-label="Acciones:">
-                    <!-- Botón Editar -->
+
                     <a asp-action="Editar"
                        asp-route-id="@cliente.IdCliente"
                        asp-route-busqueda="@busqueda"
@@ -59,7 +59,6 @@
                         <i class="fas fa-pen-to-square"></i>
                     </a>
 
-                    <!-- Botón Cambiar Estado - SIN onsubmit JavaScript -->
                     <form asp-action="CambiarEstado" method="post" style="display:inline">
                         <input type="hidden" name="id" value="@cliente.IdCliente" />
                         <input type="hidden" name="busqueda" value="@busqueda" />

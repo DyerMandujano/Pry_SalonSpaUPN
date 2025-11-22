@@ -352,7 +352,6 @@ namespace Pry_Solu_SalonSPA.Controllers
 
                 TempData["Mensaje"] = "Cita actualizada correctamente.";
 
-                // Redirigir con los mismos parámetros para mantener página y filtros
                 return RedirectToAction(nameof(Index), new
                 {
                     dni = dni,

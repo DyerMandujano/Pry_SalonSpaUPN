@@ -66,7 +66,6 @@ namespace Pry_Solu_SalonSPA.Controllers
                             : 0
                     };
 
-                    // Obtener TotalRegistros y TotalPaginas de la primera fila
                     if (totalRegistros == 0)
                     {
                         totalRegistros = reader["TotalRegistros"] != DBNull.Value
@@ -157,12 +156,12 @@ namespace Pry_Solu_SalonSPA.Controllers
 
         [HttpGet]
         public async Task<IActionResult> Editar(
-    int id,
-    string? busqueda,
-    int? estado,
-    string? tipoProveedor,
-    int pageNumber = 1,
-    int pageSize = 10)
+        int id,
+        string? busqueda,
+        int? estado,
+        string? tipoProveedor,
+        int pageNumber = 1,
+        int pageSize = 10)
         {
             try
             {
@@ -182,7 +181,6 @@ namespace Pry_Solu_SalonSPA.Controllers
                     return RedirectToAction(nameof(Index));
                 }
 
-                // Pasar los parámetros de navegación
                 ViewBag.ReturnBusqueda = busqueda;
                 ViewBag.ReturnEstado = estado;
                 ViewBag.ReturnTipoProveedor = tipoProveedor;
@@ -208,7 +206,6 @@ namespace Pry_Solu_SalonSPA.Controllers
             int returnPageNumber = 1,
             int returnPageSize = 10)
         {
-            // Limpiar campos opcionales vacíos
             if (string.IsNullOrWhiteSpace(model.TipoProveedor))
             {
                 model.TipoProveedor = null;
@@ -224,7 +221,6 @@ namespace Pry_Solu_SalonSPA.Controllers
                 model.Correo = null;
             }
 
-            // Remover validación de colecciones de navegación
             ModelState.Remove("Compras");
 
             if (!ModelState.IsValid)
@@ -320,7 +316,7 @@ namespace Pry_Solu_SalonSPA.Controllers
             return RedirectToAction(nameof(Index), new
             {
                 busqueda,
-                estado = (int?)null, // Limpiar filtro de estado para ver el cambio
+                estado = (int?)null,
                 tipoProveedor,
                 pageNumber,
                 pageSize
@@ -330,11 +326,11 @@ namespace Pry_Solu_SalonSPA.Controllers
         private void CargarCombos(int? estadoSeleccionado = null, string? tipoProveedorSeleccionado = null)
         {
             var estadosFiltro = new List<SelectListItem>
-    {
-        new SelectListItem { Value = "", Text = "Estado: Todos" },
-        new SelectListItem { Value = "1", Text = "Activo" },
-        new SelectListItem { Value = "0", Text = "Inactivo" }
-    };
+            {
+                new SelectListItem { Value = "", Text = "Estado: Todos" },
+                new SelectListItem { Value = "1", Text = "Activo" },
+                new SelectListItem { Value = "0", Text = "Inactivo" }
+            };
 
             ViewBag.EstadosFiltro = new SelectList(estadosFiltro, "Value", "Text");
             ViewBag.TipoProveedorActual = tipoProveedorSeleccionado;

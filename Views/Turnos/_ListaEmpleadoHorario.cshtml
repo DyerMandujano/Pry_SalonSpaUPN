@@ -1,0 +1,130 @@
+﻿@model IEnumerable<Pry_Solu_SalonSPA.Models.Empleado>
+
+<link href="~/css/VTurnos/_ListaEmpleadoHorario.css" rel="stylesheet" />
+
+<div class="contenedor-empleados">
+    <div class="fila-empleados encabezado">
+        <div>Nombres</div>
+        <div>Apellidos</div>
+        <div>Perfil</div>
+        <div>Hora Inicio</div>
+        <div>Hora Fin</div>
+        <div>Días Semana</div>
+        <div>Estado</div>
+        <div>Acciones</div>
+    </div>
+
+    @if (Model != null && Model.Any())
+    {
+        foreach (var emp in Model)
+        {
+            var persona = emp.IdPersonaNavigation;
+            var perfil = emp.IdPerfilNavigation;
+            var empHorario = emp.EmpleadoHorarios?.FirstOrDefault();
+            var horario = empHorario?.IdHorarioNavigation;
+            var tieneHorario = horario != null && horario.IdHorario > 0;
+
+            <div class="fila-empleados">
+                <div class="celda" data-label="Nombres">
+                    @(persona?.Nombres ?? "")
+                </div>
+                <div class="celda" data-label="Apellidos">
+                    @(persona?.Apellidos ?? "")
+                </div>
+                <div class="celda" data-label="Perfil">
+                    @(perfil?.NombrePerfil ?? "")
+                </div>
+                <div class="celda" data-label="Hora Inicio">
+                    @if (tieneHorario && horario.HoraInicio.HasValue)
+                    {
+                        @horario.HoraInicio.Value.ToString(@"hh\:mm")
+                    }
+                    else
+                    {
+                        <span style="color:#aaa;">-</span>
+                    }
+                </div>
+                <div class="celda" data-label="Hora Fin">
+                    @if (tieneHorario && horario.HoraFin.HasValue)
+                    {
+                        @horario.HoraFin.Value.ToString(@"hh\:mm")
+                    }
+                    else
+                    {
+                        <span style="color:#aaa;">-</span>
+                    }
+                </div>
+                <div class="celda" data-label="Días">
+                    @if (tieneHorario && !string.IsNullOrEmpty(horario.DiasSemana))
+                    {
+                        var dias = new[] { "L", "M", "Mi", "J", "V", "S", "D" };
+                        var seleccionados = horario.DiasSemana.Trim('[', ']').Split(',', StringSplitOptions.RemoveEmptyEntries);
+                        for (int i = 1; i <= 7; i++)
+                        {
+                            var activo = seleccionados.Contains(i.ToString());
+                            <span class="dia-semana @(activo ? "activo" : "inactivo")">
+                                @(activo ? "✔" : "◻️")@dias[i - 1]
+                            </span>
+                        }
+                    }
+                    else
+                    {
+                        <span style="color:#aaa;">Sin definir</span>
+                    }
+                </div>
+                <div class="celda" data-label="Estado">
+                    @if (tieneHorario)
+                    {
+                        <span class="@(horario.Estado == 1 ? "estado-activo" : "estado-retirado")">
+                            @(horario.Estado == 1 ? "ACTIVO" : "INACTIVO")
+                        </span>
+                    }
+                    else
+                    {
+                        <span class="estado-retirado">Sin horario</span>
+                    }
+                </div>
+                <div class="celda acciones" data-label="Acciones">
+                    <!-- Botón Asignar/Modificar - SIEMPRE VISIBLE PARA TODOS -->
+                    <a asp-action="Asignar"
+                       asp-route-idEmpleado="@emp.IdEmpleado"
+                       asp-route-busqueda="@ViewBag.Busqueda"
+                       asp-route-idPerfil="@ViewBag.IdPerfil"
+                       asp-route-estado="@ViewBag.Estado"
+                       asp-route-pageNumber="@ViewBag.PageNumber"
+                       asp-route-pageSize="@ViewBag.PageSize"
+                       class="btn-accion editar"
+                       title="@(tieneHorario ? "Modificar horario" : "Asignar horario")">
+                        <i class="bi bi-pencil"></i>
+                    </a>
+
+                    <!-- Botón Cambiar Estado - SOLO SI TIENE HORARIO -->
+                    @if (tieneHorario)
+                    {
+                        <form asp-action="CambiarEstado" method="post" style="display:inline">
+                            @Html.AntiForgeryToken()
+                            <input type="hidden" name="idHorario" value="@horario.IdHorario" />
+                            <input type="hidden" name="busqueda" value="@ViewBag.Busqueda" />
+                            <input type="hidden" name="idPerfil" value="@ViewBag.IdPerfil" />
+                            <input type="hidden" name="estado" value="@ViewBag.Estado" />
+                            <input type="hidden" name="pageNumber" value="@ViewBag.PageNumber" />
+                            <input type="hidden" name="pageSize" value="@ViewBag.PageSize" />
+                            <button type="submit"
+                                    class="btn-icon @(horario.Estado == 1 ? "eliminar" : "activar")"
+                                    title="@(horario.Estado == 1 ? "Desactivar horario" : "Activar horario")"
+                                    onclick="return confirm('@(horario.Estado == 1 ? "¿Desactivar este horario? Los datos se limpiarán." : "¿Activar este horario?")');">
+                                <i class="bi bi-@(horario.Estado == 1 ? "x-circle" : "check-circle")"></i>
+                            </button>
+                        </form>
+                    }
+                </div>
+            </div>
+        }
+    }
+    else
+    {
+        <div class="fila-empleados vacio">
+            <div class="celda">No se encontraron empleados registrados.</div>
+        </div>
+    }
+</div>

@@ -1,0 +1,123 @@
+﻿@model List<Pry_Solu_SalonSPA.Models.Empleado>
+
+@{
+    string busqueda = ViewBag.Busqueda;
+    int? idPerfil = ViewBag.IdPerfil;
+    string estado = ViewBag.Estado;
+    string fechaDesde = ViewBag.FechaDesde;
+    string fechaHasta = ViewBag.FechaHasta;
+    string orden = ViewBag.Orden;
+    int pageNumber = ViewBag.PageNumber ?? 1;
+    int pageSize = ViewBag.PageSize ?? 10;
+}
+
+<link rel="stylesheet" href="~/css/VEmpleados/_ListaEmpleados.css" />
+
+<div class="contenedor-empleados">
+
+    <div class="fila-empleados encabezado">
+        <div>Nombres</div>
+        <div>Apellidos</div>
+        <div>DNI</div>
+        <div>Teléfono</div>
+        <div>Perfil</div>
+        <div>Sueldo</div>
+        <div>Fecha Registro</div>
+        <div>Fecha Retiro</div>
+        <div>Estado</div>
+        <div>Acciones</div>
+    </div>
+
+    @if (Model != null && Model.Any())
+    {
+        @foreach (var empleado in Model)
+        {
+            var estadoEmpleado = empleado.FechaRetiro == null ? "ACTIVO" : "RETIRADO";
+
+            <div class="fila-empleados">
+                <div class="celda" data-label="Nombres:">
+                    @(empleado.IdPersonaNavigation?.Nombres ?? "N/A")
+                </div>
+                <div class="celda" data-label="Apellidos:">
+                    @(empleado.IdPersonaNavigation?.Apellidos ?? "N/A")
+                </div>
+                <div class="celda" data-label="DNI:">
+                    @(empleado.IdPersonaNavigation?.Dni ?? "N/A")
+                </div>
+                <div class="celda" data-label="Teléfono:">
+                    @(empleado.IdPersonaNavigation?.Telefono ?? "N/A")
+                </div>
+                <div class="celda" data-label="Perfil:">
+                    @(empleado.IdPerfilNavigation?.NombrePerfil ?? "N/A")
+                </div>
+                <div class="celda" data-label="Sueldo:">
+                    S/. @empleado.Sueldo.ToString("N2")
+                </div>
+                <div class="celda" data-label="Fecha-Registro:">
+                    @empleado.IdPersonaNavigation.FechaRegistro.ToString("dd/MM/yyyy")
+                </div>
+                <div class="celda" data-label="Fecha-Retiro:">
+                    @if (empleado.FechaRetiro != null)
+                    {
+                        @empleado.FechaRetiro.Value.ToString("dd/MM/yyyy")
+                    }
+                    else
+                    {
+                        <span style="color: #999;">-</span>
+                    }
+                </div>
+
+                <div class="celda" data-label="Estado:">
+                    <span class="@(estadoEmpleado == "ACTIVO" ? "estado-activo" : "estado-retirado")">
+                        @estadoEmpleado
+                    </span>
+                </div>
+
+                <div class="celda acciones-empleados" data-label="Acciones:">
+
+                    <a asp-action="Editar"
+                       asp-route-id="@empleado.IdEmpleado"
+                       asp-route-busqueda="@busqueda"
+                       asp-route-idPerfil="@idPerfil"
+                       asp-route-estado="@estado"
+                       asp-route-fechaDesde="@fechaDesde"
+                       asp-route-fechaHasta="@fechaHasta"
+                       asp-route-orden="@orden"
+                       asp-route-pageNumber="@pageNumber"
+                       asp-route-pageSize="@pageSize"
+                       class="btn-icon"
+                       title="Editar">
+                        <i class="fas fa-pen-to-square"></i>
+                    </a>
+
+                    <form asp-action="CambiarEstado" method="post" style="display:inline">
+                        @Html.AntiForgeryToken()
+                        <input type="hidden" name="id" value="@empleado.IdEmpleado" />
+                        <input type="hidden" name="accion" value="@(estadoEmpleado == "ACTIVO" ? "RETIRAR" : "REACTIVAR")" />
+                        <input type="hidden" name="busqueda" value="@busqueda" />
+                        <input type="hidden" name="idPerfil" value="@idPerfil" />
+                        <input type="hidden" name="estado" value="@estado" />
+                        <input type="hidden" name="fechaDesde" value="@fechaDesde" />
+                        <input type="hidden" name="fechaHasta" value="@fechaHasta" />
+                        <input type="hidden" name="orden" value="@orden" />
+                        <input type="hidden" name="pageNumber" value="@pageNumber" />
+                        <input type="hidden" name="pageSize" value="@pageSize" />
+
+                        <button type="submit"
+                                class="btn-icon"
+                                title="@(estadoEmpleado == "ACTIVO" ? "Retirar" : "Reactivar")"
+                                onclick="return confirm('@(estadoEmpleado == "ACTIVO" ? "¿Está seguro de retirar este empleado?" : "¿Está seguro de reactivar este empleado?")');">
+                            <i class="fas fa-@(estadoEmpleado == "ACTIVO" ? "toggle-on" : "toggle-off")"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        }
+    }
+    else
+    {
+        <div class="sin-resultados">
+            <p>No se encontraron empleados con los filtros aplicados.</p>
+        </div>
+    }
+</div>

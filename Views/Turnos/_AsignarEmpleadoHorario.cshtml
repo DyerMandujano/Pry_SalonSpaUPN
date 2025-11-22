@@ -1,0 +1,134 @@
+﻿@{
+    Layout = "~/Views/Main.cshtml";
+    ViewData["Title"] = "Asignar Horario";
+    var busqueda = ViewBag.ReturnBusqueda as string;
+    var idPerfil = ViewBag.ReturnIdPerfil as int?;
+    var estado = ViewBag.ReturnEstado as int?;
+    var pageNumber = (ViewBag.ReturnPageNumber as int?) ?? 1;
+    var pageSize = (ViewBag.ReturnPageSize as int?) ?? 10;
+    var idEmpleado = (ViewBag.IdEmpleado as int?) ?? 0;
+    var idHorario = (ViewBag.IdHorario as int?) ?? 0;
+    var horaInicio = ViewBag.HoraInicio as string ?? "";
+    var horaFin = ViewBag.HoraFin as string ?? "";
+    var diasSemana = ViewBag.DiasSemana as string ?? "";
+    var diasSeleccionados = diasSemana.Trim('[', ']').Split(',', StringSplitOptions.RemoveEmptyEntries);
+}
+
+<link href="~/css/VTurnos/_AsignarEmpleadoHorario.css" rel="stylesheet" />
+
+<div class="crear-empleado-wrapper">
+    <div class="crear-empleado-box">
+        <a asp-action="Index"
+           asp-route-busqueda="@busqueda"
+           asp-route-idPerfil="@idPerfil"
+           asp-route-estado="@estado"
+           asp-route-pageNumber="@pageNumber"
+           asp-route-pageSize="@pageSize"
+           class="btn-back">← Volver</a>
+
+        <div class="header-crear">
+            <h2>@(idHorario > 0 ? "Modificar Horario" : "Asignar Horario")</h2>
+            <p style="color:#666;font-size:0.9rem;margin-top:0.5rem;">
+                Define los horarios de trabajo y días laborables del empleado
+            </p>
+        </div>
+
+        @if (!string.IsNullOrEmpty(ViewBag.Error))
+        {
+            <div class="alert alert-danger">
+                @ViewBag.Error
+            </div>
+        }
+
+        <form asp-action="Asignar" method="post" class="form-crear">
+            @Html.AntiForgeryToken()
+            <input type="hidden" name="IdEmpleado" value="@idEmpleado" />
+            <input type="hidden" name="IdHorario" value="@idHorario" />
+            <input type="hidden" name="busqueda" value="@busqueda" />
+            <input type="hidden" name="idPerfil" value="@idPerfil" />
+            <input type="hidden" name="estado" value="@estado" />
+            <input type="hidden" name="pageNumber" value="@pageNumber" />
+            <input type="hidden" name="pageSize" value="@pageSize" />
+
+            <!-- Información del empleado (solo lectura) -->
+            <div class="empleado-info-box">
+                <h4>Información del Empleado</h4>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Nombre Completo</label>
+                        <input type="text" value="@ViewBag.NombreCompleto" class="readonly-field" readonly />
+                    </div>
+                    <div class="form-group">
+                        <label>Perfil</label>
+                        <input type="text" value="@ViewBag.Perfil" class="readonly-field" readonly />
+                    </div>
+                </div>
+            </div>
+
+            <!-- Horarios -->
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Hora Inicio <span class="text-danger">*</span></label>
+                    <input name="HoraInicio" type="time" value="@horaInicio" class="editable-field" required />
+                </div>
+                <div class="form-group">
+                    <label>Hora Fin <span class="text-danger">*</span></label>
+                    <input name="HoraFin" type="time" value="@horaFin" class="editable-field" required />
+                </div>
+            </div>
+
+            <!-- Días de la semana -->
+            <div class="form-row">
+                <div class="form-group" style="grid-column: span 2;">
+                    <label>Días de la Semana <span class="text-danger">*</span></label>
+                    <p style="font-size:0.85rem;color:#666;margin:0.3rem 0 0.5rem 0;">
+                        Selecciona los días en que el empleado trabajará
+                    </p>
+                    <div class="dias-semana-container">
+                        <label class="checkbox-dia">
+                            <input type="checkbox" name="Dia_1" value="1" @(diasSeleccionados.Contains("1") ? "checked" : "") />
+                            <span>Lunes</span>
+                        </label>
+                        <label class="checkbox-dia">
+                            <input type="checkbox" name="Dia_2" value="2" @(diasSeleccionados.Contains("2") ? "checked" : "") />
+                            <span>Martes</span>
+                        </label>
+                        <label class="checkbox-dia">
+                            <input type="checkbox" name="Dia_3" value="3" @(diasSeleccionados.Contains("3") ? "checked" : "") />
+                            <span>Miércoles</span>
+                        </label>
+                        <label class="checkbox-dia">
+                            <input type="checkbox" name="Dia_4" value="4" @(diasSeleccionados.Contains("4") ? "checked" : "") />
+                            <span>Jueves</span>
+                        </label>
+                        <label class="checkbox-dia">
+                            <input type="checkbox" name="Dia_5" value="5" @(diasSeleccionados.Contains("5") ? "checked" : "") />
+                            <span>Viernes</span>
+                        </label>
+                        <label class="checkbox-dia">
+                            <input type="checkbox" name="Dia_6" value="6" @(diasSeleccionados.Contains("6") ? "checked" : "") />
+                            <span>Sábado</span>
+                        </label>
+                        <label class="checkbox-dia">
+                            <input type="checkbox" name="Dia_7" value="7" @(diasSeleccionados.Contains("7") ? "checked" : "") />
+                            <span>Domingo</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-buttons">
+                <a asp-action="Index"
+                   asp-route-busqueda="@busqueda"
+                   asp-route-idPerfil="@idPerfil"
+                   asp-route-estado="@estado"
+                   asp-route-pageNumber="@pageNumber"
+                   asp-route-pageSize="@pageSize"
+                   class="btn-cancelar">Cancelar</a>
+                <button type="submit" class="btn-crear">
+                    @(idHorario > 0 ? "Guardar Cambios" : "Asignar Horario")
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

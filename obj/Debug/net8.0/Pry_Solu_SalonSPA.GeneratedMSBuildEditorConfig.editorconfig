@@ -96,6 +96,30 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW1wbGVhZG9zXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/Jeremy/Source/Repos/Pry_SalonSpaUPN/Views/Empleados/_CrearEmpleados.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW1wbGVhZG9zXF9DcmVhckVtcGxlYWRvcy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Jeremy/Source/Repos/Pry_SalonSpaUPN/Views/Empleados/_EditarEmpleados.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW1wbGVhZG9zXF9FZGl0YXJFbXBsZWFkb3MuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Jeremy/Source/Repos/Pry_SalonSpaUPN/Views/Empleados/_FilterEmpleados.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW1wbGVhZG9zXF9GaWx0ZXJFbXBsZWFkb3MuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Jeremy/Source/Repos/Pry_SalonSpaUPN/Views/Empleados/_HeaderEmpleados.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW1wbGVhZG9zXF9IZWFkZXJFbXBsZWFkb3MuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Jeremy/Source/Repos/Pry_SalonSpaUPN/Views/Empleados/_ListaEmpleados.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW1wbGVhZG9zXF9MaXN0YUVtcGxlYWRvcy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Jeremy/Source/Repos/Pry_SalonSpaUPN/Views/Empleados/_PaginaEmpleados.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW1wbGVhZG9zXF9QYWdpbmFFbXBsZWFkb3MuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Jeremy/Source/Repos/Pry_SalonSpaUPN/Views/Inventario/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW52ZW50YXJpb1xJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -198,6 +222,26 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/Jeremy/Source/Repos/Pry_SalonSpaUPN/Views/Turnos/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVHVybm9zXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Jeremy/Source/Repos/Pry_SalonSpaUPN/Views/Turnos/_AsignarEmpleadoHorario.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVHVybm9zXF9Bc2lnbmFyRW1wbGVhZG9Ib3JhcmlvLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Jeremy/Source/Repos/Pry_SalonSpaUPN/Views/Turnos/_FilterEmpleadoHorario.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVHVybm9zXF9GaWx0ZXJFbXBsZWFkb0hvcmFyaW8uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Jeremy/Source/Repos/Pry_SalonSpaUPN/Views/Turnos/_HeaderEmpleadoHorario.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVHVybm9zXF9IZWFkZXJFbXBsZWFkb0hvcmFyaW8uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Jeremy/Source/Repos/Pry_SalonSpaUPN/Views/Turnos/_ListaEmpleadoHorario.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVHVybm9zXF9MaXN0YUVtcGxlYWRvSG9yYXJpby5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Jeremy/Source/Repos/Pry_SalonSpaUPN/Views/Turnos/_PaginaEmpleadoHorario.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVHVybm9zXF9QYWdpbmFFbXBsZWFkb0hvcmFyaW8uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Jeremy/Source/Repos/Pry_SalonSpaUPN/Views/Ventas/Index.cshtml]

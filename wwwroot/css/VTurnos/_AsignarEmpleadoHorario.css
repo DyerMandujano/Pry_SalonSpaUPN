@@ -1,0 +1,302 @@
+﻿/* ==================== CONTENEDOR PRINCIPAL ==================== */
+.crear-empleado-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    padding: 2rem 1rem;
+    background-color: #f9f1f7;
+}
+
+.crear-empleado-box {
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(43, 39, 102, 0.1);
+    padding: 2rem;
+    width: 100%;
+    max-width: 800px;
+    position: relative;
+}
+
+/* ==================== BOTÓN VOLVER ==================== */
+.btn-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #2B2766;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    padding: 0.5rem 1rem;
+    border: 2px solid #EBC5E5;
+    border-radius: 8px;
+    transition: all 0.2s;
+    margin-bottom: 1.5rem;
+}
+
+    .btn-back:hover {
+        background-color: #ffe6f0;
+        transform: translateX(-3px);
+    }
+
+/* ==================== ENCABEZADO ==================== */
+.header-crear {
+    margin-bottom: 2rem;
+    border-bottom: 2px solid #EBC5E5;
+    padding-bottom: 1rem;
+}
+
+    .header-crear h2 {
+        color: #2B2766;
+        font-size: 1.8rem;
+        margin: 0 0 0.5rem 0;
+        font-weight: 700;
+    }
+
+    .header-crear p {
+        margin: 0;
+        color: #666;
+        font-size: 0.9rem;
+    }
+
+/* ==================== ALERTAS ==================== */
+.alert {
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+    font-size: 0.9rem;
+}
+
+.alert-danger {
+    background-color: #ffe6e6;
+    border: 1px solid #ffcccc;
+    color: #b95a5a;
+}
+
+.alert-success {
+    background-color: #dff9e6;
+    border: 1px solid #99FFBB;
+    color: #18794a;
+}
+
+/* ==================== CAJA DE INFO DEL EMPLEADO ==================== */
+.empleado-info-box {
+    background-color: #f0f8ff;
+    border: 2px solid #b3d9ff;
+    padding: 1.2rem;
+    border-radius: 10px;
+    margin-bottom: 1.5rem;
+}
+
+    .empleado-info-box h4 {
+        color: #2B2766;
+        margin-bottom: 1rem;
+        font-size: 1.1rem;
+        font-weight: 600;
+    }
+
+/* ==================== FORMULARIO ==================== */
+.form-crear {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+    .form-group label {
+        color: #2B2766;
+        font-weight: 600;
+        font-size: 0.9rem;
+    }
+
+.text-danger {
+    color: #b95a5a;
+    font-weight: 700;
+}
+
+/* ==================== CAMPOS DE ENTRADA ==================== */
+.editable-field,
+.readonly-field {
+    padding: 0.75rem;
+    border: 2px solid #EBC5E5;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    transition: all 0.2s;
+    outline: none;
+}
+
+    .editable-field:focus {
+        border-color: #2B2766;
+        box-shadow: 0 0 0 3px rgba(43, 39, 102, 0.1);
+    }
+
+.readonly-field {
+    background-color: #f9f1f7;
+    color: #666;
+    cursor: not-allowed;
+}
+
+.editable-field:hover:not(:focus) {
+    border-color: #b95aa1;
+}
+
+/* ==================== DÍAS DE LA SEMANA ==================== */
+.dias-semana-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 0.75rem;
+    margin-top: 0.5rem;
+}
+
+.checkbox-dia {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    padding: 0.6rem 0.8rem;
+    border: 2px solid #EBC5E5;
+    border-radius: 8px;
+    transition: all 0.2s;
+    background-color: white;
+}
+
+    .checkbox-dia:hover {
+        background-color: #ffe6f0;
+        border-color: #b95aa1;
+        transform: translateY(-2px);
+        box-shadow: 0 3px 8px rgba(235, 197, 229, 0.3);
+    }
+
+    .checkbox-dia input[type="checkbox"] {
+        cursor: pointer;
+        width: 18px;
+        height: 18px;
+        accent-color: #2B2766;
+    }
+
+        .checkbox-dia input[type="checkbox"]:checked {
+            accent-color: #18794a;
+        }
+
+    .checkbox-dia span {
+        font-size: 0.9rem;
+        color: #2B2766;
+        font-weight: 500;
+    }
+
+    .checkbox-dia:has(input:checked) {
+        background-color: #dff9e6;
+        border-color: #99FFBB;
+    }
+
+        .checkbox-dia:has(input:checked) span {
+            color: #18794a;
+            font-weight: 600;
+        }
+
+/* ==================== BOTONES ==================== */
+.form-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 2px solid #EBC5E5;
+}
+
+.btn-cancelar,
+.btn-crear {
+    padding: 0.75rem 2rem;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+}
+
+.btn-cancelar {
+    background-color: white;
+    color: #2B2766;
+    border: 2px solid #EBC5E5;
+}
+
+    .btn-cancelar:hover {
+        background-color: #f9f1f7;
+        border-color: #b95aa1;
+    }
+
+.btn-crear {
+    background-color: #2B2766;
+    color: white;
+    border: 2px solid #2B2766;
+}
+
+    .btn-crear:hover {
+        background-color: #4a7ca3;
+        border-color: #4a7ca3;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(43, 39, 102, 0.3);
+    }
+
+    .btn-crear:active {
+        transform: translateY(0);
+    }
+
+/* ==================== RESPONSIVE ==================== */
+@media (max-width: 768px) {
+    .crear-empleado-wrapper {
+        padding: 1rem;
+    }
+
+    .crear-empleado-box {
+        padding: 1.5rem;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+
+    .header-crear h2 {
+        font-size: 1.5rem;
+    }
+
+    .dias-semana-container {
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    }
+
+    .form-buttons {
+        flex-direction: column-reverse;
+    }
+
+    .btn-cancelar,
+    .btn-crear {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .dias-semana-container {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .checkbox-dia {
+        padding: 0.5rem;
+        font-size: 0.85rem;
+    }
+}

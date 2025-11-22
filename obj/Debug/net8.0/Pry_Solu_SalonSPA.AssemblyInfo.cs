@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Pry_Solu_SalonSPA")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+68aae9c008a6b725a29850cc46e9bbe57f1bcdab")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+36978cd6cbc694c32629eaff30153215a0ff1491")]
 [assembly: System.Reflection.AssemblyProductAttribute("Pry_Solu_SalonSPA")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Pry_Solu_SalonSPA")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -1,0 +1,97 @@
+﻿@{
+    Layout = "~/Views/Main.cshtml";
+    ViewData["Title"] = "Crear Empleado";
+}
+
+<link href="~/css/VEmpleados/_EmpleadoForm.css" rel="stylesheet" />
+
+<div class="crear-empleado-wrapper">
+
+    <div class="crear-empleado-box">
+
+        <a asp-action="Index" class="btn-back">← Volver</a>
+
+        <div class="header-crear">
+            <h2>Crear Empleado</h2>
+        </div>
+
+        @if (!string.IsNullOrEmpty(ViewBag.Error))
+        {
+            <div class="alert alert-danger">
+                @ViewBag.Error
+            </div>
+        }
+
+        <form asp-action="Crear" method="post" class="form-crear">
+            @Html.AntiForgeryToken()
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Nombres <span class="text-danger">*</span></label>
+                    <input name="Nombres" class="editable-field" required />
+                </div>
+                <div class="form-group">
+                    <label>Apellidos <span class="text-danger">*</span></label>
+                    <input name="Apellidos" class="editable-field" required />
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Teléfono <span class="text-danger">*</span></label>
+                    <input name="Telefono" class="editable-field" maxlength="9" required />
+                </div>
+                <div class="form-group">
+                    <label>DNI <span class="text-danger">*</span></label>
+                    <input name="Dni" class="editable-field" maxlength="8" required />
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Fecha de Nacimiento <span class="text-danger">*</span></label>
+                    <input name="Fecha_nacimiento" type="date" class="editable-field" required />
+                </div>
+                <div class="form-group">
+                    <label>Género <span class="text-danger">*</span></label>
+                    <select name="Genero" class="editable-field" required>
+                        <option value="">Seleccione</option>
+                        <option value="Masculino">Masculino</option>
+                        <option value="Femenino">Femenino</option>
+                        <option value="Otro">Otro</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Perfil <span class="text-danger">*</span></label>
+                    <select name="Id_Perfil" asp-items="@ViewData["Perfiles"] as SelectList" class="editable-field" required>
+                        <option value="">Seleccione un perfil</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Sueldo <span class="text-danger">*</span></label>
+                    <input name="Sueldo" type="number" step="0.01" min="0" class="editable-field" placeholder="0.00" required />
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Estado</label>
+                    <input type="text" value="Activo" readonly class="readonly-field" />
+                </div>
+                <div class="form-group">
+                    <label>Fecha de Registro</label>
+                    <input type="text" value="@DateTime.Now.ToString("dd/MM/yyyy")" readonly class="readonly-field" />
+                </div>
+            </div>
+
+            <div class="form-buttons">
+                <a asp-action="Index" class="btn-cancelar">Cancelar</a>
+
+                <button type="submit" class="btn-crear">Crear Empleado</button>
+            </div>
+        </form>
+    </div>
+</div>

@@ -273,18 +273,18 @@ public partial class Conexion : DbContext
             entity.ToTable("Horario");
 
             entity.Property(e => e.IdHorario).HasColumnName("Id_Horario");
-            entity.Property(e => e.FechaFin)
-                .HasColumnType("datetime")
-                .HasColumnName("Fecha_Fin");
-            entity.Property(e => e.FechaInicio)
-                .HasColumnType("datetime")
-                .HasColumnName("Fecha_Inicio");
             entity.Property(e => e.HoraInicio)
                 .HasColumnType("time(0)")
                 .HasColumnName("Hora_Inicio");
             entity.Property(e => e.HoraFin)
                 .HasColumnType("time(0)")
                 .HasColumnName("Hora_Fin");
+            entity.Property(e => e.DiasSemana)
+                .HasMaxLength(50)
+                .IsUnicode(false)
+                .HasColumnName("Dias_Semana");
+            entity.Property(e => e.Estado)
+                .HasColumnName("Estado");
         });
 
         modelBuilder.Entity<Inventario>(entity =>
